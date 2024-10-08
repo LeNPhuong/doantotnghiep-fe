@@ -1,28 +1,20 @@
-import { ReactNode } from 'react';
-import { BsPersonVideo3 } from 'react-icons/bs';
-import { FaHome } from 'react-icons/fa';
-import { RiBookLine } from 'react-icons/ri';
-
 export interface IMenu {
+  id: number;
   name: string;
   link: string;
-  icons: ReactNode;
 }
 
 export const menuData: IMenu[] = [
   {
-    name: 'Trang chủ',
-    link: '/1',
-    icons: <FaHome />,
+    id: 1,
+    name: 'KHUYẾN MÃI',
+    link: '/khuyen-mai',
   },
-  {
-    name: 'Các lớp học',
-    link: '/2',
-    icons: <BsPersonVideo3 />,
-  },
-  {
-    name: 'Thư viện',
-    link: '/3',
-    icons: <RiBookLine />,
-  },
+  { id: 2, name: 'RAU CỦ NẤM & TRÁI CÂY', link: 'rau-cu' },
+  { id: 3, name: 'DẦU ĂN, NƯỚC CHẤM, GIA VỤ', link: 'gia-vi' },
+  { id: 4, name: 'GẠO BỘT, ĐỒ KHÔ', link: 'do-kho' },
+  { id: 5, name: 'SỮA CÁC LOẠI', link: 'sua' },
+  { id: 6, name: 'BÁNH KẸO CÁC LOẠI', link: 'banh-keo' },
+  { id: 7, name: 'MÌ, MIẾN, CHÁO, PHỞ', link: 'mi' },
+  { id: 8, name: 'ĐỒ DÙNG GIA ĐÌNH', link: 'gia-dinh' },
 ];

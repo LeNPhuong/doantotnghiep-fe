@@ -1,46 +1,21 @@
 import React from 'react';
-import { IoSearchOutline } from 'react-icons/io5';
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { menuData } from '../../types/navBar';
-import LinkNav from './LinkNav';
+import Logo from '../other/Logo';
+import HeaderCategoryList from './HeaderCategoryList';
+import HeaderSearchBox from './HeaderSearchBox';
+import HeaderService from './HeaderService';
 
 const Header: React.FC = () => {
   return (
-    <header>
-      <div className="w-full border-b-[1px] border-rgba-custome">
-        <div className="max-w-[1440px] w-full mx-auto h-[84px] max-h-[84px] min-h-[84px]">
-          <div className="flex flex-row items-center h-full w-full px-[12px]">
-            <div className="h-full mr-[58px]">
-              <img className="h-full" src="/src/assets/img/logo.png" alt="" />
-            </div>
-
-            <div className="max-h-[42px] max-w-[300px] h-full border-[1px] border-rgba-custome flex flex-row items-center justify-between rounded-full px-[15px] mr-[55px]">
-              <input
-                placeholder="Tìm test..."
-                type="text"
-                className="border-none outline-none border-[1px] border-rgba-custome max-w-[80%] w-full"
-              />
-              <span className="text-[22px] text-rgba-custome-1">
-                <IoSearchOutline />
-              </span>
-            </div>
-
-            <div className="flex flex-row items-center gap-[55px] mr-[55px]">
-              {menuData.map((data, index) => (
-                <LinkNav key={index} data={data} />
-              ))}
-            </div>
-
-            <button className="text-[22px] text-[#fff] bg-[#000] w-full max-w-[140px] min-h-[46px] rounded-[10px] mr-[55px]">
-              Tạo mới
-            </button>
-
-            <button className="rounded-full max-w-[60px] w-full h-full max-h-[60px] bg-[#d9d9d9] flex justify-center items-center">
-              <span className="text-[#222222] text-[32px]">
-                <RxHamburgerMenu />
-              </span>
-            </button>
-          </div>
+    <header className="bg-[#F7F8FA]">
+      <div className="w-full max-w-[1440px] mx-auto">
+        <div className="w-full flex flex-row items-center h-full min-h-[70px] max-h-[70px] relative">
+          <Logo widthSet={197} />
+          <div className="mr-[25px]"></div>
+          <HeaderCategoryList />
+          <div className="mr-[25px]"></div>
+          <HeaderSearchBox />
+          <div className="mr-[45px]"></div>
+          <HeaderService />
         </div>
       </div>
     </header>

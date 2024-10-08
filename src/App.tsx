@@ -1,18 +1,36 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Footer, Header } from './components';
-import Home from './pages/home/Home';
+import MainLayout from './layout/MainLayout';
+import {
+  Cart,
+  Categories,
+  Details,
+  Home,
+  Login,
+  Register,
+  User,
+} from './pages';
 
 const App: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="">
+
+      <MainLayout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/" index element={<Home />} />
+          <Route path="/trang-chu" element={<Home />} />
+          <Route path="/danh-muc/:category" element={<Categories />} />
+          <Route path="/san-pham/:id" element={<Details />} />
+          <Route path="/gio-hang" element={<Cart />} />
+          <Route path="/nguoi-dung" element={<User />}>
+            <Route path="dang-nhap" element={<Login />} />
+            <Route path="dang-ky" element={<Register />} />
+          </Route>
         </Routes>
-      </main>
+      </MainLayout>
+
       <Footer />
     </>
   );
