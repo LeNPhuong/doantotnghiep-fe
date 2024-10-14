@@ -13,7 +13,7 @@ const HeaderService: React.FC<{}> = () => {
       <HeaderItemService name="Giỏ hàng" icons={<BsCartPlus />} cart={true} />
       <div className="mr-[67px]"></div>
       <div className="flex flex-row items-center text-[#004D40] justify-end">
-        <div className="text-[40px]">
+        <div className="text-[35px]">
           <IoCallOutline />
         </div>
         <div className="flex flex-col">
