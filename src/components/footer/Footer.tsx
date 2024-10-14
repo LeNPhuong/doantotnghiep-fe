@@ -4,11 +4,11 @@ import FooterItems from './FooterItems';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[#F7F8FA]">
+    <footer className="w-full bg-[#F7F8FA] border-t-[1px] border-t-[rgba(0, 0, 0, 0.3)]">
       <div className="w-full max-w-[1440px] mx-auto">
         <div className="w-full flex flex-row pt-[20px] pb-[28px]">
           <FooterInfor />
-          <div className='flex-[1_1_0]'></div>
+          <div className="flex-[1_1_0]"></div>
           <div className="flex flex-col mr-[60px]">
             <h1 className="text-[22px] text-[#004D40] mb-[25px] font-semibold">
               Hỗ trợ

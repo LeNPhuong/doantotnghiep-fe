@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IMenu } from '../../types/navBar';
 import { GrDown } from 'react-icons/gr';
+import { IMenu } from '../../types';
 
 const HeaderItemLink: React.FC<{ data: IMenu }> = ({ data }) => {
   return (

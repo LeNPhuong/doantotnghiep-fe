@@ -1,6 +1,7 @@
 import React from 'react';
-import { menuData } from '../../types/navBar';
+
 import HeaderItemLink from './HeaderItemLink';
+import { menuData } from '../../data';
 
 const HeaderListMenu: React.FC<{}> = () => {
   return (
