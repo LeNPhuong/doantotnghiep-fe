@@ -7,10 +7,19 @@ import { IoCallOutline } from 'react-icons/io5';
 const HeaderService: React.FC<{}> = () => {
   return (
     <div className="flex flex-row flex-[1_1_0]">
-      <HeaderItemService name="Tài khoản" icons={<LuUserCircle2 />} />
+      <HeaderItemService
+        link="/nguoi-dung/dang-nhap"
+        name="Tài khoản"
+        icons={<LuUserCircle2 />}
+      />
       <div className="mr-[43px]"></div>
 
-      <HeaderItemService name="Giỏ hàng" icons={<BsCartPlus />} cart={true} />
+      <HeaderItemService
+        link="/gio-hang"
+        name="Giỏ hàng"
+        icons={<BsCartPlus />}
+        cart={true}
+      />
       <div className="mr-[67px]"></div>
       <div className="flex flex-row items-center text-[#004D40] justify-end">
         <div className="text-[35px]">

@@ -6,7 +6,7 @@ import HeaderService from './HeaderService';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-[#F7F8FA]">
+    <header className="bg-[#F7F8FA] border-b-[1px] border-b-[#AB8787]">
       <div className="w-full max-w-[1440px] mx-auto">
         <div className="w-full flex flex-row items-center h-full min-h-[70px] max-h-[70px] relative">
           <Logo widthSet={197} />

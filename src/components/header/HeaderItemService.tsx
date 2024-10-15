@@ -5,9 +5,13 @@ const HeaderItemService: React.FC<{
   name: string;
   icons: ReactNode;
   cart?: boolean;
-}> = ({ name, icons, cart = false }) => {
+  link: string;
+}> = ({ name, icons, cart = false, link }) => {
   return (
-    <Link to="" className="flex flex-col items-center text-[#004D40] relative">
+    <Link
+      to={`${link}`}
+      className="flex flex-col items-center text-[#004D40] relative"
+    >
       <span className="text-[24px]">{icons}</span>
       <p className="text-[14px] font-[600]">{name}</p>
       {cart && (

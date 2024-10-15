@@ -34,6 +34,17 @@ const BoxSlide = styled.div`
   .swiper-button-next:after {
     font-size: 14px;
   }
+
+  .swiper-pagination-bullet {
+    width: 15px !important;
+    height: 15px !important;
+    background: #034c3f !important;
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #ddf16e !important;
+  }
 `;
 
 const HomeSlide: React.FC<{}> = () => {
