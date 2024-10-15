@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ItemList: React.FC<{}> = () => {
+const CategoriesItemList: React.FC<{}> = () => {
   return (
     <Link
       to=""
@@ -17,4 +17,4 @@ const ItemList: React.FC<{}> = () => {
   );
 };
 
-export default ItemList;
+export default CategoriesItemList;

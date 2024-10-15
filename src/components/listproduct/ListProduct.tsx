@@ -54,16 +54,24 @@ const BoxProduct = styled.div`
 `;
 
 const ListProduct: React.FC<{
-  time: boolean;
+  time?: boolean;
   name: string;
-  more: string | boolean;
+  more?: string | boolean;
 }> = ({ time = false, name, more = false }) => {
   return (
     <BoxProduct>
-      <div className="min-h-[470px] max-h-[470px] w-full bg-[#fff] relative shadow-[0_0_4px_rgba(0,0,0,0.25)]">
-        <LabelName name={name} />
+      <div
+        style={{
+          minHeight: name.length > 0 ? '470px' : 'auto',
+          paddingBottom: name.length > 0 ? 'auto' : '49px',
+          paddingTop: name.length > 0 ? 'auto' : '49px',
+        }}
+        className="min-h-[470px] max-h-[470px] w-full bg-[#fff] relative shadow-[0_0_4px_rgba(0,0,0,0.25)]"
+      >
+        {name?.length != 0 && <LabelName name={name} />}
         {time && <LabelTime />}
-        <SpaceBottom space={89} />
+        {name?.length > 0 && <SpaceBottom space={89} />}
+
         <Swiper
           slidesPerView={5}
           loop={true}
