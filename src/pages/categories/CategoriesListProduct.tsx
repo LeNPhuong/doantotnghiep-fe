@@ -2,10 +2,10 @@ import React from 'react';
 import CardItem from '../../components/listproduct/CardItem';
 import LabelName from '../../components/listproduct/LabelName';
 
-const ListProductCategories: React.FC<{}> = () => {
+const CategoriesListProduct: React.FC<{}> = () => {
   return (
     <div className="shadow-[0_0_4px_rgba(0,0,0,0.25)] flex flex-row flex-wrap pt-[135px] px-[40px] gap-[67px] pb-[32px] relative">
-      <LabelName name='TRÁI CÂY' />
+      <LabelName name="TRÁI CÂY" />
       {Array.from({ length: 20 }, (_, e) => (
         <CardItem />
       ))}
@@ -13,4 +13,4 @@ const ListProductCategories: React.FC<{}> = () => {
   );
 };
 
-export default ListProductCategories;
+export default CategoriesListProduct;
