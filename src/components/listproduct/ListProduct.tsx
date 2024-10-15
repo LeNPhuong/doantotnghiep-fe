@@ -60,7 +60,7 @@ const ListProduct: React.FC<{
 }> = ({ time = false, name, more = false }) => {
   return (
     <BoxProduct>
-      <div className="min-h-[470px] max-h-[470px] w-full bg-[#fff] relative">
+      <div className="min-h-[470px] max-h-[470px] w-full bg-[#fff] relative shadow-[0_0_4px_rgba(0,0,0,0.25)]">
         <LabelName name={name} />
         {time && <LabelTime />}
         <SpaceBottom space={89} />
