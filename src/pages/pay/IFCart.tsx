@@ -4,7 +4,7 @@ import FieldInfor from './FieldInfor';
 
 const IFCart: React.FC<{}> = () => {
   return (
-    <div className="w-full max-w-[404px] shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px] px-[27px] py-[11px]">
+    <div className="w-full max-w-[404px] shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px] px-[27px] py-[11px] self-start">
       <button className="w-full min-h-[46px] bg-[#004D40] shadow-[0_0_4px_rgba(0,0,0,0.25)] rounded-[10px] flex flex-row items-center justify-between px-[20px] text-[#DDF16E] text-[16px] font-medium">
         <span>Nhập mã giảm giá để được ưu đãi</span>
         <span>
