@@ -4,3 +4,6 @@ export { default as Logo } from './other/Logo';
 export { default as BoxBanner } from './other/BoxBanner';
 export { default as ListProduct } from './listproduct/ListProduct';
 export { default as SpaceBottom } from './other/SpaceBottom';
+export { default as Breadcrumb } from './other/Breadcrumb';
+export { default as FormAuth } from './other/FormAuth';
+export { default as PaginationCpn } from './other/PaginationCpn';

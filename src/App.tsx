@@ -7,9 +7,12 @@ import {
   Details,
   Home,
   Login,
+  PayCart,
   Register,
   User,
 } from './pages';
+
+import Pay from './pages/pay/Pay';
 
 const App: React.FC = () => {
   return (
@@ -22,7 +25,11 @@ const App: React.FC = () => {
         <Route path="/trang-chu" element={<Home />} />
         <Route path="/danh-muc/:category" element={<Categories />} />
         <Route path="/san-pham/:id" element={<Details />} />
-        <Route path="/gio-hang" element={<Cart />} />
+        <Route path="/gio-hang" element={<Pay />}>
+          <Route path="chi-tiet" element={<Cart />} />
+          <Route index element={<Cart />} />
+          <Route path="thanh-toan" element={<PayCart />} />
+        </Route>
         <Route path="/nguoi-dung" element={<User />}>
           <Route path="dang-nhap" element={<Login />} />
           <Route path="dang-ky" element={<Register />} />

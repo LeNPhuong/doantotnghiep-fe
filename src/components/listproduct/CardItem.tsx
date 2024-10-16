@@ -10,6 +10,7 @@ const CardItem: React.FC<{}> = () => {
       <div className="flex flex-col w-full">
         <div className="w-full max-h-[160px]">
           <img
+            loading="lazy"
             className="w-full max-w-[218px] max-h-[160px] object-contain"
             src="https://cdn.tgdd.vn/Products/Images/2526/77684/bhx/kem-dac-co-duong-ngoi-sao-phuong-nam-xanh-la-hop-1-284kg-202311271357577976.jpg"
             alt=""
