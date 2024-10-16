@@ -1,9 +1,8 @@
 import React from 'react';
-import Breadcrumb from '../../components/other/Breadcrumb';
 import MainLayout from '../../layout/MainLayout';
 import CategoriesListMenu from './CategoriesListMenu';
-import { ListProduct } from '../../components';
 import CategoriesListProduct from './CategoriesListProduct';
+import { Breadcrumb, PaginationCpn } from '../../components';
 
 const DetailsCategories: React.FC<{}> = () => {
   return (
@@ -11,11 +10,11 @@ const DetailsCategories: React.FC<{}> = () => {
       <Breadcrumb />
       <div className="mt-[28px]"></div>
       <CategoriesListMenu />
-      <div className="mt-[53px]"></div>
-      <ListProduct name="MÌ GÓI" time={false} more={false} />
-      <div className="mt-[80px]"></div>
+      <div className="mt-[28px]"></div>
       <CategoriesListProduct />
-      <div className="pb-[193px]"></div>
+      <div className="flex flex-row justify-center items-center min-h-[67px] max-h-[67px] w-full shadow-[0_0_4px_rgba(0,0,0,0.25)] mt-[19px] mb-[44px]">
+        <PaginationCpn />
+      </div>
     </MainLayout>
   );
 };
