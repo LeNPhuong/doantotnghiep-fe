@@ -10,3 +10,4 @@ export { default as SnackImg } from './snack.png';
 export { default as SpiceImg } from './spice.png';
 export { default as VegestableImg } from './vegestable.png';
 export { default as WaterImg } from './water.png';
+export { default as IconLock } from './iconclock.png';
