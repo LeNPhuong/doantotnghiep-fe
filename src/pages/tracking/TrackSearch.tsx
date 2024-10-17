@@ -1,13 +1,9 @@
 import React from 'react';
 import { IconLock } from '../../assets/icons';
-import MainLayout from '../../layout/MainLayout';
-import { Breadcrumb } from '../../components';
 
 const TrackSearch: React.FC<{}> = () => {
   return (
-    <MainLayout>
-      <Breadcrumb />
-      <div className="mt-[61px]"></div>
+    <>
       <div className="flex flex-row items-center justify-center gap-[9px]">
         <img
           src={IconLock}
@@ -29,7 +25,7 @@ const TrackSearch: React.FC<{}> = () => {
         </button>
       </div>
       <div className="mt-[532px]"></div>
-    </MainLayout>
+    </>
   );
 };
 
