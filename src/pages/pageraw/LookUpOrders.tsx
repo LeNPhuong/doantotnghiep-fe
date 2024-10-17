@@ -1,5 +1,5 @@
-import React from 'react'
-import icon from "../../../public/iconclock.png";
+import React from 'react';
+import icon from '../../../public/iconclock.png';
 
 const LookUpOrders = () => {
   return (
@@ -28,7 +28,7 @@ const LookUpOrders = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LookUpOrders
+export default LookUpOrders;
