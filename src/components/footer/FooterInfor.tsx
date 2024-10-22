@@ -16,7 +16,7 @@ const FooterInfor: React.FC<{}> = () => {
       </p>
       <p className="text-[18px] text-[#37764C] font-bold mb-[15px]">
         Người đại diện:{' '}
-        <span className="text-[#000] inline-block">Tiện Lợi Xanh</span>
+        <span className="text-[#000] inline-block">Tiện Lợi Xanh</span>                                                                   
       </p>
       <p className="text-[18px] text-[#37764C] font-bold">
         Email:{' '}
