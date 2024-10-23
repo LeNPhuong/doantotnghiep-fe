@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Aheader from '../a_header';
 import Sidebar from './sidebar';
+import Themsanpham from './themsanpham';
+import Suasanpham from './suasanpham';
 
 const Sanpham: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -12,24 +14,24 @@ const Sanpham: React.FC = () => {
         { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
         { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
         { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
-        { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
-        { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
-        { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
-        { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
-        { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
-        { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
-        { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
-        { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
-        { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
-        { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
-        { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
-        { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
-        { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
-        { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
-        { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
-        { id: 1, name: 'Sản phẩm A', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
-        { id: 2, name: 'Sản phẩm B', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
-        { id: 3, name: 'Sản phẩm C', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
+        { id: 4, name: 'Sản phẩm D', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
+        { id: 5, name: 'Sản phẩm E', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
+        { id: 6, name: 'Sản phẩm F', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
+        { id: 7, name: 'Sản phẩm G', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
+        { id: 8, name: 'Sản phẩm H', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
+        { id: 9, name: 'Sản phẩm I', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
+        { id: 10, name: 'Sản phẩm J', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
+        { id: 11, name: 'Sản phẩm K', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
+        { id: 12, name: 'Sản phẩm L', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
+        { id: 13, name: 'Sản phẩm M', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
+        { id: 14, name: 'Sản phẩm N', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
+        { id: 15, name: 'Sản phẩm O', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
+        { id: 16, name: 'Sản phẩm P', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
+        { id: 17, name: 'Sản phẩm Q', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
+        { id: 18, name: 'Sản phẩm W', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
+        { id: 19, name: 'Sản phẩm R', category: 'Loại 1', image: 'imageA.jpg', unit: 'cái', price: 100000, discount: 10, stock: 50 },
+        { id: 20, name: 'Sản phẩm S', category: 'Loại 2', image: 'imageB.jpg', unit: 'cái', price: 200000, discount: 5, stock: 30 },
+        { id: 21, name: 'Sản phẩm T', category: 'Loại 3', image: 'imageC.jpg', unit: 'cái', price: 300000, discount: 20, stock: 70 },
         ]);
 
     const filteredProducts = products.filter(product =>
@@ -47,10 +49,27 @@ const Sanpham: React.FC = () => {
         }
     };
 
-    const handleAddProduct = () => {
-        alert("Mở form thêm sản phẩm"); 
+    // const handleAddProduct = () => {
+    //     alert("Mở form thêm sản phẩm"); 
+    // };
+    // modal page themsanpham 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
     };
 
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+    // modal page suasanpham
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [currentProduct, setCurrentProduct] = useState(null);
+
+    const handleEditClick = (product) => {
+        setCurrentProduct(product);
+        setIsEditModalOpen(true);
+    };
     return (
         <div className="flex flex-col h-screen">
             <Aheader />
@@ -67,11 +86,13 @@ const Sanpham: React.FC = () => {
                             className="border rounded p-2 mb-4 w-full"
                         />
                         <button 
-                            onClick={handleAddProduct} 
+                            onClick={openModal} 
                             className="bg-[#004D40] text-white py-2 px-4 rounded hover:bg-[#3B4452] mb-4"
                         >
                             Thêm sản phẩm
                         </button>
+                        {/* Hiển thị modal khi nhấn nút */}
+                        <Themsanpham isOpen={modalIsOpen} onRequestClose={closeModal} />
                         <table className="w-full border-collapse">
                             <thead>
                                 <tr>
@@ -105,6 +126,12 @@ const Sanpham: React.FC = () => {
                                                 >
                                                     Xóa
                                                 </button>
+                                                <button 
+                                                    onClick={() => handleEditClick(product)} 
+                                                    className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                                                >
+                                                    Sửa
+                                                </button>
                                             </td>
                                         </tr>
                                     ))
@@ -115,6 +142,14 @@ const Sanpham: React.FC = () => {
                                 )}
                             </tbody>
                         </table>
+                        {/* Hiển thị modal sửa sản phẩm */}
+                        {isEditModalOpen && currentProduct && (
+                            <Suasanpham
+                                isOpen={isEditModalOpen}
+                                onRequestClose={() => setIsEditModalOpen(false)}
+                                product={currentProduct} // Truyền thông tin sản phẩm vào modal
+                            />
+                        )}
                         {totalPages > 1 && (
                             <div className="mt-4">
                                 {Array.from({ length: totalPages }, (_, index) => (
