@@ -15,6 +15,7 @@ import Nmxn from './pages/pageraw/Nmxn';
 import Nmqmk from './pages/pageraw/Nmqmk';
 import Dmk1 from './pages/pageraw/Dmk1';
 import Dmk2 from './pages/pageraw/Dmk2';
+import UserAddress from './pages/pageraw/UserAddress';
 
 
 
@@ -39,6 +40,8 @@ const App: React.FC = () => {
         <Route path="nmqmk" element={<Nmqmk />} />
         <Route path="dmk1" element={<Dmk1 />} />
         <Route path="dmk2" element={<Dmk2 />} />
+        <Route path="useraddress" element={<UserAddress />} />
+
       </Routes>
       {/* </MainLayout> */}
 
