@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
-import { Footer, Header } from './components';
+// import { Footer, Header } from './components';
 
 import {
   Cart,
@@ -28,6 +28,7 @@ import Users from './admin-khang/quanly/users';
 import Danhmuc from './admin-khang/quanly/danhmuc';
 import Client from './layout/Client';
 import AdminDashBoard from './layout/AdminDashBoard';
+import UserAddress from './pages/pageraw/UserAddress';
 
 const App: React.FC<{}> = () => {
   return (
@@ -46,16 +47,22 @@ const App: React.FC<{}> = () => {
             <Route path="thanh-toan" element={<PayCart />} />
           </Route>
 
+          
+
           <Route path="/nguoi-dung" element={<User />}>
             <Route path="dang-nhap" element={<Login />} />
             <Route path="dang-ky" element={<Register />} />
             <Route path="doi-mat-khau" element={<ChangePassword />} />
-
             <Route path="quen-mat-khau" element={<Forgot />}>
               <Route index element={<ForgotPassword />} />
               <Route path="doi-mat-khau" element={<ChangeSucces />} />
             </Route>
           </Route>
+
+          {/* new Long */}
+          <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route>
+          {/* new */}
+
 
           <Route path="tra-cuu" element={<Tracking />}>
             <Route index element={<TrackSearch />} />
