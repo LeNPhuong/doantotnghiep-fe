@@ -1,6 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+interface Address {
+  name: string;
+  phone: string;
+  address: string;
+  isDefault: boolean;
+}
 
 const UserAddress = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentAddress, setCurrentAddress] = useState<Address>({
+    name: 'Phạm Long',
+    phone: '099999999',
+    address: 'Tô Ký Trung Mỹ Tây Q12 TPHCM',
+    isDefault: false,
+  });
+  const [newAddress, setNewAddress] = useState<Address>({
+    name: '',
+    phone: '',
+    address: '',
+    isDefault: false,
+  });
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsEditing(false);
+    setNewAddress({ name: '', phone: '', address: '', isDefault: false }); // Reset the form
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+    setNewAddress((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleEdit = (address: Address) => {
+    setCurrentAddress(address);
+    setNewAddress(address); // Populate the form with the selected address
+    setIsEditing(true);
+    openModal(); // Open the modal for editing
+  };
+
+  const handleSave = () => {
+    if (isEditing) {
+      console.log('Updated Address:', newAddress);
+    } else {
+      console.log('New Address:', newAddress);
+    }
+    closeModal(); // Close the modal after saving
+  };
+
   return (
     <div className="flex gap-8 px-[100px] my-4">
       {/* col1 */}
@@ -43,7 +98,9 @@ const UserAddress = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium "><a href="/thong-tin-nguoi-dung">Thông tin cá nhân</a></div>
+            <div className="text-xl font-medium ">
+              <a href="/thong-tin-nguoi-dung">Thông tin cá nhân</a>
+            </div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +136,9 @@ const UserAddress = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium "><a href="/don-hang-nguoi-dung">Đơn hàng của tôi</a></div>
+            <div className="text-xl font-medium ">
+              <a href="/don-hang-nguoi-dung">Đơn hàng của tôi</a>
+            </div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -169,19 +228,25 @@ const UserAddress = () => {
       </div>
       {/* col2 */}
       <div className="w-3/4 space-y-4">
-        <div className="flex justify-between items-center  ">
+        <div className="flex justify-between items-center">
           <div className="text-3xl font-bold">Quản lý số địa chỉ</div>
-          <div className="bg-[#004D40] text-white texl-xl px-8 py-2 rounded-3xl">
+          <button
+            onClick={openModal}
+            className="bg-[#004D40] text-white text-xl px-8 py-2 rounded-3xl"
+          >
             Thêm địa chỉ
-          </div>
+          </button>
         </div>
+
         <div className="bg-white border-2 border-stone-200 flex items-center justify-between py-4 px-6 shadow-sm rounded-lg">
           <div className="flex-col space-y-4">
             <div className="flex gap-2">
-              <span className="font-semibold">Phạm Long</span>|
-              <span className="text-gray-500 font-medium">099999999</span>
+              <span className="font-semibold">{currentAddress.name}</span> |
+              <span className="text-gray-500 font-medium">
+                {currentAddress.phone}
+              </span>
             </div>
-            <div className="text-gray-500">Tô Ký Trung Mỹ Tây Q12 TPHCM </div>
+            <div className="text-gray-500">{currentAddress.address}</div>
             <div className="flex gap-4 items-center">
               <div className="flex items-center gap-1 border-2 border-[#004D40] bg-[#004D40] text-white px-4 py-2 rounded-2xl">
                 <span>
@@ -207,8 +272,84 @@ const UserAddress = () => {
               </div>
             </div>
           </div>
-          <div className="text-[#004D40] font-medium">Sửa</div>
+          <div
+            className="text-[#004D40] font-medium cursor-pointer"
+            onClick={() => handleEdit(currentAddress)} // Call handleEdit on click
+          >
+            Sửa
+          </div>
         </div>
+
+        {/* Modal for adding or editing address */}
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-8 rounded-xl w-[100%] max-w-md mx-auto space-y-6">
+              <h2 className="text-lg font-semibold text-center">
+                {isEditing ? 'Sửa địa chỉ' : 'Thêm địa chỉ mới'}
+              </h2>
+              <div className="space-y-4">
+                <div className="flex flex-col">
+                  <label className="text-[#949191]">Họ và tên</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={newAddress.name} // Use the newAddress state for the input
+                    onChange={handleInputChange}
+                    className="border-b-2 pb-2 outline-none"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-[#949191]">Số điện thoại</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    value={newAddress.phone} // Use the newAddress state for the input
+                    onChange={handleInputChange}
+                    className="border-b-2 pb-2 outline-none"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-[#949191]">Địa chỉ</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={newAddress.address} // Use the newAddress state for the input
+                    onChange={handleInputChange}
+                    className="border-b-2 pb-2 outline-none"
+                  />
+                </div>
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="isDefault"
+                    checked={newAddress.isDefault} // Use the newAddress state for the checkbox
+                    onChange={(e) =>
+                      setNewAddress((prev) => ({
+                        ...prev,
+                        isDefault: e.target.checked,
+                      }))
+                    }
+                    className="mr-2"
+                  />
+                  <label className="text-[#949191]">
+                    Đặt làm địa chỉ mặc định
+                  </label>
+                </div>
+              </div>
+              <div className="flex justify-end space-x-4">
+                <button onClick={closeModal} className="text-gray-500">
+                  Hủy
+                </button>
+                <button
+                  onClick={handleSave}
+                  className="bg-[#004D40] text-white px-4 py-2 rounded-lg"
+                >
+                  Lưu
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
