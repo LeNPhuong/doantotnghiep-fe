@@ -1,61 +1,6 @@
-import React, { useState } from 'react';
+import { FaAngleRight } from 'react-icons/fa6';
 
-interface Address {
-  name: string;
-  phone: string;
-  address: string;
-  isDefault: boolean;
-}
-
-const UserAddress = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentAddress, setCurrentAddress] = useState<Address>({
-    name: 'Phạm Long',
-    phone: '099999999',
-    address: 'Tô Ký Trung Mỹ Tây Q12 TPHCM',
-    isDefault: false,
-  });
-  const [newAddress, setNewAddress] = useState<Address>({
-    name: '',
-    phone: '',
-    address: '',
-    isDefault: false,
-  });
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setIsEditing(false);
-    setNewAddress({ name: '', phone: '', address: '', isDefault: false }); // Reset the form
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = e.target;
-    setNewAddress((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleEdit = (address: Address) => {
-    setCurrentAddress(address);
-    setNewAddress(address); // Populate the form with the selected address
-    setIsEditing(true);
-    openModal(); // Open the modal for editing
-  };
-
-  const handleSave = () => {
-    if (isEditing) {
-      console.log('Updated Address:', newAddress);
-    } else {
-      console.log('New Address:', newAddress);
-    }
-    closeModal(); // Close the modal after saving
-  };
-
+const UserOrder = () => {
   return (
     <div className="flex gap-8 px-[100px] my-4">
       {/* col1 */}
@@ -98,9 +43,7 @@ const UserAddress = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium ">
-              <a href="/thong-tin-nguoi-dung">Thông tin cá nhân</a>
-            </div>
+            <div className="text-xl font-medium "><a href="/thong-tin-nguoi-dung">Thông tin cá nhân</a></div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,6 +59,45 @@ const UserAddress = () => {
             </div>
           </div>
           {/* row2 */}
+          <div className="flex items-center gap-2 p-4 bg-[#004D40]  ">
+            <div className="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  stroke="white"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                >
+                  <path d="m4.988 17.452l5.75 3.448a2.45 2.45 0 0 0 2.524 0l5.75-3.448c.366-.219.67-.53.88-.901c.205-.37.315-.786.318-1.21V8.278a2.46 2.46 0 0 0-1.198-2.122l-5.75-3.065a2.51 2.51 0 0 0-2.524 0l-5.75 3.065A2.46 2.46 0 0 0 3.79 8.277v7.065c.003.423.113.839.318 1.209c.21.371.514.682.88.901M19.881 7.078L12 11.81" />
+                  <path d="M4.119 7.078L12 11.81v9.44m4.38-8.316V9.179L8.066 4.522" />
+                </g>
+              </svg>
+            </div>
+            <div className="text-xl font-medium text-white">
+              <a href="/don-hang-nguoi-dung">Đơn hàng của tôi</a>
+            </div>
+            <div className="ml-auto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="8.75px"
+                height="20px"
+                viewBox="0 0 7 16"
+              >
+                <path
+                  fill="white"
+                  d="M1.5 13a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71L5.3 7.99L1.15 3.85c-.2-.2-.2-.51 0-.71s.51-.2.71 0l4.49 4.51c.2.2.2.51 0 .71l-4.5 4.49c-.1.1-.23.15-.35.15"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* row3 */}
           <div className="flex items-center gap-2 p-4  ">
             <div className="">
               <svg
@@ -130,15 +112,14 @@ const UserAddress = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="1.5"
+                  color="black"
                 >
-                  <path d="m4.988 17.452l5.75 3.448a2.45 2.45 0 0 0 2.524 0l5.75-3.448c.366-.219.67-.53.88-.901c.205-.37.315-.786.318-1.21V8.278a2.46 2.46 0 0 0-1.198-2.122l-5.75-3.065a2.51 2.51 0 0 0-2.524 0l-5.75 3.065A2.46 2.46 0 0 0 3.79 8.277v7.065c.003.423.113.839.318 1.209c.21.371.514.682.88.901M19.881 7.078L12 11.81" />
-                  <path d="M4.119 7.078L12 11.81v9.44m4.38-8.316V9.179L8.066 4.522" />
+                  <path d="M14.5 9a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0m3.722 8c1.395 1.988 2.062 3.047 1.665 3.9q-.06.128-.14.247c-.575.853-2.06.853-5.03.853H9.283c-2.97 0-4.454 0-5.029-.853a2 2 0 0 1-.14-.247c-.397-.852.27-1.912 1.665-3.9" />
+                  <path d="M13.257 17.494a1.813 1.813 0 0 1-2.514 0c-3.089-2.993-7.228-6.336-5.21-11.19C6.626 3.679 9.246 2 12 2s5.375 1.68 6.467 4.304c2.016 4.847-2.113 8.207-5.21 11.19" />
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium ">
-              <a href="/don-hang-nguoi-dung">Đơn hàng của tôi</a>
-            </div>
+            <div className="text-xl font-medium "><a href="/dia-chi-nguoi-dung">Quản lý sổ địa chỉ</a></div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -148,45 +129,6 @@ const UserAddress = () => {
               >
                 <path
                   fill="black"
-                  d="M1.5 13a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71L5.3 7.99L1.15 3.85c-.2-.2-.2-.51 0-.71s.51-.2.71 0l4.49 4.51c.2.2.2.51 0 .71l-4.5 4.49c-.1.1-.23.15-.35.15"
-                />
-              </svg>
-            </div>
-          </div>
-          {/* row3 */}
-          <div className="flex items-center gap-2 p-4 bg-[#004D40] ">
-            <div className="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24px"
-                height="24px"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  fill="none"
-                  stroke="white"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  color="white"
-                >
-                  <path d="M14.5 9a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0m3.722 8c1.395 1.988 2.062 3.047 1.665 3.9q-.06.128-.14.247c-.575.853-2.06.853-5.03.853H9.283c-2.97 0-4.454 0-5.029-.853a2 2 0 0 1-.14-.247c-.397-.852.27-1.912 1.665-3.9" />
-                  <path d="M13.257 17.494a1.813 1.813 0 0 1-2.514 0c-3.089-2.993-7.228-6.336-5.21-11.19C6.626 3.679 9.246 2 12 2s5.375 1.68 6.467 4.304c2.016 4.847-2.113 8.207-5.21 11.19" />
-                </g>
-              </svg>
-            </div>
-            <div className="text-xl font-medium text-white">
-              <a href="/dia-chi-nguoi-dung">Quản lý sổ địa chỉ</a>
-            </div>
-            <div className="ml-auto">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="8.75px"
-                height="20px"
-                viewBox="0 0 7 16"
-              >
-                <path
-                  fill="white"
                   d="M1.5 13a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71L5.3 7.99L1.15 3.85c-.2-.2-.2-.51 0-.71s.51-.2.71 0l4.49 4.51c.2.2.2.51 0 .71l-4.5 4.49c-.1.1-.23.15-.35.15"
                 />
               </svg>
@@ -228,131 +170,82 @@ const UserAddress = () => {
       </div>
       {/* col2 */}
       <div className="w-3/4 space-y-4">
-        <div className="flex justify-between items-center">
-          <div className="text-3xl font-bold">Quản lý số địa chỉ</div>
-          <button
-            onClick={openModal}
-            className="bg-[#004D40] text-white text-xl px-8 py-2 rounded-3xl"
-          >
-            Thêm địa chỉ
-          </button>
+        {/* row1 */}
+        <div className="flex justify-between items-center  ">
+          <div className="text-3xl font-bold">Đơn hàng của tôi</div>
         </div>
+        {/* row2 */}
+        <div className="flex justify-around border-[1px] border-[#dbd9d9] py-2 rounded-t-xl">
+          <div>Tất cả</div>
+          <div>Đang xử lý</div>
+          <div>Đang giao</div>
+          <div>Đã giao</div>
+          <div>Đã hủy</div>
+          <div>Trả hàng</div>
+        </div>
+        {/* row3 */}
+        <div>
+          <div className="flex justify-between border-[1px] border-[#dbd9d9] border-b-0 py-2 px-8">
+            <div className="flex gap-6 items-center">
+              <div className="font-semibold">Đơn hàng 10/08/2024</div>
+              <div className="text-[#8a8484] ">●</div>
+              <div className="text-[#8a8484] font-medium">
+                {' '}
+                Nhận tại cửa hàng
+              </div>
+              <div className="text-[#8a8484] ">●</div>
 
-        <div className="bg-white border-2 border-stone-200 flex items-center justify-between py-4 px-6 shadow-sm rounded-lg">
-          <div className="flex-col space-y-4">
-            <div className="flex gap-2">
-              <span className="font-semibold">{currentAddress.name}</span> |
-              <span className="text-gray-500 font-medium">
-                {currentAddress.phone}
-              </span>
+              <div className="text-[#8a8484] font-medium">#0000001</div>
             </div>
-            <div className="text-gray-500">{currentAddress.address}</div>
-            <div className="flex gap-4 items-center">
-              <div className="flex items-center gap-1 border-2 border-[#004D40] bg-[#004D40] text-white px-4 py-2 rounded-2xl">
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                  >
-                    <g fill="none">
-                      <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                      <path
-                        fill="white"
-                        d="M13.228 2.688a2 2 0 0 0-2.456 0l-8.384 6.52C1.636 9.795 2.05 11 3.003 11H4v8a2 2 0 0 0 2 2h4v-6a2 2 0 1 1 4 0v6h4a2 2 0 0 0 2-2v-8h.997c.952 0 1.368-1.205.615-1.791z"
-                      />
-                    </g>
-                  </svg>
+            <div className="text-[#039855] font-semibold">● Đã giao</div>
+          </div>
+          <div className="flex gap-4 border-[1px] border-[#dbd9d9] py-4 px-8">
+            {/* col1 */}
+            <div className="flex-col w-[120px] space-y-2">
+              <div className="">
+                <img
+                  className="w-full rounded-lg"
+                  src="https://i.pinimg.com/enabled_lo/236x/d5/d4/bb/d5d4bb7e8a83e3cc20f3383e4ca3e5c7.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="text-[#039855] font-semibold flex items-center gap-2 ">
+                Xem chi tiết <FaAngleRight />
+              </div>
+            </div>
+            {/* col2 */}
+            <div className="w-[550px] flex-col space-y-1 ">
+              <div className="text-[18px] font-semibold">
+                Hamberger bò siêu ngon promax vị gà hoa quả biển xanh{' '}
+              </div>
+              <div className="font-medium text-[#8a8484]">
+                + 2 sản phẩm khác
+              </div>
+            </div>
+            {/* col3 */}
+            <div className="flex-grow space-y-[75px]">
+              <div className="flex gap-6 justify-end">
+                <div className="font-semibold">
+                  <p>1.000.000 đ</p>
+                  <p className="line-through text-[#bbbb]">1.999.000 đ</p>
+                </div>
+                <div className="font-semibold text-[#8a8484] ">x1kg</div>
+              </div>
+              <div className="flex justify-end gap-2 ">
+                <span className="font-medium">Thành tiền:</span>{' '}
+                <span className="text-[#05E077] font-semibold">
+                  1.000.000 đ
                 </span>
-                Nhà
-              </div>
-              <div className="border-2 border-[#004D40] text-[#004D40] px-4 py-2 rounded-2xl">
-                Mặc định
               </div>
             </div>
           </div>
-          <div
-            className="text-[#004D40] font-medium cursor-pointer"
-            onClick={() => handleEdit(currentAddress)} // Call handleEdit on click
-          >
-            Sửa
+          <div className='flex justify-end border-[1px] border-[#dbd9d9] border-t-0 py-4 px-8'>
+            <button className='bg-[#004D40] py-3 px-16 text-white font-medium rounded-2xl '>Mua lại </button>
           </div>
         </div>
-
-        {/* Modal for adding or editing address */}
-        {isModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-8 rounded-xl w-[100%] max-w-md mx-auto space-y-6">
-              <h2 className="text-lg font-semibold text-center">
-                {isEditing ? 'Sửa địa chỉ' : 'Thêm địa chỉ mới'}
-              </h2>
-              <div className="space-y-4">
-                <div className="flex flex-col">
-                  <label className="text-[#949191]">Họ và tên</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={newAddress.name} // Use the newAddress state for the input
-                    onChange={handleInputChange}
-                    className="border-b-2 pb-2 outline-none"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="text-[#949191]">Số điện thoại</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    value={newAddress.phone} // Use the newAddress state for the input
-                    onChange={handleInputChange}
-                    className="border-b-2 pb-2 outline-none"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <label className="text-[#949191]">Địa chỉ</label>
-                  <input
-                    type="text"
-                    name="address"
-                    value={newAddress.address} // Use the newAddress state for the input
-                    onChange={handleInputChange}
-                    className="border-b-2 pb-2 outline-none"
-                  />
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="isDefault"
-                    checked={newAddress.isDefault} // Use the newAddress state for the checkbox
-                    onChange={(e) =>
-                      setNewAddress((prev) => ({
-                        ...prev,
-                        isDefault: e.target.checked,
-                      }))
-                    }
-                    className="mr-2"
-                  />
-                  <label className="text-[#949191]">
-                    Đặt làm địa chỉ mặc định
-                  </label>
-                </div>
-              </div>
-              <div className="flex justify-end space-x-4">
-                <button onClick={closeModal} className="text-gray-500">
-                  Hủy
-                </button>
-                <button
-                  onClick={handleSave}
-                  className="bg-[#004D40] text-white px-4 py-2 rounded-lg"
-                >
-                  Lưu
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
 };
 
-export default UserAddress;
+export default UserOrder;

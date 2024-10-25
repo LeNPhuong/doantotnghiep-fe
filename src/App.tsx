@@ -29,6 +29,9 @@ import Danhmuc from './admin-khang/quanly/danhmuc';
 import Client from './layout/Client';
 import AdminDashBoard from './layout/AdminDashBoard';
 import UserAddress from './pages/pageraw/UserAddress';
+import HuyDon from './pages/pageraw/HuyDon';
+import UserInfo from './pages/pageraw/UserInfo';
+import UserOrder from './pages/pageraw/UserOrder';
 
 const App: React.FC<{}> = () => {
   return (
@@ -60,7 +63,10 @@ const App: React.FC<{}> = () => {
           </Route>
 
           {/* new Long */}
+          <Route path="/thong-tin-nguoi-dung" element={<UserInfo />}></Route>
+          <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route>
           <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route>
+          <Route path="/huydon" element={<HuyDon />}></Route>
           {/* new */}
 
 
