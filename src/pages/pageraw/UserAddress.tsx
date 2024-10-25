@@ -3,6 +3,7 @@ import React from 'react';
 const UserAddress = () => {
   return (
     <div className="flex gap-8 px-[100px] my-4">
+      {/* col1 */}
       <div className="w-1/4 flex-col space-y-6 ">
         <div className="bg-[#004D40] text-white rounded-lg py-10 flex-col ">
           <div className="">
@@ -42,7 +43,7 @@ const UserAddress = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium ">Thông tin cá nhân</div>
+            <div className="text-xl font-medium "><a href="/thong-tin-nguoi-dung">Thông tin cá nhân</a></div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +79,7 @@ const UserAddress = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium ">Đơn hàng của tôi</div>
+            <div className="text-xl font-medium "><a href="/don-hang-nguoi-dung">Đơn hàng của tôi</a></div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +117,7 @@ const UserAddress = () => {
               </svg>
             </div>
             <div className="text-xl font-medium text-white">
-              Quản lý sổ địa chỉ
+              <a href="/dia-chi-nguoi-dung">Quản lý sổ địa chỉ</a>
             </div>
             <div className="ml-auto">
               <svg
@@ -166,6 +167,7 @@ const UserAddress = () => {
           </div>
         </div>
       </div>
+      {/* col2 */}
       <div className="w-3/4 space-y-4">
         <div className="flex justify-between items-center  ">
           <div className="text-3xl font-bold">Quản lý số địa chỉ</div>

@@ -63,9 +63,9 @@ const App: React.FC<{}> = () => {
           </Route>
 
           {/* new Long */}
-          <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route>
           <Route path="/thong-tin-nguoi-dung" element={<UserInfo />}></Route>
           <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route>
+          <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route>
           <Route path="/huydon" element={<HuyDon />}></Route>
           {/* new */}
 

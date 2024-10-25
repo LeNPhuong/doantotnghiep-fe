@@ -43,7 +43,7 @@ const UserOrder = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium ">Thông tin cá nhân</div>
+            <div className="text-xl font-medium "><a href="/thong-tin-nguoi-dung">Thông tin cá nhân</a></div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ const UserOrder = () => {
               </svg>
             </div>
             <div className="text-xl font-medium text-white">
-              Đơn hàng của tôi
+              <a href="/don-hang-nguoi-dung">Đơn hàng của tôi</a>
             </div>
             <div className="ml-auto">
               <svg
@@ -119,7 +119,7 @@ const UserOrder = () => {
                 </g>
               </svg>
             </div>
-            <div className="text-xl font-medium ">Quản lý sổ địa chỉ</div>
+            <div className="text-xl font-medium "><a href="/dia-chi-nguoi-dung">Quản lý sổ địa chỉ</a></div>
             <div className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +240,7 @@ const UserOrder = () => {
             </div>
           </div>
           <div className='flex justify-end border-[1px] border-[#dbd9d9] border-t-0 py-4 px-8'>
-            <button className='bg-[#004D40] py-3 px-16 text-white rounded-2xl '>Mua lại </button>
+            <button className='bg-[#004D40] py-3 px-16 text-white font-medium rounded-2xl '>Mua lại </button>
           </div>
         </div>
       </div>
