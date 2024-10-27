@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
+import ModalChange from '../user/ModalChange';
 
 type FormData = {
   name: string;
@@ -235,7 +236,12 @@ const UserInfo = () => {
             </div>
             <div className="flex justify-between border-b-2 pb-2">
               <p className="text-[#949191]">Ngày sinh</p>
-              <p onClick={openModal} className="font-semibold text-[#004D40] cursor-pointer">{formData.dob}</p>
+              <p
+                onClick={openModal}
+                className="font-semibold text-[#004D40] cursor-pointer"
+              >
+                {formData.dob}
+              </p>
             </div>
 
             <button
@@ -245,71 +251,7 @@ const UserInfo = () => {
               Chỉnh sửa thông tin
             </button>
 
-            {isModalOpen && (
-              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 h-screen">
-                <div className="bg-white p-8 rounded-xl w-[100%] max-w-md mx-auto space-y-6">
-                  <h2 className="text-lg font-semibold text-center">
-                    Chỉnh sửa thông tin
-                  </h2>
-                  <div className="space-y-4">
-                    <div className="flex justify-between border-b-2 pb-2">
-                      <label className="text-[#949191]">Họ và tên</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="font-semibold text-right outline-none"
-                      />
-                    </div>
-                    <div className="flex justify-between border-b-2 pb-2">
-                      <label className="text-[#949191]">Số điện thoại</label>
-                      <input
-                        type="text"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="font-semibold text-right outline-none"
-                      />
-                    </div>
-                    <div className="flex justify-between border-b-2 pb-2">
-                      <label className="text-[#949191]">Giới tính</label>
-                      <input
-                        type="text"
-                        name="gender"
-                        value={formData.gender}
-                        onChange={handleInputChange}
-                        className="font-semibold text-right outline-none"
-                      />
-                    </div>
-                    <div className="flex justify-between border-b-2 pb-2">
-                      <label className="text-[#949191]">Ngày sinh</label>
-                      <input
-                        type="date"
-                        name="dob"
-                        value={formData.dob}
-                        onChange={handleInputChange}
-                        className="font-semibold text-right outline-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex justify-end space-x-4">
-                    <button onClick={closeModal} className="text-gray-500">
-                      Hủy
-                    </button>
-                    <button
-                      onClick={() => {
-                        closeModal();
-                        console.log('Form data saved:', formData); // Optional: Display saved data
-                      }}
-                      className="bg-[#004D40] text-white px-4 py-2 rounded-lg"
-                    >
-                      Lưu
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+            {isModalOpen && <ModalChange />}
           </div>
         </div>
       </div>

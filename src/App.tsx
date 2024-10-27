@@ -31,11 +31,14 @@ import AdminDashBoard from './layout/AdminDashBoard';
 import UserAddress from './pages/pageraw/UserAddress';
 import HuyDon from './pages/pageraw/HuyDon';
 import UserInfo from './pages/pageraw/UserInfo';
-import UserOrder from './pages/pageraw/UserOrder';
+import UserClient from './pages/user/UserClient';
+import Infor from './pages/user/page/Infor';
+import UserOrder from './pages/user/page/UserOrder';
+import MapData from './pages/user/page/MapData';
 
 const App: React.FC<{}> = () => {
   return (
-    <div className="bg-[#F7F8FA]">
+    <div className="bg-[#F7F8FA] relative">
       {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Client />}>
@@ -50,8 +53,6 @@ const App: React.FC<{}> = () => {
             <Route path="thanh-toan" element={<PayCart />} />
           </Route>
 
-          
-
           <Route path="/nguoi-dung" element={<User />}>
             <Route path="dang-nhap" element={<Login />} />
             <Route path="dang-ky" element={<Register />} />
@@ -63,14 +64,20 @@ const App: React.FC<{}> = () => {
           </Route>
 
           {/* new Long */}
-          <Route path="/thong-tin-nguoi-dung" element={<UserInfo />}></Route>
-          <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route>
-          <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route>
-          <Route path="/huydon" element={<HuyDon />}></Route>
+          {/* <Route path="/thong-tin-nguoi-dung" element={<UserInfo />}></Route> */}
+          {/* <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route> */}
+          {/* <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route> */}
+          {/* <Route path="/huydon" element={<HuyDon />}></Route> */}
           {/* new */}
 
+          <Route path="/thong-tin-nguoi-dung" element={<UserClient />}>
+            <Route path="chi-tiet" element={<Infor />} />
+            <Route index element={<Infor />} />
+            <Route path="don-hang" element={<UserOrder />} />
+            <Route path="dia-chi" element={<MapData />} />
+          </Route>
 
-          <Route path="tra-cuu" element={<Tracking />}>
+          <Route path="/tra-cuu" element={<Tracking />}>
             <Route index element={<TrackSearch />} />
             <Route path=":key" element={<TrackingIF />} />
           </Route>
