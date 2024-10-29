@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
-// import { Footer, Header } from './components';
 
 import {
   Cart,
@@ -28,9 +27,6 @@ import Users from './admin-khang/quanly/users';
 import Danhmuc from './admin-khang/quanly/danhmuc';
 import Client from './layout/Client';
 import AdminDashBoard from './layout/AdminDashBoard';
-import UserAddress from './pages/pageraw/UserAddress';
-import HuyDon from './pages/pageraw/HuyDon';
-import UserInfo from './pages/pageraw/UserInfo';
 import UserClient from './pages/user/UserClient';
 import Infor from './pages/user/page/Infor';
 import UserOrder from './pages/user/page/UserOrder';
