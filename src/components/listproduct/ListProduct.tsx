@@ -60,24 +60,17 @@ const ListProduct: React.FC<{
 }> = ({ time = false, name, more = false }) => {
   return (
     <BoxProduct>
-      <div
-        style={{
-          minHeight: name.length > 0 ? '470px' : 'auto',
-          paddingBottom: name.length > 0 ? 'auto' : '49px',
-          paddingTop: name.length > 0 ? 'auto' : '49px',
-        }}
-        className="min-h-[470px] max-h-[470px] w-full bg-[#fff] relative shadow-[0_0_4px_rgba(0,0,0,0.25)]"
-      >
+      <div className="w-full bg-[#fff] relative shadow-[0_0_4px_rgba(0,0,0,0.25)]">
         {name?.length != 0 && <LabelName name={name} />}
-        {time && <LabelTime />}
-        {name?.length > 0 && <SpaceBottom space={89} />}
-
+        {/* {time && <LabelTime />} */}
+        {/* {name?.length > 0 && <SpaceBottom space={89} />} */}
+        <div className="xl:pt-[89px] md:pt-[40px]"></div>
         <Swiper
           slidesPerView={5}
           loop={true}
           navigation={true}
           modules={[Navigation]}
-          className="mySwiper min-h-[350px] max-h-[350px] flex flex-row justify-center items-center"
+          className="mySwiper flex flex-row justify-center items-center overflow-x-hidden py-[2px] gap-[5px]"
         >
           <SwiperSlide className="flex flex-row justify-center items-center">
             <CardItem />
@@ -98,10 +91,11 @@ const ListProduct: React.FC<{
             <CardItem />
           </SwiperSlide>
         </Swiper>
+        <div className="md:pt-[10px] pt-[2px]"></div>
       </div>
       {more !== false && (
         <Link
-          className="mt-[29px] capitalize bg-[#004D40] text-[#fff] block min-w-[150px] max-w-[150px] max-h-[50px] min-h-[50px] rounded-[10px] text-center leading-[50px] text-[16px] font-bold w-full h-full mx-auto"
+          className="md:mt-[29px] mt-[5px] capitalize bg-[#004D40] text-[#fff] block xl:min-w-[150px] xl:max-w-[150px] xl:max-h-[50px] xl:min-h-[50px] xl:rounded-[10px] text-center xl:leading-[50px] xl:text-[16px] font-bold w-full h-full mx-auto md:min-w-[110px] md:max-w-[110px] md:max-h-[30px] md:min-h-[30px] md:rounded-[5px] md:leading-[30px] md:text-[12px] max-w-[40px] text-[5px] md:py-[0px] py-[3px] md:px-0"
           to={typeof more !== 'boolean' ? more : ''}
         >
           xem thêm
