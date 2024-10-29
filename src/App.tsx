@@ -28,13 +28,14 @@ import Users from './admin-khang/quanly/users';
 import Danhmuc from './admin-khang/quanly/danhmuc';
 import Client from './layout/Client';
 import AdminDashBoard from './layout/AdminDashBoard';
-import UserAddress from './pages/pageraw/UserAddress';
-import HuyDon from './pages/pageraw/HuyDon';
-import UserInfo from './pages/pageraw/UserInfo';
 import UserClient from './pages/user/UserClient';
 import Infor from './pages/user/page/Infor';
 import UserOrder from './pages/user/page/UserOrder';
 import MapData from './pages/user/page/MapData';
+import CancelOrder from './pages/pageraw/CancelOrder';
+// import HuyDon from './pages/pageraw/HuyDon';
+// import UserAddress from './pages/pageraw/UserAddress';
+// import UserInfo from './pages/pageraw/UserInfo';
 
 const App: React.FC<{}> = () => {
   return (
@@ -68,6 +69,8 @@ const App: React.FC<{}> = () => {
           {/* <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route> */}
           {/* <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route> */}
           {/* <Route path="/huydon" element={<HuyDon />}></Route> */}
+          <Route path="/dahuy" element={<CancelOrder />}></Route>
+
           {/* new */}
 
           <Route path="/thong-tin-nguoi-dung" element={<UserClient />}>
