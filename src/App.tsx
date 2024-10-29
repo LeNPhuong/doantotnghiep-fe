@@ -31,6 +31,9 @@ import UserClient from './pages/user/UserClient';
 import Infor from './pages/user/page/Infor';
 import UserOrder from './pages/user/page/UserOrder';
 import MapData from './pages/user/page/MapData';
+import CancelOrder from './pages/pageraw/CancelOrder';
+import DetailsOrder from './pages/user/page/DetailsOrder';
+import ListOrder from './pages/user/page/ListOrder';
 
 const App: React.FC<{}> = () => {
   return (
@@ -65,11 +68,17 @@ const App: React.FC<{}> = () => {
           {/* <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route> */}
           {/* <Route path="/huydon" element={<HuyDon />}></Route> */}
           {/* new */}
+          <Route path="/dahuy" element={<CancelOrder />}></Route>
 
           <Route path="/thong-tin-nguoi-dung" element={<UserClient />}>
             <Route path="chi-tiet" element={<Infor />} />
             <Route index element={<Infor />} />
-            <Route path="don-hang" element={<UserOrder />} />
+            <Route path="don-hang" element={<UserOrder />}>
+              <Route path="danh-sach" element={<ListOrder />} />
+              <Route index element={<ListOrder />} />
+
+              <Route path="chi-tiet/:id" element={<DetailsOrder />} />
+            </Route>
             <Route path="dia-chi" element={<MapData />} />
           </Route>
 
