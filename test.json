@@ -1,0 +1,93 @@
+[
+  {
+    "datphong_id": "",
+    "MaKH": "",
+    "NgayDat": "",
+    "NgayDen": "",
+    "NgayDi": "",
+    "YeuCau_DacBiet": "",
+    "SoNguoiLon": "",
+    "SoTreEm": "",
+    "TrangThai_DatPhong": "",
+    "HinhThuc_DatPhong": "",
+    "HOADON": {
+      "hoadon_id": "",
+      "SoHoaDon": "",
+      "NgayLap": "",
+      "TongTien": "",
+      "HINHTHUCTHANHTOAN": {
+        "hinhthuc_id": "",
+        "HinhThuc_ThanhToan": ""
+      },
+      "NHANVIEN": {
+        "MaNhanVien": "",
+        "TenNhanVien": "",
+        "ChucVu": "",
+        "BoPhan": "",
+        "DiaChi": "",
+        "Email": "",
+        "SoDienThoai": ""
+      }
+    },
+    "NHANVIEN": {
+      "MaNhanVien": "",
+      "TenNhanVien": "",
+      "ChucVu": "",
+      "BoPhan": "",
+      "DiaChi": "",
+      "Email": "",
+      "SoDienThoai": ""
+    },
+    "KHACHANG": {
+      "MaKhachHang_id": "",
+      "TenKhachHang": "",
+      "DiaChi": "",
+      "Email": "",
+      "SoDienThoai": "",
+      "YeuCauDacBiet": ""
+    },
+    "CT_DATPHONG": [
+      {
+        "Ma_CT_DatPhong_id": "",
+        "PHONG": {
+          "MaPhong_id": "",
+          "Tang": "",
+          "LOAIPHONG": {
+            "maloai_id": "",
+            "tenLoai": "",
+            "soLuong": "",
+            "TienNghi": "",
+            "GiaTien": ""
+          },
+          "TT_PHONG": [
+            {
+              "Ma_TT_Phong_id": "",
+              "ngayBatDau": "",
+              "ngayKetThuc": "",
+              "TRANGTHAI": {
+                "MaTrangThai_id": "",
+                "TenTrangThai": ""
+              }
+            }
+          ]
+        },
+        "SUDUNG_DICHVU": [
+          {
+            "id": "",
+            "NgaySuDung": "",
+            "SoLuong": "",
+            "GiaTien": "",
+            "DICHVU": {
+              "id": "",
+              "TenDichVu": "",
+              "GiaDichVu": "",
+              "MoTa": ""
+            }
+          }
+        ],
+        "Ma_CT_DatPhong": "",
+        "YeuCauDacBiet": ""
+      }
+    ]
+  }
+]

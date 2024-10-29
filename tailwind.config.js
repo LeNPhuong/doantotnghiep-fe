@@ -12,6 +12,13 @@ export default {
     fontFamily: {
       sans: ['Inter'],
     },
+    screens: {
+      '2xl': '1536px', // khong lam
+      xl: '1280px', 
+      lg: '1024px', // khong lam
+      md: '768px',
+      sm: '290px', // khong lam
+    },
   },
   plugins: [],
 };
