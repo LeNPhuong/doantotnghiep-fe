@@ -21,35 +21,48 @@ const Home: React.FC<{}> = () => {
     <div className="">
       <HomeSlide />
       <MainLayout>
-        <BoxBanner img1={BannerImg1} img2={BannerImg2} size="720px" />
+        <BoxBanner img1={BannerImg1} img2={BannerImg2} size="50%" />
         <HomeListMenu />
-        <SpaceBottom space={48} />
+        {/* <SpaceBottom space={48} /> */}
+        <div className="md:mt-[48px] mt-[10px]"></div>
         <ListProduct time={true} name="ĐANG KHUYỄN MÃI" more={false} />
-        <SpaceBottom space={28} />
-        <BoxBanner img1={MiBn1} img2={MiBn2} size="700px" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[28px] mt-[10px]"></div>
+        <BoxBanner img1={MiBn1} img2={MiBn2} size="48%" />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <ListProduct time={false} name="MÌ GÓI" more="" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <BoxBanner img1={MilkBn1} size="100%" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <ListProduct time={false} name="SỮA HỘP" more="" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <BoxBanner img1={Vegestable1} size="100%" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <ListProduct time={false} name="RAU CỦ XANH TƯƠI" more="" />
-        <SpaceBottom space={29} />
-        <BoxBanner img1={Ricebn1} img2={Ricebn2} size="700px" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
+        <BoxBanner img1={Ricebn1} img2={Ricebn2} size="48%" />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <ListProduct time={false} name="GẠO SẠCH" more="" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <BoxBanner img1={WaterSurgar1} size="100%" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <ListProduct time={false} name="NƯỚC NGỌT CÁC LOẠI" more="" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <BoxBanner img1={PeopleLife1} size="100%" />
-        <SpaceBottom space={29} />
+        <div className="md:mt-[48px] mt-[10px]"></div>
+
         <ListProduct time={false} name="đồ dùng gia đình" more="" />
-        <SpaceBottom space={187} />
+        {/* <SpaceBottom space={187} /> */}
+        <div className="md:pb-[187px] pb-[10px]"></div>
       </MainLayout>
     </div>
   );
