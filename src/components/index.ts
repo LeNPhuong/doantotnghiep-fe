@@ -7,3 +7,5 @@ export { default as SpaceBottom } from './other/SpaceBottom';
 export { default as Breadcrumb } from './other/Breadcrumb';
 export { default as FormAuth } from './other/FormAuth';
 export { default as PaginationCpn } from './other/PaginationCpn';
+export { default as Loading } from './other/Loading';
+export { default as Voucher } from './other/Voucher';

@@ -12,17 +12,18 @@ import IMenuList from '../types/IMenuList';
 
 const DataMenuList: IMenuList[] = [
   {
+    id: 4,
     link: 'sua',
     name: 'SỮA',
     img: MilkImg,
   },
-  { link: 'nuoc-uong', name: 'NƯỚC UỐNG', img: WaterImg },
-  { link: 'mi', name: 'MÌ CÁC LOẠI', img: NoodlesImg },
-  { link: 'banh-keo', name: 'BÁNH KẸO', img: SnackImg },
-  { link: 'ngu-coc', name: 'NGŨ CỐC, HẠT', img: RiceImg },
-  { link: 'rau-cu', name: 'RAU CỦ', img: VegestableImg },
-  { link: 'trai-cay', name: 'TRÁI CÂY', img: FruitImg },
-  { link: 'gia-vi', name: 'GIA VỊ', img: SpiceImg },
+  { id: 8, link: 'nuoc-uong', name: 'NƯỚC UỐNG', img: WaterImg },
+  { id: 6, link: 'mi-mien', name: 'MÌ CÁC LOẠI', img: NoodlesImg },
+  { id: 5, link: 'banh-keo', name: 'BÁNH KẸO', img: SnackImg },
+  { id: 3, link: 'gao-bot', name: 'NGŨ CỐC, HẠT', img: RiceImg },
+  { id: 1, link: 'rau-cu', name: 'RAU CỦ', img: VegestableImg },
+  { id: 1, link: 'trai-cay', name: 'TRÁI CÂY', img: FruitImg },
+  { id: 2, link: 'gia-vi', name: 'GIA VỊ', img: SpiceImg },
 ];
 
 export default DataMenuList;

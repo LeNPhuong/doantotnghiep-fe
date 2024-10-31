@@ -16,3 +16,5 @@ export { default as ChangePassword } from './auth/ChangePassword';
 export { default as Forgot } from './auth/forgot/Forgot';
 export { default as ChangeSucces } from './auth/forgot/ChangeSucces';
 export { default as ForgotPassword } from './auth/forgot/ForgotPassword';
+
+export { default as Search } from './search/Search';

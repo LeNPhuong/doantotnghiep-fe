@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 
-const DetailsOrder: React.FC<{}> = () => {
+const DetailsOrder: React.FC<object> = () => {
   return (
     <>
       <div className="border-[1px] border-[#dbd9d9] py-2 px-2 max-w-[100px] mb-[10px]">

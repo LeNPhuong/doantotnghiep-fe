@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import LabelName from './LabelName';
-import LabelTime from './LabelTime';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import CardItem from './CardItem';
-import SpaceBottom from '../other/SpaceBottom';
+
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const BoxProduct = styled.div`
   .swiper-button-prev,
   .swiper-button-next {
-    width: 23px !important;
-    height: 125px !important;
-    font-size: 13px !important;
-    color: #004d40;
-    background: rgba(169, 169, 169, 0.5);
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 50px !important;
+    color: #ffffff;
+    background: #f9b618;
   }
 
   .swiper-button-prev {
@@ -37,8 +35,8 @@ const BoxProduct = styled.div`
 
   .swiper-button-prev:after,
   .swiper-button-next:after {
-    font-size: 10px;
-    font-weight: 900;
+    font-size: 18px;
+    font-weight: 700;
   }
 
   .swiper-pagination-bullet {
@@ -51,57 +49,75 @@ const BoxProduct = styled.div`
   .swiper-pagination-bullet-active {
     background: #ddf16e !important;
   }
+  .swiper {
+    position: unset;
+  }
+  @media (max-width: 500px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 30px !important;
+      height: 30px !important;
+      color: #ffffff;
+      background: #f9b618;
+    }
+
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
+  }
 `;
 
 const ListProduct: React.FC<{
-  time?: boolean;
   name: string;
-  more?: string | boolean;
-}> = ({ time = false, name, more = false }) => {
+  children: ReactNode;
+  moreLink?: string;
+}> = ({ name, children, moreLink }) => {
   return (
-    <BoxProduct>
-      <div className="w-full bg-[#fff] relative shadow-[0_0_4px_rgba(0,0,0,0.25)]">
-        {name?.length != 0 && <LabelName name={name} />}
-        {/* {time && <LabelTime />} */}
-        {/* {name?.length > 0 && <SpaceBottom space={89} />} */}
-        <div className="xl:pt-[89px] md:pt-[40px]"></div>
-        <Swiper
-          slidesPerView={5}
-          loop={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper flex flex-row justify-center items-center overflow-x-hidden py-[2px] gap-[5px]"
-        >
-          <SwiperSlide className="flex flex-row justify-center items-center">
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-row justify-center items-center">
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-row justify-center items-center">
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-row justify-center items-center">
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-row justify-center items-center">
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide className="flex flex-row justify-center items-center">
-            <CardItem />
-          </SwiperSlide>
-        </Swiper>
-        <div className="md:pt-[10px] pt-[2px]"></div>
-      </div>
-      {more !== false && (
-        <Link
-          className="md:mt-[29px] mt-[5px] capitalize bg-[#004D40] text-[#fff] block xl:min-w-[150px] xl:max-w-[150px] xl:max-h-[50px] xl:min-h-[50px] xl:rounded-[10px] text-center xl:leading-[50px] xl:text-[16px] font-bold w-full h-full mx-auto md:min-w-[110px] md:max-w-[110px] md:max-h-[30px] md:min-h-[30px] md:rounded-[5px] md:leading-[30px] md:text-[12px] max-w-[40px] text-[5px] md:py-[0px] py-[3px] md:px-0"
-          to={typeof more !== 'boolean' ? more : ''}
-        >
-          xem thêm
-        </Link>
-      )}
-    </BoxProduct>
+    <>
+      {name?.length != 0 && <LabelName name={name} />}
+      <div className="pt-[15px]"></div>
+      <BoxProduct>
+        <div className="w-full bg-[#fff] relative shadow-[0_0_5px_rgba(0,0,0,0.25)] py-[20px]">
+          <Swiper
+            loop={true}
+            navigation={true}
+            modules={[Navigation]}
+            breakpoints={{
+              1280: {
+                slidesPerView: 5,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+              500: {
+                slidesPerView: 3,
+              },
+              100: {
+                slidesPerView: 2,
+              },
+            }}
+            className="mySwiper md:!max-w-[1310px] !max-w-[800px] flex flex-row justify-center items-center overflow-x-hidden py-[2px] !gap-[5px]"
+          >
+            {children}
+          </Swiper>
+
+          {moreLink && (
+            <Link
+              className="capitalize py-[20px] text-[#014C3E] block text-center text-[20px] font-bold w-full h-full mx-auto"
+              to={`/danh-muc/${moreLink}`}
+            >
+              xem thêm
+            </Link>
+          )}
+        </div>
+      </BoxProduct>
+    </>
   );
 };
 

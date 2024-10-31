@@ -1,28 +1,36 @@
 import React from 'react';
 import DetailsControlQtt from './DetailsControlQtt';
 import DetailsBuyBtn from './DetailsBuyBtn';
+import { IFProduct } from '../../types/IFProducts';
+import ChangeCurrentcy from '../../ultils/ChangeCurrentcy';
 
-const DetailsIFProduct: React.FC<{}> = () => {
+const DetailsIFProduct: React.FC<{ data: IFProduct | undefined }> = ({
+  data,
+}) => {
   return (
-    <div className="flex flex-col">
-      <h1 className="text-[28px] font-medium mb-[15px]">
-        Dưa hấu ruột đỏ trái 2kg-2.2kg
+    <div className="flex flex-col md:mt-0 mt-[20px]">
+      <h1 className="md:text-[28px] text-[24px] font-medium md:mb-[15px] mb-[6px]">
+        {data?.name}
       </h1>
-      <div className="flex flex-row items-center gap-[20px]">
-        <p className="text-[32px] font-medium text-[#FF0000]">25.000đ</p>
-        <p className="text-[#D3ABAB] line-through text-[16px] relative">
-          37.400₫
-          <div className="absolute top-[50%] translate-y-[-50%] bg-[#FF0000] max-w-[28px] min-w-[36px] min-h-[20px] max-h-[13px] left-[100%] ml-[12px] text-[12px] font-semibold text-[#fff] text-center leading-[20px] rounded-[5px]">
-            18%
+      <div className="flex flex-row items-center md:gap-[20px] gap-[5px] md:mb-[22px] mb-[10px]">
+        <p className="lg:text-[32px] md:text-[22px] text-[16px] font-medium text-[#FF0000]">
+          {ChangeCurrentcy(
+            Number(data?.price) -
+              (Number(data?.price) * Number(data?.sale)) / 100,
+          )}
+        </p>
+        <p className="text-[#D3ABAB] line-through md:text-[16px] text-[10px] relative">
+          {ChangeCurrentcy(Number(data?.price))}
+          <div className="absolute top-[50%] translate-y-[-50%] bg-[#FF0000] max-w-[28px] min-w-[28px] min-h-[20px] max-h-[20px] left-[100%] ml-[12px] text-[12px] font-semibold text-[#fff] text-center leading-[20px] rounded-[5px]">
+            {data?.sale}%
           </div>
         </p>
       </div>
-      <div className="mt-[22px]"></div>
-      <p className="text-[24px] font-semibold mb-[72px]">
-        Số lượng còn lại: 9000 cái
+
+      <p className="md:text-[24px] text-[18px] font-medium xl:mb-[72px] mb-[20px]">
+        Số lượng còn lại: {data?.quantity} cái
       </p>
-      <DetailsControlQtt />
-      <div className="mt-[22px]"></div>
+      {/* <DetailsControlQtt /> */}
       <DetailsBuyBtn />
     </div>
   );
