@@ -23,17 +23,9 @@ const Infor: React.FC<{}> = () => {
   }
 
   return (
-    <div className="w-full max-w-[1003px] shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px]">
-      <div className="flex justify-between items-center h-[54px] px-[24px] border-b-[1px] border-b-[rgba(0,0,0,0.1)] mb-[16px]">
+    <div className="w-full shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px] pb-[50px] md:px-0">
+      <div className="flex justify-between items-center lg:h-[54px] h-[40px] px-[24px] border-b-[1px] border-b-[rgba(0,0,0,0.1)] mb-[16px]">
         <TitleUser title="Thông tin cá nhân" />
-        <Typography
-          variant="body1"
-          sx={{ fontSize: '18px' }}
-          fontWeight={500}
-          color="#000"
-        >
-          Thông tin cá nhân
-        </Typography>
       </div>
       <div className="">
         <div className="w-[70px] h-[70px] rounded-[50%] bg-[#05E077] mx-auto mb-[19px]">
@@ -50,7 +42,7 @@ const Infor: React.FC<{}> = () => {
             />
           </svg>
         </div>
-        <div className="w-[40%] mx-auto flex flex-col gap-[28px]">
+        <div className="lg:w-[40%] md:w-[60%] w-[60%] mx-auto flex flex-col gap-[28px] lg:text-[16px] md:text-[14px] text-[12px]">
           <div className="flex justify-between border-b-2 pb-2">
             <p className="text-[#949191]">Họ và tên</p>
             <p className="font-semibold">{formData.name}</p>
@@ -72,7 +64,7 @@ const Infor: React.FC<{}> = () => {
 
           <button
             onClick={() => statusModal(true)}
-            className="flex justify-center items-center text-[16px] font-semibold mx-auto bg-[#004D40] text-white min-h-[46px] max-h-[46px] rounded-[50px] w-full max-w-[349px]"
+            className="flex justify-center items-center lg:text-[16px] md:text-[12px] text-[12px] font-semibold mx-auto bg-[#004D40] text-white lg:min-h-[46px] md:min-h-[35px] min-h-[40px] rounded-[50px] w-full md:max-w-[349px] max-w-[250px]"
           >
             Chỉnh sửa thông tin
           </button>

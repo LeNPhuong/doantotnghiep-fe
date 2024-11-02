@@ -3,10 +3,19 @@ import { Link } from 'react-router-dom';
 import { IFProduct } from '../../types/IFProducts';
 import ChangeCurrentcy from '../../ultils/ChangeCurrentcy';
 import { Tooltip } from '@mui/material';
+import { useAppDispatch } from '../../redux/store';
+import { add_cart } from '../../redux/cart/CartSlice';
 
 const CardItem: React.FC<{
   data: IFProduct;
 }> = ({ data }) => {
+  const dispatch = useAppDispatch();
+
+  function addCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    dispatch(add_cart(data));
+  }
+
   return (
     <Link
       to={`/san-pham/${data.id}`}
@@ -45,7 +54,12 @@ const CardItem: React.FC<{
                 {ChangeCurrentcy(Number(data.price))}
               </p>
             </div>
-            <button className="uppercase w-full lg:py-[10px] py-[7px] lg:max-w-[102px] max-w-[70px] bg-[#DDF16E] text-[#014C3E] lg:text-[16px] text-[13px] font-semibold rounded-[5px] hover:bg-[#c9e529]">
+            <button
+              onClick={(e) => {
+                addCart(e);
+              }}
+              className="uppercase w-full lg:py-[10px] py-[7px] lg:max-w-[102px] max-w-[70px] bg-[#DDF16E] text-[#014C3E] lg:text-[16px] text-[13px] font-semibold rounded-[5px] hover:bg-[#c9e529] relative z-[9999] outline-none"
+            >
               mua
             </button>
           </div>

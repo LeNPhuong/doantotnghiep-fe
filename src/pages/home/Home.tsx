@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeSlide from './HomeSlide';
 import MainLayout from '../../layout/MainLayout';
-import { BoxBanner, ListProduct, Loading } from '../../components';
+import { BoxBanner } from '../../components';
 import HomeListMenu from './HomeListMenu';
 import {
   BannerImg1,
@@ -16,22 +16,13 @@ import {
   WaterSurgar1,
 } from '../../assets/bannerproduct';
 import { useGetProductsQuery } from '../../service/product';
-import { SwiperSlide } from 'swiper/react';
-import CardItem from '../../components/listproduct/CardItem';
+
 import BoxVoucher from './BoxVoucher';
 
-const Home: React.FC<{}> = () => {
-  const { data, error, isLoading } = useGetProductsQuery();
+import HomeListItemProduct from './HomeListItemProduct';
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (data == null) {
-    return 'Hahaha';
-  }
-
-  console.log(data);
+const Home: React.FC<object> = () => {
+  const { data } = useGetProductsQuery();
 
   return (
     <div className="">
@@ -43,114 +34,83 @@ const Home: React.FC<{}> = () => {
         <div className="md:mt-[28px] mt-[10px]"></div>
         <div className="md:mt-[28px] mt-[10px]"></div>
 
-        <ListProduct name="SẢN PHẨM HOT">
-          {data.data.map(
-            (e, index) =>
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter={null}
+          label="SẢN PHẨM HOT"
+          data={data?.data}
+        />
 
         <div className="md:mt-[28px] mt-[10px]"></div>
         <BoxBanner img1={MiBn1} img2={MiBn2} size="48%" />
         <div className="md:mt-[48px] mt-[10px]"></div>
 
-        <ListProduct name="MÌ GÓI" moreLink="6">
-          {data.data.map(
-            (e, index) =>
-              e.category.key === 'mi-mien' &&
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter="mi-mien"
+          label="MÌ GÓI"
+          data={data?.data}
+          moreLink="6"
+        />
 
         <div className="md:mt-[48px] mt-[10px]"></div>
 
         <BoxBanner img1={MilkBn1} size="100%" />
         <div className="md:mt-[48px] mt-[10px]"></div>
 
-        <ListProduct name="SỮA HỘP" moreLink="4">
-          {data.data.map(
-            (e, index) =>
-              e.category.key === 'sua' &&
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter="sua"
+          label="SỮA HỘP"
+          data={data?.data}
+          moreLink="4"
+        />
 
         <div className="md:mt-[48px] mt-[10px]"></div>
 
         <BoxBanner img1={Vegestable1} size="100%" />
         <div className="md:mt-[48px] mt-[10px]"></div>
 
-        <ListProduct name="RAU CỦ XANH TƯƠI" moreLink="1">
-          {data.data.map(
-            (e, index) =>
-              e.category.key === 'rau-cu' &&
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter="rau-cu"
+          label="RAU CỦ XANH TƯƠI"
+          data={data?.data}
+          moreLink="1"
+        />
+
         <div className="md:mt-[48px] mt-[10px]"></div>
 
         <BoxBanner img1={Ricebn1} img2={Ricebn2} size="48%" />
         <div className="md:mt-[48px] mt-[10px]"></div>
 
-        <ListProduct name="GẠO SẠCH" moreLink="3">
-          {data.data.map(
-            (e, index) =>
-              e.category.key === 'gao-bot' &&
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter="gao-bot"
+          label="GẠO SẠCH"
+          data={data?.data}
+          moreLink="3"
+        />
+
         <div className="md:mt-[48px] mt-[10px]"></div>
 
         <BoxBanner img1={WaterSurgar1} size="100%" />
         <div className="md:mt-[48px] mt-[10px]"></div>
 
-        <ListProduct name="NƯỚC NGỌT CÁC LOẠI" moreLink="8">
-          {data.data.map(
-            (e, index) =>
-              e.category.key === 'nuoc-uong' &&
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter="nuoc-uong"
+          label="NƯỚC NGỌT CÁC LOẠI"
+          data={data?.data}
+          moreLink="8"
+        />
+
         <div className="md:mt-[48px] mt-[10px]"></div>
 
         <BoxBanner img1={PeopleLife1} size="100%" />
         <div className="md:mt-[48px] mt-[10px]"></div>
 
-        <ListProduct name="đồ dùng gia đình" moreLink="7">
-          {data.data.map(
-            (e, index) =>
-              e.category.key === 'do-dung' &&
-              index < 20 && (
-                <SwiperSlide className="flex flex-row justify-center items-center">
-                  <CardItem key={index} data={e} />
-                </SwiperSlide>
-              ),
-          )}
-        </ListProduct>
+        <HomeListItemProduct
+          filter="do-dung"
+          label="đồ dùng gia đình"
+          data={data?.data}
+          moreLink="7"
+        />
+
         <BoxVoucher />
         <div className="md:pb-[50px] pb-[20px]"></div>
       </MainLayout>
