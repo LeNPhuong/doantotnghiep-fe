@@ -7,7 +7,7 @@ const PayCartMethod: React.FC<{}> = () => {
       <p className="text-[18px] font-medium mb-[14px]">
         Chọn phương thức thanh toán
       </p>
-      <div className="flex flex-col shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px]">
+      <div className="flex flex-col shadow-[0_0_3px_rgba(0,0,0,0.25)] md:rounded-[10px]">
         <PayCartItemMethod
           name="Thanh toán khi nhận hàng"
           img="/src/assets/icons/money.png"

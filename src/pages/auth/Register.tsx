@@ -12,56 +12,53 @@ const Register: React.FC<{}> = () => {
 
   return (
     <LayoutAuth label="Đăng ký">
-      <form className="max-w-[396px] w-full mx-auto mb-[49px]">
+      <form className="md:max-w-[396px] max-w-[350px] w-full mx-auto md:mb-[49px] mb-[10px]">
         <FormAuth
           init={username}
           setInit={setUsername}
           h="58px"
           label="Họ và tên"
         />
-        <div className="mt-[16px]"></div>
         <FormAuth init={email} setInit={setEmail} h="58px" label="Email" />
-        <div className="mt-[16px]"></div>
         <FormAuth
           init={phone}
           setInit={setPhone}
           h="58px"
           label="Số điện thoại"
         />
-        <div className="mt-[16px]"></div>
         <FormAuth
           init={password}
           setInit={setPassword}
           h="58px"
           label="Mật khẩu"
         />
-        <div className="mt-[16px]"></div>
         <FormAuth
           init={agPass}
           setInit={setAgPass}
           h="58px"
           label="Nhập lại mật khẩu"
         />
-        <div className="mt-[16px]"></div>
         <div className="flex flex-row">
-          <input type="checkbox" className="w-[20px] h-[20px] mr-[10px]" />
-          <p className="text-[16px] text-[rgba(0,0,0,0.5)] font-medium">
+          <input type="checkbox" className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] mr-[10px]" />
+          <p className="md:text-[18px] text-[14px] text-[rgba(0,0,0,0.5)] font-medium">
             Đồng ý điều khoản và chính sách
           </p>
         </div>
-        <div className="mb-[5px]"></div>
-        <div className="flex w-full justify-center my-[30px] items-center">
+        <div className="flex w-full justify-center md:my-[30px] my-[5px] items-center">
           <button
             type="submit"
-            className="w-full max-w-[232px] min-h-[58px] max-h-[58px] bg-[#004D40] text-[24px] text-[#DDF16E] font-semibold rounded-[5px]"
+            className="w-full md:max-w-[232px] max-w-[180px] min-h-[40px] max-h-[40px] md:min-h-[58px] md:max-h-[58px] bg-[#004D40] md:text-[24px] text-[12px] text-[#DDF16E] font-semibold rounded-[5px]"
           >
             Đăng ký
           </button>
         </div>
       </form>
-      <p className="text-[18px] text-center text-[#000]">
+      <p className="md:text-[18px] text-[14px] text-center text-[#000]">
         Bạn đã có tài khoản !{' '}
-        <Link to="/nguoi-dung/dang-nhap" className="text-[#FF0000] inline-block">
+        <Link
+          to="/nguoi-dung/dang-nhap"
+          className="text-[#FF0000] inline-block"
+        >
           Đăng nhập
         </Link>
       </p>

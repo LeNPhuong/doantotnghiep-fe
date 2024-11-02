@@ -2,7 +2,7 @@ import React from 'react';
 
 const FieldInfor: React.FC<{
   label: string;
-  value: number;
+  value: string | number;
   color?: string;
   size: string;
   color1?: string;
@@ -38,7 +38,7 @@ const FieldInfor: React.FC<{
           color: color2.length > 0 ? color2 : 'inherit',
         }}
       >
-        {value}đ
+        {value}
       </p>
     </div>
   );

@@ -35,8 +35,9 @@ import MapData from './pages/user/page/MapData';
 import DetailsOrder from './pages/user/page/DetailsOrder';
 import ListOrder from './pages/user/page/ListOrder';
 import { Loading } from './components';
+import SkelontonItem from './components/other/SkelontonItem';
 
-const App: React.FC<{}> = () => {
+const App: React.FC<object> = () => {
   return (
     <div className="bg-[#F7F8FA] relative">
       {/* <Header /> */}
@@ -65,17 +66,10 @@ const App: React.FC<{}> = () => {
               </Route>
             </Route>
 
-            {/* new Long */}
-            {/* <Route path="/thong-tin-nguoi-dung" element={<UserInfo />}></Route> */}
-            {/* <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route> */}
-            {/* <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route> */}
-            {/* <Route path="/huydon" element={<HuyDon />}></Route> */}
-            {/* new */}
-            {/* <Route path="/dahuy" element={<CancelOrder />}></Route> */}
             <Route path="/tim-kiem-san-pham/:type" element={<Search />} />
 
             <Route path="/thong-tin-nguoi-dung" element={<UserClient />}>
-              <Route path="chi-tiet" element={<Infor />} />
+              <Route path="ca-nhan" element={<Infor />} />
               <Route index element={<Infor />} />
               <Route path="don-hang" element={<UserOrder />}>
                 <Route path="danh-sach" element={<ListOrder />} />
@@ -98,6 +92,8 @@ const App: React.FC<{}> = () => {
             <Route path="users" element={<Users />} />
             <Route path="danhmuc" element={<Danhmuc />} />
           </Route>
+
+          <Route path="/test" element={<SkelontonItem />} />
         </Routes>
       </Suspense>
       {/* <Footer /> */}

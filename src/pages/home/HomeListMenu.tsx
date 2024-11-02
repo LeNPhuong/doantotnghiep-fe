@@ -9,7 +9,7 @@ const HomeListMenu: React.FC<object> = () => {
         DANH MỤC SẢN PHẨM ƯA CHUỘNG
       </div>
       <div className="flex flex-row md:flex-nowrap md:justify-start md:gap-0 gap-[10px] justify-center flex-wrap md:py-0 py-[5px]">
-        {DataMenuList?.map((e) => <HomeItemListMenu data={e} />)}
+        {DataMenuList?.map((e) => <HomeItemListMenu key={e.id} data={e} />)}
       </div>
     </div>
   );
