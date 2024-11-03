@@ -31,6 +31,10 @@ import UserClient from './pages/user/UserClient';
 import Infor from './pages/user/page/Infor';
 import UserOrder from './pages/user/page/UserOrder';
 import MapData from './pages/user/page/MapData';
+import CancelOrder from './pages/pageraw/CancelOrder';
+import CompleteOrder from './pages/pageraw/CompleteOrder';
+import Seach from './pages/pageraw/Seach';
+import AdminComment from './pages/pageraw/AdminComment';
 
 const App: React.FC<{}> = () => {
   return (
@@ -60,10 +64,14 @@ const App: React.FC<{}> = () => {
           </Route>
 
           {/* new Long */}
-          {/* <Route path="/thong-tin-nguoi-dung" element={<UserInfo />}></Route> */}
+          {/* <Route path="/userne" element={<UserInfo />}></Route> */}
           {/* <Route path="/don-hang-nguoi-dung" element={<UserOrder />}></Route> */}
           {/* <Route path="/dia-chi-nguoi-dung" element={<UserAddress />}></Route> */}
           {/* <Route path="/huydon" element={<HuyDon />}></Route> */}
+          <Route path="/dahuy" element={<CancelOrder />}></Route>
+          <Route path="/thanhcong" element={<CompleteOrder />}></Route>
+          <Route path="/timkiem" element={<Seach />}></Route>
+          <Route path="/admincmt" element={<AdminComment />}></Route>
           {/* new */}
 
           <Route path="/thong-tin-nguoi-dung" element={<UserClient />}>
