@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 
-const CancelOrder = () => {
+const CancelOrder: React.FC<{}> = () => {
   return (
     <div className="flex gap-8 px-[100px] my-4">
       {/* col1 */}

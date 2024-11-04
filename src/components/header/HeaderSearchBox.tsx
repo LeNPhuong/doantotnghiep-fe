@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IoIosSearch } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const HeaderSearchBox: React.FC<{}> = () => {
   const [result, setResult] = useState<string>();
@@ -12,9 +13,13 @@ const HeaderSearchBox: React.FC<{}> = () => {
         value={result}
         onChange={(e) => setResult(e.target.value)}
       />
-      <button className="xl:text-[20px] md:text-[18px] text-[14px]">
+      <Link
+        onClick={() => setResult('')}
+        to={`/tim-kiem-san-pham/${result}`}
+        className="xl:text-[20px] md:text-[18px] text-[14px]"
+      >
         <IoIosSearch />
-      </button>
+      </Link>
       <div className="md:pr-[25px] pr-[10px]"></div>
     </div>
   );

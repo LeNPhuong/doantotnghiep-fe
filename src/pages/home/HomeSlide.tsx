@@ -45,6 +45,30 @@ const BoxSlide = styled.div`
   .swiper-pagination-bullet-active {
     background: #ddf16e !important;
   }
+
+  @media (max-width: 1200px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 29px !important;
+      height: 80px !important;
+      font-size: 13px !important;
+      color: #004d40;
+      background: rgba(221, 241, 110, 0.5);
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
+    .swiper-pagination-bullet {
+      width: 8px !important;
+      height: 8px !important;
+      background: #034c3f !important;
+      opacity: 1;
+    }
+    .swiper-pagination-bullet-active {
+      background: #ddf16e !important;
+    }
+  }
 `;
 
 const HomeSlide: React.FC<{}> = () => {
