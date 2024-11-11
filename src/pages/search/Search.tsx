@@ -8,8 +8,10 @@ import CardItem from '../../components/listproduct/CardItem';
 const Search: React.FC<{}> = () => {
   const [filter, setFilter] = useState<string>('');
   const { type } = useParams<{ type: string }>();
-  const { data, error, isLoading } = useGetAllProductsByTypeQuery(type!);
-  if (isLoading) {
+  const { data, error, isLoading, isFetching } = useGetAllProductsByTypeQuery(
+    type!,
+  );
+  if (isFetching) {
     return <Loading />;
   }
 

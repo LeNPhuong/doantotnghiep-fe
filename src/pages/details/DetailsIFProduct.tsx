@@ -30,7 +30,7 @@ const DetailsIFProduct: React.FC<{ data: IFProduct | undefined }> = ({
       <p className="md:text-[24px] text-[18px] font-medium xl:mb-[72px] mb-[20px]">
         Số lượng còn lại: {data?.quantity} cái
       </p>
-      {/* <DetailsControlQtt /> */}
+
       <DetailsBuyBtn />
     </div>
   );

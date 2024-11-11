@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import ItemsMap from './ItemsMap';
 import AddMap from './AddMap';
+import { useGetAllMapQuery } from '../../../service/profile';
+import { LoadingModal } from '../../../components';
 
 const MapData: React.FC<{}> = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
+  const { data, isLoading, isFetching } = useGetAllMapQuery();
+
+  if (isFetching) {
+    return <LoadingModal />;
+  }
 
   return (
     <div className="w-full max-w-[1003px]">
@@ -19,9 +26,8 @@ const MapData: React.FC<{}> = () => {
         </button>
       </div>
       <div className="flex flex-col gap-[10px] md:px-0 px-[20px]">
-        <ItemsMap />
-        <ItemsMap />
-        <ItemsMap />
+        {data?.data.length !== 0 &&
+          data?.data.map((e) => <ItemsMap key={e.id} data={e} />)}
       </div>
 
       {/* Modal for adding or editing address */}

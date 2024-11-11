@@ -15,15 +15,11 @@ import CardItem from '../../components/listproduct/CardItem';
 
 const Details: React.FC<{}> = () => {
   const { id } = useParams<{ id: string }>();
-  const {
-    data: datamain,
-    error: err1,
-    isLoading: loading1,
-  } = useGetProductByIdQuery(id!);
+  const { data: datamain, isFetching: isFetch1 } = useGetProductByIdQuery(id!);
 
-  const { data, error, isLoading } = useGetProductsQuery();
+  const { data, isFetching: isFetch2 } = useGetProductsQuery();
 
-  if (loading1) {
+  if (isFetch1) {
     return <Loading />;
   }
 
@@ -33,16 +29,16 @@ const Details: React.FC<{}> = () => {
       <div className="mt-[33px]"></div>
       <div className="w-full flex xl:flex-row flex-col shadow-[0_4px_4px_rgba(0,0,0,0.25)] bg-[#fff]">
         <div className="w-full max-w-[839px] xl:border-r-[1px] xl:border-r-[#E0BABA] flex md:flex-row flex-col py-[26px] pl-[16px] md:pr-[0px] pr-[16px]">
-          <DetailsImage />
+          <DetailsImage img={datamain?.data.img!} />
           <DetailsIFProduct data={datamain?.data} />
         </div>
         <DetailsDes data={datamain?.data} />
       </div>
       <div className="pt-[33px]"></div>
-      {isLoading ? (
+      {isFetch2 ? (
         <Loading />
       ) : (
-        <ListProduct name="SẢN PHẨM TƯƠNG TỰ" more={false}>
+        <ListProduct name="SẢN PHẨM TƯƠNG TỰ" moreLink="">
           {data?.data.map(
             (e, index) =>
               e.category.key == datamain?.data.category.key && (

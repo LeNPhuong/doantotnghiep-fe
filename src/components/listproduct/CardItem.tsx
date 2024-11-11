@@ -28,7 +28,8 @@ const CardItem: React.FC<{
         <div className="w-full flex flex-row justify-center pt-[29px] mb-[19px]">
           <img
             className="max-h-[150px]"
-            src="https://cdn.tgdd.vn/Products/Images/2526/77684/bhx/kem-dac-co-duong-ngoi-sao-phuong-nam-xanh-la-hop-1-284kg-202311271357577976.jpg"
+            // src="https://cdn.tgdd.vn/Products/Images/2526/77684/bhx/kem-dac-co-duong-ngoi-sao-phuong-nam-xanh-la-hop-1-284kg-202311271357577976.jpg"
+            src={data.img}
             alt=""
           />
         </div>

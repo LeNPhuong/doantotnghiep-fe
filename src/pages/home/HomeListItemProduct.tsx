@@ -19,10 +19,10 @@ const HomeListItemProduct: React.FC<{
               (e, index) =>
                 index < 20 && (
                   <SwiperSlide
-                    key={index}
+                    key={e.id}
                     className="flex flex-row justify-center items-center"
                   >
-                    <CardItem key={index} data={e} />
+                    <CardItem key={e.id} data={e} />
                   </SwiperSlide>
                 ),
             )
@@ -39,13 +39,12 @@ const HomeListItemProduct: React.FC<{
         {data
           ? data.map(
               (e, index) =>
-                e.category.key === filter &&
-                index < 20 && (
+                e.category.key === filter && (
                   <SwiperSlide
-                    key={index}
+                    key={e.id}
                     className="flex flex-row justify-center items-center"
                   >
-                    <CardItem key={index} data={e} />
+                    <CardItem key={e.id} data={e} />
                   </SwiperSlide>
                 ),
             )

@@ -1,21 +1,65 @@
 import React, { useState } from 'react';
 import LayoutAuth from '../../layout/LayoutAuth';
-import { FormAuth } from '../../components';
+import { FormAuth, LoadingModal } from '../../components';
+import { useChangePasswordMutation } from '../../service/profile';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../redux/store';
 
 const ChangePassword: React.FC<{}> = () => {
-  const [old, setOld] = useState<string>('');
-  const [news, setNews] = useState<string>('');
-  const [again, setAgain] = useState<string>('');
+  const token = JSON.parse(localStorage.getItem('token_access')!);
+  const user = useAppSelector((e) => e.user.profile);
+
+  if (!token && !user) {
+    alert('Không đủ quyền hạn');
+    return <Navigate to="/home" />;
+  }
+
+  const [password, setPassword] = useState<string>('');
+  const [c_password, setC_password] = useState<string>('');
+  const navigate = useNavigate();
+
+  const [change, { isLoading }] = useChangePasswordMutation();
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (password.length === 0 || c_password.length === 0) {
+      return alert('Vui lòng nhập đầy đủ thông tin');
+    }
+
+    if (password !== c_password) {
+      return alert('Mật khẩu không giống nhau');
+    }
+
+    change({ password: password, c_password: c_password })
+      .unwrap()
+      .then((data) => {
+        alert(data.data);
+        setPassword('');
+        setC_password('');
+        return navigate('/thong-tin-nguoi-dung');
+      })
+      .catch(() => {
+        alert('Hành động thất bại');
+      });
+  }
 
   return (
     <LayoutAuth label="Đổi mật khẩu">
-      <form className="md:max-w-[396px] max-w-[350px] w-full mx-auto">
-        <FormAuth init={old} setInit={setOld} h="58px" label="Mật khẩu cũ" />
-        <FormAuth init={news} setInit={setNews} h="58px" label="Mật khẩu mới" />
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="md:max-w-[396px] max-w-[350px] w-full mx-auto"
+      >
         <FormAuth
-          init={again}
-          setInit={setAgain}
-          h="58px"
+          type="password"
+          init={password}
+          setInit={setPassword}
+          label="Mật khẩu mới"
+        />
+        <FormAuth
+          type="password"
+          init={c_password}
+          setInit={setC_password}
           label="Nhập lại mật khẩu mới"
         />
         <div className="space-y-4 mx-2">
@@ -35,6 +79,7 @@ const ChangePassword: React.FC<{}> = () => {
           </button>
         </div>
       </form>
+      {isLoading && <LoadingModal />}
     </LayoutAuth>
   );
 };

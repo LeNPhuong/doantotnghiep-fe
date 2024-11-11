@@ -1,10 +1,18 @@
 import React from 'react';
 import SlideUser from './SlideUser';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../redux/store';
 
 const UserClient: React.FC<{}> = () => {
+  const token = JSON.parse(localStorage.getItem('token_access')!);
+  const user = useAppSelector((e) => e.user.profile);
+
+  if (!token && !user) {
+    alert('Không đủ quyền hạn');
+    return <Navigate to="/home" />;
+  }
+
   const path = useLocation().pathname;
-  // console.log(path.pathname.includes(''));
 
   function checkPath(): boolean {
     const checkv1 = path.includes('chi-tiet');
@@ -22,7 +30,6 @@ const UserClient: React.FC<{}> = () => {
   }
 
   checkPath();
-  console.log(checkPath());
 
   return (
     <div className="w-full max-w-[1440px] mx-auto">
