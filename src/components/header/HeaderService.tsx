@@ -3,15 +3,26 @@ import HeaderItemService from './HeaderItemService';
 import { LuUserCircle2 } from 'react-icons/lu';
 import { BsCartPlus } from 'react-icons/bs';
 import { IoCallOutline } from 'react-icons/io5';
+import { useAppSelector } from '../../redux/store';
 
 const HeaderService: React.FC<{}> = () => {
+  const user = useAppSelector((e) => e.user.profile);
   return (
     <div className="flex flex-row flex-[1_1_0] xl:justify-start md:justify-between justify-end md:gap-[0px] gap-[8px]">
-      <HeaderItemService
-        link="/nguoi-dung/dang-nhap"
-        name="Tài khoản"
-        icons={<LuUserCircle2 />}
-      />
+      {user ? (
+        <HeaderItemService
+          link="/thong-tin-nguoi-dung"
+          name={user.data.name}
+          icons={<LuUserCircle2 />}
+        />
+      ) : (
+        <HeaderItemService
+          link="/nguoi-dung/dang-nhap"
+          name="Tài khoản"
+          icons={<LuUserCircle2 />}
+        />
+      )}
+
       <div className="xl:mr-[43px] xl:block md:hidden"></div>
 
       <HeaderItemService

@@ -10,11 +10,11 @@ const CartItem: React.FC<{ data: IFCartStore }> = ({ data }) => {
     <div className="flex md:flex-row flex-col w-full py-[15px] px-[20px] border-b-[1px] border-[#ccc]">
       <div className="w-full xl:max-w-[543px] lg:max-w-[400px] md:max-w-[350px] flex items-center">
         <img
-          src="https://brgshopping.vn/web/image/product.template/2929/image"
+          src={data.img}
           className="w-[80px] h-[80px] rounded-[10px] shadow-[0_0_4px_rgba(0,0,0,0.25)]"
           alt=""
         />
-        <p className="md:text-[16px] text-[14px] leading-[20px] ml-[12px]">
+        <div className="md:text-[16px] text-[14px] leading-[20px] ml-[12px]">
           {data.description}
           <div className="lg:max-w-[120px] xl:max-w-[90px] max-w-[120px] w-full md:hidden flex-row items-center justify-center text-[16px] text-[#FF0000] font-medium block">
             {ChangeCurrentcy(
@@ -23,7 +23,7 @@ const CartItem: React.FC<{ data: IFCartStore }> = ({ data }) => {
                 data.qtt,
             )}
           </div>
-        </p>
+        </div>
       </div>
       {/*  */}
       <div className="lg:max-w-[120px] max-w-[120px] w-full md:flex flex-row items-center justify-center text-[16px] text-[#FF0000] font-medium hidden">
@@ -37,7 +37,7 @@ const CartItem: React.FC<{ data: IFCartStore }> = ({ data }) => {
         <CartControl id={data.id} data={data.qtt} />
       </div>
       <div className="lg:max-w-[120px] md:max-w-[90px] max-w-[120px] w-full md:flex hidden flex-row items-center justify-center text-[16px] font-medium text-[#004D40]">
-        {data.category.units[0].name}
+        {data.category.active_units[0].name}
       </div>
       <button
         onClick={() => dispatch(delete_cart(data.id))}
@@ -51,7 +51,7 @@ const CartItem: React.FC<{ data: IFCartStore }> = ({ data }) => {
           <CartControl id={data.id} data={data.qtt} />
         </div>
         <div className="max-w-[80px] w-full flex flex-row items-center justify-center text-[16px] font-medium text-[#004D40]">
-          {data.category.units[0].name}
+          {data.category?.active_units[0].name}
         </div>
         <button
           onClick={() => dispatch(delete_cart(data.id))}

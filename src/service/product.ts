@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IFProduct } from '../types/IFProducts';
 import IFCategories from '../types/IFCategories';
+import { IFVoucher } from '../types/Voucher';
 
 export const productApi = createApi({
   reducerPath: 'productApi',
@@ -33,6 +34,14 @@ export const productApi = createApi({
         return 'categories';
       },
     }),
+    getAllVouchers: builder.query<
+      { success: boolean; data: IFVoucher[]; message: string },
+      void
+    >({
+      query: () => {
+        return '/products/vouchers';
+      },
+    }),
   }),
 });
 
@@ -42,4 +51,5 @@ export const {
   useGetAllProductsByTypeQuery,
   useGetAllProductByCategoriesQuery,
   useGetAllCategoriesQuery,
+  useGetAllVouchersQuery,
 } = productApi;

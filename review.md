@@ -41,3 +41,34 @@
           MUA
         </Link> */}
       </div>
+
+
+
+
+if (!dataCart) {
+        alert('Vui lòng thêm sản phẩm để thanh toán');
+      } else {
+        const cart: CartCheckout[] = [];
+        dataCart.map((e) =>
+          cart.push({
+            id: e.id,
+            quantity: e.qtt,
+            price: handleDiscount(e.price, e.sale),
+            unit: e.category.units[0].name,
+          }),
+        );
+
+        const checkoutData: { cart: CartCheckout[]; voucher_id?: number } = {
+          cart: cart,
+        };
+
+        if (voucher) {
+          checkoutData.voucher_id = voucher.id;
+        }
+
+        create(checkoutData)
+          .unwrap()
+          .then((data) => {
+            console.log(data);
+          });
+      }

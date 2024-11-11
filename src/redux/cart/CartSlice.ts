@@ -7,12 +7,14 @@ export interface IFCartStore extends IFProduct {
 
 interface IFCart {
   dataCart: IFCartStore[] | null;
+  methodPay: number;
 }
 
 const initialState: IFCart = {
   dataCart: localStorage.getItem('cart_store')
     ? (JSON.parse(localStorage.getItem('cart_store')!) as IFCartStore[])
     : null,
+  methodPay: 0,
 };
 
 const sliceCart = createSlice({
@@ -36,6 +38,7 @@ const sliceCart = createSlice({
       }
       localStorage.setItem('cart_store', JSON.stringify(state.dataCart));
     },
+
     minus_cart: (state, action: PayloadAction<number>) => {
       const id = action.payload;
       const checkItem = state.dataCart?.find(
@@ -50,6 +53,7 @@ const sliceCart = createSlice({
         localStorage.setItem('cart_store', JSON.stringify(state.dataCart));
       }
     },
+
     increment_cart: (state, action: PayloadAction<number>) => {
       const id = action.payload;
       const checkItem = state.dataCart?.find(
@@ -62,6 +66,7 @@ const sliceCart = createSlice({
         localStorage.setItem('cart_store', JSON.stringify(state.dataCart));
       }
     },
+
     delete_cart: (state, action: PayloadAction<number>) => {
       const id = action.payload;
       if (!id) {
@@ -76,9 +81,23 @@ const sliceCart = createSlice({
       }
       localStorage.setItem('cart_store', JSON.stringify(state.dataCart));
     },
+
+    setMethodPay: (state, action: PayloadAction<number>) => {
+      const method = action.payload;
+      state.methodPay = method;
+    },
+    clearCart: (state, action: PayloadAction<void>) => {
+      (state.dataCart = null), (state.methodPay = 0);
+    },
   },
 });
 
-export const { add_cart, minus_cart, increment_cart, delete_cart } =
-  sliceCart.actions;
+export const {
+  add_cart,
+  minus_cart,
+  increment_cart,
+  delete_cart,
+  setMethodPay,
+  clearCart,
+} = sliceCart.actions;
 export default sliceCart.reducer;

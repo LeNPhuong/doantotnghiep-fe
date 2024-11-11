@@ -12,16 +12,13 @@ const PayCartMethod: React.FC<{}> = () => {
           name="Thanh toán khi nhận hàng"
           img="/src/assets/icons/money.png"
           border={true}
+          value={1}
         />
         <PayCartItemMethod
           name="Thanh toán bằng Momo"
           img="/src/assets/icons/momo.png"
-          border={true}
-        />
-        <PayCartItemMethod
-          name="Thanh toán bằng ATM"
-          img="/src/assets/icons/bank.png"
           border={false}
+          value={2}
         />
       </div>
     </div>
