@@ -1,21 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CartHeader from './CartHeader';
 import CartItem from './CartItem';
 import { useAppSelector } from '../../redux/store';
-import { useAddCheckoutMutation } from '../../service/profile';
 
 const Cart: React.FC<object> = () => {
-  const token = JSON.parse(localStorage.getItem('token_access')!);
   const cartStore = useAppSelector((e) => e.cart.dataCart);
-  const voucher = useAppSelector((e) => e.user.voucher);
-
-  // const [create] = useAddCheckoutMutation();
-
-  // useEffect(() => {
-  //   if (token && cartStore) {
-  //       create
-  //   }
-  // });
 
   return (
     <div className="shadow-[0_0_3px_rgba(0,0,0,0.25)] md:rounded-[10px]">

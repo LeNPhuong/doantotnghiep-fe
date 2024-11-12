@@ -1,6 +1,10 @@
 import React from 'react';
 import { OrderByCode } from '../../../types/IFProducts';
 import ChangeCurrentcy from '../../../ultils/ChangeCurrentcy';
+import {
+  checkDiscountVoucher,
+  checkTotalPrice,
+} from '../../../ultils/CheckPrice';
 
 const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
   return (
@@ -33,18 +37,15 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
             <p>{ChangeCurrentcy(details.data.total_price)}</p>
             <p>
               -
-              {ChangeCurrentcy(
-                (details.data.total_price *
-                  Number(details.data.voucher.discount_value)) /
-                  100,
+              {checkDiscountVoucher(
+                details.data.total_price,
+                Number(details?.data?.voucher?.discount_value),
               )}
             </p>
             <p>
-              {ChangeCurrentcy(
-                details.data.total_price -
-                  (details.data.total_price *
-                    Number(details.data.voucher.discount_value)) /
-                    100,
+              {checkTotalPrice(
+                details.data.total_price,
+                Number(details?.data.voucher?.discount_value),
               )}
             </p>
             <p>Chuyển khoản tiền mặt</p>
@@ -59,21 +60,18 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
             <p>Voucher</p>
             <p>
               -
-              {ChangeCurrentcy(
-                (details.data.total_price *
-                  Number(details.data.voucher.discount_value)) /
-                  100,
+              {checkDiscountVoucher(
+                details.data.total_price,
+                Number(details?.data?.voucher?.discount_value),
               )}
             </p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Thành tiền</p>
             <p>
-              {ChangeCurrentcy(
-                details.data.total_price -
-                  (details.data.total_price *
-                    Number(details.data.voucher.discount_value)) /
-                    100,
+              {checkTotalPrice(
+                details.data.total_price,
+                Number(details?.data?.voucher?.discount_value),
               )}
             </p>
           </div>
