@@ -8,7 +8,10 @@ interface ThemsanphamProps {
   onRequestClose: () => void;
 }
 
-const Themsanpham: React.FC<ThemsanphamProps> = ({ isOpen, onRequestClose }) => {
+const Themsanpham: React.FC<ThemsanphamProps> = ({
+  isOpen,
+  onRequestClose,
+}) => {
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState('');

@@ -11,6 +11,7 @@ import { productApi } from '../service/product';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { userApi } from '../service/user';
 import { profileApi } from '../service/profile';
+import { adminApi } from '../service/apiAdmin';
 
 const rootReducer = combineReducers({
   cart: cartSlice,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   [productApi.reducerPath]: productApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [profileApi.reducerPath]: profileApi.reducer,
+  [adminApi.reducerPath]: adminApi.reducer,
 });
 
 export const store = configureStore({
@@ -25,7 +27,12 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(productApi.middleware, userApi.middleware, profileApi.middleware),
+    }).concat(
+      productApi.middleware,
+      userApi.middleware,
+      profileApi.middleware,
+      adminApi.middleware,
+    ),
 });
 
 setupListeners(store.dispatch);

@@ -12,6 +12,7 @@ export interface IFProduct {
   quantity: number;
   sale: number;
   active: number;
+  deleted_at: string;
   category: {
     id: number;
     deleted_at: null;
@@ -19,6 +20,12 @@ export interface IFProduct {
     name: string;
     active_units: { id: number; name: string; active: number }[];
   };
+}
+
+export interface IFAResultProduct {
+  success: boolean;
+  data: IFProduct[];
+  message: string;
 }
 
 export interface CartCheckout {
@@ -134,4 +141,16 @@ export interface DataMainOrder {
   success: boolean;
   data: ListOrder[];
   message: string;
+}
+
+export interface IFCreateProduct {
+  cate_id: number;
+  name: string;
+  price: number;
+  sale: number;
+  quantity: number;
+  description: string;
+  made: string;
+  img: File;
+  active: number;
 }

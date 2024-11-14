@@ -9,7 +9,7 @@ const FormAuth: React.FC<{
   return (
     <div className="w-full">
       <input
-        className="w-full outline-none rounded-[5px] pl-[24px] placeholder:text-[#014C3E] md:min-h-[54px] md:max-h-[54px] min-h-[40px] max-h-[40px] md:text-[16px] text-[13px]"
+        className="w-full outline-none rounded-[5px] pl-[24px] placeholder:text-[#014C3E] md:min-h-[54px] md:max-h-[54px] min-h-[40px] max-h-[40px] md:text-[16px] text-[13px] mb-[15px]"
         placeholder={label}
         type={type}
         value={init}

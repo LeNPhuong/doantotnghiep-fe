@@ -264,9 +264,9 @@ const Sanpham: React.FC = () => {
   };
   return (
     <div className="flex flex-col h-screen">
-      <Aheader />
+      {/* <Aheader /> */}
       <div className="flex flex-1">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="flex-1 p-10 bg-[#004D40] text-black">
           <h1 className="text-xl font-bold mb-4 text-white">
             Quản lý sản phẩm
