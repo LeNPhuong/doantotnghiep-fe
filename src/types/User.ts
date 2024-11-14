@@ -132,3 +132,12 @@ export enum MethodDataPay {
   cod,
   momo,
 }
+
+export interface IFFormData {
+  name?: string;
+  sale?: string;
+  cate_id?: string;
+  price?: string;
+  description?: string;
+  img?: File;
+}

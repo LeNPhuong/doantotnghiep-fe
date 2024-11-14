@@ -9,7 +9,11 @@ interface SuasanphamProps {
   product: any; // Thông tin sản phẩm được truyền vào
 }
 
-const Suasanpham: React.FC<SuasanphamProps> = ({ isOpen, onRequestClose, product }) => {
+const Suasanpham: React.FC<SuasanphamProps> = ({
+  isOpen,
+  onRequestClose,
+  product,
+}) => {
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState('');

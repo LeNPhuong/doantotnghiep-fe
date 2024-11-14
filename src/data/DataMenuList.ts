@@ -1,4 +1,5 @@
 import {
+  Belonging,
   FruitImg,
   MilkImg,
   NoodlesImg,
@@ -22,7 +23,7 @@ const DataMenuList: IMenuList[] = [
   { id: 5, link: 'banh-keo', name: 'BÁNH KẸO', img: SnackImg },
   { id: 3, link: 'gao-bot', name: 'NGŨ CỐC, HẠT', img: RiceImg },
   { id: 1, link: 'rau-cu', name: 'RAU CỦ', img: VegestableImg },
-  { id: 1, link: 'trai-cay', name: 'TRÁI CÂY', img: FruitImg },
+  { id: 7, link: 'do-dung', name: 'ĐỒ DÙNG', img: Belonging },
   { id: 2, link: 'gia-vi', name: 'GIA VỊ', img: SpiceImg },
 ];
 

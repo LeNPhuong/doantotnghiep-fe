@@ -44,6 +44,7 @@ const SlideUser: React.FC<{}> = () => {
 
   function handleLogout() {
     dispatch(clearProfile());
+    localStorage.removeItem('cart_store');
     return <Navigate to="/home" />;
   }
 

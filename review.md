@@ -1,74 +1,356 @@
-  <div className="flex flex-col w-full">
-        <div className="w-full max-h-[160px]">
-          <img
-            loading="lazy"
-            className="w-full xl:max-h-[160px] md:max-h-[140px] object-contain"
-            src="https://cdn.tgdd.vn/Products/Images/2526/77684/bhx/kem-dac-co-duong-ngoi-sao-phuong-nam-xanh-la-hop-1-284kg-202311271357577976.jpg"
-            alt=""
-          />
-        </div>
-        <div className="px-[9px] flex flex-col md:mt-[15px] mt-[7px]">
-          <Tooltip title={data.name}>
-            <p className="xl:text-[16px] md:text-[13px] text-[5px] md:mb-[7px] mb-[4px]">
-              {/* {data.name} */}
-              {data.name.length > 15
-                ? data.name.slice(0, 15) + '...'
-                : data.name}
-            </p>
-          </Tooltip>
-        </div>
-        <div className="flex flex-col xl:text-[16px] md:text-[14px] text-[6px] px-[9px] font-semibold md:mb-[15px] mb-[2px]">
-          <div className="flex flex-row items-center md:justify-start justify-between md:mb-[9px] mb-[4px]">
-            <p className="text-[#AAAAAA] line-through relative md:mr-[10px]">
-              {ChangeCurrentcy(Number(data.price))}
-            </p>
-            <div className=" bg-[#FF0000] md:max-w-[28px] md:min-w-[28px] md:min-h-[13px] md:max-h-[13px] md:text-[10px] text-[4px] text-[#fff] text-center md:leading-[13px] max-w-[20px] min-w-[20px] min-h-[8px] max-h-[8px] leading-[8px]">
-              {data.sale}%
-            </div>
-          </div>
+/* Admin.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-          <p className="text-[#FF0000]">
-            {ChangeCurrentcy(
-              Number(data.price) -
-                (Number(data.price) * Number(data.sale)) / 100,
-            )}
-          </p>
-        </div>
-        {/* <Link
-          className="md:min-h-[35px] md:max-h-[35px] bg-[#004D40] md:leading-[35px] text-center xl:text-[16px] md:text-[14px] text-[#DDF16E] font-[700] text-[5px] md:py-0 py-[3px]"
-          to=""
-        >
-          MUA
-        </Link> */}
-      </div>
+body,
+html {
+  font-family: 'Poppins', sans-serif;
+  /* Đặt font cho toàn bộ trang */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #004D40;
+}
 
+.flex-container {
+  display: flex;
+  flex: 1;
+}
 
+.sidebar {
+  width: 15rem;
+  background-color: #2D3748;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
 
-if (!dataCart) {
-        alert('Vui lòng thêm sản phẩm để thanh toán');
-      } else {
-        const cart: CartCheckout[] = [];
-        dataCart.map((e) =>
-          cart.push({
-            id: e.id,
-            quantity: e.qtt,
-            price: handleDiscount(e.price, e.sale),
-            unit: e.category.units[0].name,
-          }),
-        );
+.sidebar h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+}
 
-        const checkoutData: { cart: CartCheckout[]; voucher_id?: number } = {
-          cart: cart,
-        };
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
 
-        if (voucher) {
-          checkoutData.voucher_id = voucher.id;
-        }
+.sidebar li {
+  margin-bottom: 1rem;
+  /* space-y-4 */
+}
 
-        create(checkoutData)
-          .unwrap()
-          .then((data) => {
-            console.log(data);
-          });
-      }
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+  /* transition-colors duration-200 */
+}
+
+.sidebar a:hover {
+  color: #A0AEC0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  background-color: #004D40;
+  color: #000;
+}
+
+.main-content h1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.main-content p {
+  margin-top: 1rem;
+  /* mt-4 */
+}
+
+.sidebar {
+  width: 16rem;
+  background-color: #fff;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #004D40;
+  border: 2px solid white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.sidebar button:hover {
+  background-color: #3B4452;
+  border-color: #A0AEC0;
+}
+
+.sidebar img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 1.5rem;
+  margin-left: 20px;
+  display: flex;
+}
+
+.sidebar ul a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.sidebar a:hover {
+  color: #A0AEC0;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* Khoảng cách giữa các box */
+}
+
+.box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.statistics {
+  display: flex;
+  gap: 20px;
+}
+
+.statistics-box {
+  flex: 1;
+  background-color: #E0F7FA;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.statistics-box img {
+  width: 35%;
+}
+
+.statistics-box p {
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.statistics-box h2 {
+  font-size: 15px;
+}
+
+/* Biểu đồ doanh thu tuần */
+.chart {
+  margin-top: 20px;
+}
+
+/* Sản phẩm hot tuần */
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.product-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.popularity-bar {
+  width: 100px;
+  height: 10px;
+  background-color: #E0E0E0;
+  position: relative;
+  margin: 0 10px;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #4CAF50;
+}
+
+.price-discount {
+  color: #D32F2F;
+  font-weight: bold;
+}
+
+/* Tiêu đề box */
+.box-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Bảng sản phẩm */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.product-table th,
+.product-table td {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Đầu bảng (th) */
+.product-table th {
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+.product-table tr {
+  border-bottom: 1px solid #ddd;
+  /* Viền dưới cho hàng */
+}
+
+/* Thanh độ phổ biến (progress bar) */
+.popularity-bar {
+  width: 100%;
+  background-color: #f0f0f0;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Phần độ đầy của thanh độ phổ biến */
+.bar-fill {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 5px;
+}
+
+/* Định dạng cho các cột giá giảm */
+.price-discount {
+  color: red;
+  font-weight: bold;
+}
+
+/* Modal overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal container */
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Close button */
+.close-button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Form title */
+.modal h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form labels */
+form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+/* Form inputs and textarea */
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #999;
+}
+
+/* Submit button */
+form button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #218838;
+}
