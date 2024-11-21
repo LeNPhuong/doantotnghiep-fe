@@ -37,7 +37,7 @@ const Suasanpham: React.FC<SuasanphamProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Xử lý logic cập nhật sản phẩm
-    console.log({
+    ({
       productName,
       productDescription,
       productPrice,

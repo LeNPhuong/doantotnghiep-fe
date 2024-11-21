@@ -35,12 +35,15 @@ const AddMap: React.FC<{
       create(map)
         .unwrap()
         .then((data) => {
+          (data);
+
           if (data.success) {
             alert('Thêm địa chỉ thành công');
             setActive(false);
             setMapdata('');
             setArrMap(null);
             setAddModal(false);
+            location.reload();
           }
         });
     }
@@ -73,7 +76,7 @@ const AddMap: React.FC<{
                 className="mt-[5px]"
                 id=""
               />
-              <label htmlFor="">Đặt làm địa chỉ mạc định</label>
+              <label htmlFor="">Đặt làm địa chỉ mặc định</label>
             </div>
           </div>
           <div className="flex justify-end space-x-4">

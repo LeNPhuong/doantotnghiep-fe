@@ -9,6 +9,7 @@ const EditMap: React.FC<{
   setEditModal: React.Dispatch<SetStateAction<boolean>>;
 }> = ({ edit, setEdit, setEditModal }) => {
   const [updateAddress, { isLoading }] = useUpdateAddressMutation();
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -20,10 +21,12 @@ const EditMap: React.FC<{
   };
 
   function handleSave() {
+    if (edit.address.length === 0) return alert('Không được để trống địa chỉ');
     const dataAddress = {
       id: edit.id,
-      data: { address: edit.address, active: edit.active },
+      data: { address: edit.address, active: edit.active === 1 ? true : false },
     };
+
     updateAddress(dataAddress)
       .unwrap()
       .then((data) => {

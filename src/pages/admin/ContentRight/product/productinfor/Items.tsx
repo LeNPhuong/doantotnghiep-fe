@@ -40,7 +40,6 @@ const Items: React.FC<{ data: IFProduct }> = ({ data }) => {
         .catch((data) => {});
     }
   }
-  console.log(data);
 
   return (
     <>
@@ -76,21 +75,21 @@ const Items: React.FC<{ data: IFProduct }> = ({ data }) => {
           }}
         >
           <span
-            className={`text-[14px] font-[500] ${data.deleted_at ? 'text-[#9ca3af]' : 'text-[#ea580c]'}`}
+            className={`text-[14px] font-[500] ${data.active ? 'text-[#ea580c]' : 'text-[#9ca3af]'}`}
           >
-            {data.deleted_at ? 'Không bán' : 'Đang bán'}
+            {data.active ? 'Đang bán' : 'Không bán'}
           </span>
           <span>
-            {data.deleted_at ? (
-              <DoNotDisturbIcon
-                sx={{
-                  color: '#9ca3af',
-                }}
-              />
-            ) : (
+            {data.active ? (
               <DoneIcon
                 sx={{
                   color: '#ea580c',
+                }}
+              />
+            ) : (
+              <DoNotDisturbIcon
+                sx={{
+                  color: '#9ca3af',
                 }}
               />
             )}
@@ -98,19 +97,19 @@ const Items: React.FC<{ data: IFProduct }> = ({ data }) => {
         </Typography>
         {/* hành động*/}
         <div className="flex justify-center">
-          {data.deleted_at ? (
-            <button
-              onClick={actStatus}
-              className="text-[14px] mx-[10px] font-[500] bg-[#f97316] p-[8px] text-[#fff] rounded-[5px] hover:bg-[#c2410c] duration-500"
-            >
-              Kích Hoạt
-            </button>
-          ) : (
+          {data.active ? (
             <button
               onClick={disStatus}
               className="text-[14px] mx-[10px] font-[500] bg-[#ef4444] p-[8px] text-[#fff] rounded-[5px] hover:bg-[#b91c1c] duration-500"
             >
               Vô hiệu
+            </button>
+          ) : (
+            <button
+              onClick={actStatus}
+              className="text-[14px] mx-[10px] font-[500] bg-[#f97316] p-[8px] text-[#fff] rounded-[5px] hover:bg-[#c2410c] duration-500"
+            >
+              Kích Hoạt
             </button>
           )}
           <Link to={`edit/${data.id}`}>

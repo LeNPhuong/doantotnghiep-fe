@@ -8,17 +8,15 @@ import { useAppSelector } from '../../redux/store';
 const ChangePassword: React.FC<{}> = () => {
   const token = JSON.parse(localStorage.getItem('token_access')!);
   const user = useAppSelector((e) => e.user.profile);
+  const [change, { isLoading }] = useChangePasswordMutation();
+  const [password, setPassword] = useState<string>('');
+  const [c_password, setC_password] = useState<string>('');
+  const navigate = useNavigate();
 
   if (!token && !user) {
     alert('Không đủ quyền hạn');
     return <Navigate to="/home" />;
   }
-
-  const [password, setPassword] = useState<string>('');
-  const [c_password, setC_password] = useState<string>('');
-  const navigate = useNavigate();
-
-  const [change, { isLoading }] = useChangePasswordMutation();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,8 +37,10 @@ const ChangePassword: React.FC<{}> = () => {
         setC_password('');
         return navigate('/thong-tin-nguoi-dung');
       })
-      .catch(() => {
-        alert('Hành động thất bại');
+      .catch((data) => {
+        if (data.data.message) {
+          alert(data.data.message);
+        }
       });
   }
 

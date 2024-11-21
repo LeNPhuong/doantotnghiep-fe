@@ -16,13 +16,16 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
           </p>
           <div className="flex flex-col gap-[15px] font-medium">
             <p className="md:text-[24px] text-[18] text-[#000]">
-              {details.data.user.name}
+              {details?.data?.user?.name}
             </p>
             <p className="md:text-[18px] text-[14px] text-[rgba(0,0,0,0.6)]">
-              (+84) {details.data.user.phone}
+              (+84) {details?.data?.user.phone}
             </p>
             <p className="md:text-[18px] text-[14px] text-[rgba(0,0,0,0.6)]">
-              {details.data.user.addresses.find((e) => e.active === 1)?.address}
+              {
+                details?.data?.user?.addresses?.find((e) => e?.active === 1)
+                  ?.address
+              }
             </p>
           </div>
         </div>
@@ -34,18 +37,18 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
             <p>Phương thức thanh toán</p>
           </div>
           <div className="flex flex-col md:gap-[28px] text-[#004D40] items-end">
-            <p>{ChangeCurrentcy(details.data.total_price)}</p>
+            <p>{ChangeCurrentcy(details?.data?.total_price)}</p>
             <p>
               -
               {checkDiscountVoucher(
-                details.data.total_price,
+                details?.data?.total_price,
                 Number(details?.data?.voucher?.discount_value),
               )}
             </p>
             <p>
               {checkTotalPrice(
-                details.data.total_price,
-                Number(details?.data.voucher?.discount_value),
+                details?.data?.total_price,
+                Number(details?.data?.voucher?.discount_value),
               )}
             </p>
             <p>Chuyển khoản tiền mặt</p>
@@ -54,14 +57,14 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
         <div className="md:hidden flex flex-col w-full text-[14px] font-medium gap-[10px] pt-[10px]">
           <div className="flex flex-row justify-between">
             <p>Tổng tiền hàng</p>
-            <p>{ChangeCurrentcy(details.data.total_price)}</p>
+            <p>{ChangeCurrentcy(details?.data?.total_price)}</p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Voucher</p>
             <p>
               -
               {checkDiscountVoucher(
-                details.data.total_price,
+                details?.data?.total_price,
                 Number(details?.data?.voucher?.discount_value),
               )}
             </p>
@@ -70,14 +73,14 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
             <p>Thành tiền</p>
             <p>
               {checkTotalPrice(
-                details.data.total_price,
+                details?.data?.total_price,
                 Number(details?.data?.voucher?.discount_value),
               )}
             </p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Phương thức thanh toán</p>
-            <p>{details.data.transaction[0].payment_method}</p>
+            <p>{details?.data?.transaction[0]?.payment_method}</p>
           </div>
         </div>
       </div>

@@ -20,6 +20,7 @@ export interface IFProduct {
     name: string;
     active_units: { id: number; name: string; active: number }[];
   };
+  comments: IFComment[];
 }
 
 export interface IFAResultProduct {
@@ -153,4 +154,19 @@ export interface IFCreateProduct {
   made: string;
   img: File;
   active: number;
+}
+
+export interface IFComment {
+  id: number;
+  product_id: number;
+  user_id: number;
+  rating: number;
+  comment: string;
+  likes: number;
+  created_at: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+  };
 }

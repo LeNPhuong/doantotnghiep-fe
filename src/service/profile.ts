@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import {
   ChangePassword,
   IFMap,
-  IFMapCreate,
   IFMapCreateResult,
   IFMapDataResult,
   IFProfile,
@@ -12,22 +12,39 @@ import {
   ResultPaymentCheckOut,
   UserUpdate,
 } from '../types/User';
+
 import { CheckOutData, DataMainOrder, OrderByCode } from '../types/IFProducts';
+import { ResultDefault } from '../types/AdminType';
+import { getFreshToken, getProfile } from './apiService';
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API,
-    prepareHeaders: (headers) => {
-      const token: string | null | undefined = localStorage.getItem(
+    prepareHeaders: async (headers) => {
+      const getToken: string | null | undefined = localStorage.getItem(
         'token_access',
       )
         ? JSON.parse(localStorage.getItem('token_access')!)
         : null;
 
+      const token = await getProfile(getToken!);
+
       if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
+        headers.set('Authorization', `Bearer ${getToken}`);
+      } else {
+        const tokenRefresh = await getFreshToken(getToken!);
+        if (tokenRefresh) {
+          localStorage.setItem('token_access', JSON.stringify(tokenRefresh));
+          headers.set('Authorization', `Bearer ${tokenRefresh}`);
+        } else {
+          localStorage.removeItem('profile');
+          localStorage.removeItem('token_access');
+          alert('Có lỗi xảy ra vui lòng đăng nhập lại');
+          location.reload();
+        }
       }
+
       return headers;
     },
   }),
@@ -50,7 +67,7 @@ export const profileApi = createApi({
       },
     }),
 
-    changePassword: builder.mutation<ResultChange, ChangePassword>({
+    changePassword: builder.mutation<{ data: string }, ChangePassword>({
       query: (data) => {
         return { url: '/auth/change-password', method: 'POST', body: data };
       },
@@ -66,7 +83,7 @@ export const profileApi = createApi({
       },
     }),
 
-    addCheckout: builder.mutation<any, any>({
+    addCheckout: builder.mutation<ResultDefault, any>({
       query: (data) => {
         return {
           url: '/checkout',
@@ -76,7 +93,10 @@ export const profileApi = createApi({
       },
     }),
 
-    addMap: builder.mutation<IFMapCreateResult, IFMapCreate>({
+    addMap: builder.mutation<
+      IFMapCreateResult,
+      { address: string; active: boolean }
+    >({
       query: (data) => {
         return {
           url: 'auth/address/create',
@@ -94,7 +114,7 @@ export const profileApi = createApi({
 
     updateAddress: builder.mutation<
       { success: boolean; data: IFMap; message: string },
-      { data: IFMapCreate; id: number }
+      { data: { address: string; active: boolean }; id: number }
     >({
       query: (data) => {
         return {
@@ -105,11 +125,11 @@ export const profileApi = createApi({
       },
     }),
 
-    updateProfile: builder.mutation<any, UserUpdate>({
+    updateProfile: builder.mutation<IFProfile, UserUpdate>({
       query: (data) => {
         return {
           url: `auth/update-profile`,
-          method: 'PUT',
+          method: 'POST',
           body: data,
         };
       },
@@ -161,6 +181,19 @@ export const profileApi = createApi({
       },
     }),
 
+    addCommentProduct: builder.mutation<
+      any,
+      { id: number; data: { comment: string; rating: number } }
+    >({
+      query: (data) => {
+        return {
+          url: `products/${data.id}/comment`,
+          method: 'POST',
+          body: data.data,
+        };
+      },
+    }),
+
     /*------------------------------------------------------------*/
   }),
 });
@@ -181,4 +214,5 @@ export const {
   useGetOrderQuery,
   useGetOrderByIdMutation,
   useCancleOrderByIdMutation,
+  useAddCommentProductMutation,
 } = profileApi;

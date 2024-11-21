@@ -36,7 +36,7 @@ const ListItem: { icons: React.ReactNode; name: string; link: string }[] = [
 
 const Sidebar: React.FC = () => {
   const path = useLocation();
-  console.log(path);
+  (path);
 
   return (
     <div className="sidebar">

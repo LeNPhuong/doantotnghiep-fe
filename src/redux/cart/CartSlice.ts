@@ -86,8 +86,11 @@ const sliceCart = createSlice({
       const method = action.payload;
       state.methodPay = method;
     },
+
     clearCart: (state, action: PayloadAction<void>) => {
-      (state.dataCart = null), (state.methodPay = 0);
+      state.dataCart = null;
+      state.methodPay = 0;
+      localStorage.removeItem('cart_store');
     },
   },
 });

@@ -141,3 +141,50 @@ export interface IFFormData {
   description?: string;
   img?: File;
 }
+
+export interface IFUserAdmin {
+  id: number;
+  name: string;
+  phone: string;
+  avatar: null;
+  active: boolean;
+  email: string;
+  email_verified_at: null;
+  role: string;
+  birthday: null;
+  created_at: string;
+  updated_at: string;
+  deleted_at: null;
+}
+
+export interface IFResultUserAdmin {
+  total_users: number;
+  total_user_role: number;
+  total_admin_role: number;
+  total_new_users_this_week: number;
+  users: IFUserAdmin[];
+}
+
+export interface IFDataUserChange {
+  name?: string;
+  email?: string;
+  phone?: string;
+  role?: string;
+  active?: boolean;
+}
+
+export interface IFDataUserNew extends IFDataUserChange {
+  password?: string;
+}
+
+export interface IFDataUserUpdate {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  phone: string;
+  avatar: string;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
+}

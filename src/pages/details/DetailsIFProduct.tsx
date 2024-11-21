@@ -1,5 +1,4 @@
 import React from 'react';
-import DetailsControlQtt from './DetailsControlQtt';
 import DetailsBuyBtn from './DetailsBuyBtn';
 import { IFProduct } from '../../types/IFProducts';
 import ChangeCurrentcy from '../../ultils/ChangeCurrentcy';
@@ -19,19 +18,19 @@ const DetailsIFProduct: React.FC<{ data: IFProduct | undefined }> = ({
               (Number(data?.price) * Number(data?.sale)) / 100,
           )}
         </p>
-        <p className="text-[#D3ABAB] line-through md:text-[16px] text-[10px] relative">
+        <div className="text-[#D3ABAB] line-through md:text-[16px] text-[10px] relative">
           {ChangeCurrentcy(Number(data?.price))}
           <div className="absolute top-[50%] translate-y-[-50%] bg-[#FF0000] max-w-[28px] min-w-[28px] min-h-[20px] max-h-[20px] left-[100%] ml-[12px] text-[12px] font-semibold text-[#fff] text-center leading-[20px] rounded-[5px]">
             {data?.sale}%
           </div>
-        </p>
+        </div>
       </div>
 
       <p className="md:text-[24px] text-[18px] font-medium xl:mb-[72px] mb-[20px]">
         Số lượng còn lại: {data?.quantity} cái
       </p>
 
-      <DetailsBuyBtn />
+      <DetailsBuyBtn data={data!} />
     </div>
   );
 };

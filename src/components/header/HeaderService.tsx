@@ -12,7 +12,11 @@ const HeaderService: React.FC<{}> = () => {
       {user ? (
         <HeaderItemService
           link="/thong-tin-nguoi-dung"
-          name={user.data.name}
+          name={
+            user.data.name.length > 5
+              ? user.data.name.slice(0, 5) + '...'
+              : user.data.name
+          }
           icons={<LuUserCircle2 />}
         />
       ) : (

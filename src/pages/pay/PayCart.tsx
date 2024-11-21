@@ -9,7 +9,6 @@ const PayCart: React.FC<{}> = () => {
   const user = useAppSelector((e) => e.user.profile);
 
   if (!token && !user) {
-    alert('Không đủ quyền hạn');
     return <Navigate to="/home" />;
   }
 

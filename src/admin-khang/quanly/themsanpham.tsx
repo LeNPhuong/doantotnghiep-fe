@@ -23,7 +23,7 @@ const Themsanpham: React.FC<ThemsanphamProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Xử lý logic khi submit form
-    console.log({
+    ({
       productName,
       productDescription,
       productPrice,

@@ -46,14 +46,15 @@ const ChangeSucces: React.FC<{}> = () => {
               });
           }
         })
-        .catch(() => {
-          alert(
-            'Mã xác nhận nhập sai hoặc hoặc thời gian đã hết vui lòng nhập lại mã xác nhận',
-          );
-          return navigate('/nguoi-dung/quen-mat-khau');
+        .catch((data) => {
+          if (data.data.message) {
+            alert(data.data.message);
+          } else {
+            alert(
+              'Mã xác nhận nhập sai hoặc hoặc thời gian đã hết vui lòng nhập lại mã xác nhận',
+            );
+          }
         });
-
-      // checkOTP();
     }
   }
 

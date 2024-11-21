@@ -49,9 +49,9 @@ const UserAddress = () => {
 
   const handleSave = () => {
     if (isEditing) {
-      console.log('Updated Address:', newAddress);
+      ('Updated Address:', newAddress);
     } else {
-      console.log('New Address:', newAddress);
+      ('New Address:', newAddress);
     }
     closeModal(); // Close the modal after saving
   };

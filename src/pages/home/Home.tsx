@@ -22,7 +22,7 @@ import BoxVoucher from './BoxVoucher';
 import HomeListItemProduct from './HomeListItemProduct';
 
 const Home: React.FC<object> = () => {
-  const { data } = useGetProductsQuery();
+  const { data, isError } = useGetProductsQuery();
 
   return (
     <div className="">
