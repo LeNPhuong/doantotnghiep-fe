@@ -14,26 +14,35 @@ export const productApi = createApi({
         return '/products';
       },
     }),
+
     getProductById: builder.query<{ data: IFProduct }, string>({
       query: (id) => {
         return `/products/${id}`;
       },
     }),
-    getAllProductsByType: builder.query<{ data: IFProduct[] }, string>({
-      query: (type) => {
-        return `/products/search?query=${type}`;
+
+    getAllProductsByType: builder.mutation<{ data: IFProduct[] }, string>({
+      query: (query) => {
+        return {
+          url: '/products/search',
+          method: 'POST',
+          body: { query: query },
+        };
       },
     }),
+
     getAllProductByCategories: builder.query<{ data: IFProduct[] }, string>({
       query: (id) => {
         return `categories/${id}/products`;
       },
     }),
+
     getAllCategories: builder.query<{ data: IFCategories[] }, void>({
       query: () => {
         return 'categories';
       },
     }),
+
     getAllVouchers: builder.query<
       { success: boolean; data: IFVoucher[]; message: string },
       void
@@ -48,7 +57,7 @@ export const productApi = createApi({
 export const {
   useGetProductsQuery,
   useGetProductByIdQuery,
-  useGetAllProductsByTypeQuery,
+  useGetAllProductsByTypeMutation,
   useGetAllProductByCategoriesQuery,
   useGetAllCategoriesQuery,
   useGetAllVouchersQuery,

@@ -41,23 +41,7 @@ const ProductAdd: React.FC = () => {
       .then((data) => {
         alert(data.message);
         location.reload();
-      })
-      .catch((data) => {});
-    // const form = new FormData();
-
-    // Object.keys(data).forEach((el) => {
-    //   form.append(el, data[el as keyof IFCreateProduct]);
-    // });
-
-    // console.log(form.get('cate_id'));
-    // console.log(form.get('name'));
-    // console.log(form.get('price'));
-    // console.log(form.get('sale'));
-    // console.log(form.get('quantity'));
-    // console.log(form.get('description'));
-    // console.log(form.get('made'));
-    // console.log(form.get('img'));
-    // console.log(form.get('active'));
+      });
   }
 
   return (

@@ -6,7 +6,7 @@ import { LoadingModal } from '../../../components';
 
 const MapData: React.FC<{}> = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
-  const { data, isLoading, isFetching } = useGetAllMapQuery();
+  const { data, isFetching } = useGetAllMapQuery();
 
   if (isFetching) {
     return <LoadingModal />;
@@ -26,8 +26,7 @@ const MapData: React.FC<{}> = () => {
         </button>
       </div>
       <div className="flex flex-col gap-[10px] md:px-0 px-[20px]">
-        {data?.data.length !== 0 &&
-          data?.data.map((e) => <ItemsMap key={e.id} data={e} />)}
+        {data?.data && data?.data.map((e) => <ItemsMap key={e.id} data={e} />)}
       </div>
 
       {/* Modal for adding or editing address */}

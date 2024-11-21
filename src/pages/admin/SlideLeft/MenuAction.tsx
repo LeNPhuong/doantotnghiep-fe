@@ -1,11 +1,12 @@
 import React, { ReactNode } from 'react';
-import CategoryIcon from '@mui/icons-material/Category';
+import { PiUnite } from 'react-icons/pi';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import StoreIcon from '@mui/icons-material/Store';
 import ItemsList from './ItemsList';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const typelist: {
   id: number;
@@ -15,21 +16,21 @@ const typelist: {
 }[] = [
   {
     id: 1,
+    name: 'Tổng kết',
+    icons: <DashboardIcon />,
+    links: 'trang-chu',
+  },
+  {
+    id: 2,
     name: 'Sản phẩm',
     icons: <ProductionQuantityLimitsIcon />,
     links: 'product',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Tài khoản',
     icons: <ManageAccountsIcon />,
     links: 'account',
-  },
-  {
-    id: 3,
-    name: 'Danh mục',
-    icons: <CategoryIcon />,
-    links: 'cocacola',
   },
   {
     id: 4,
@@ -37,7 +38,13 @@ const typelist: {
     icons: <ReceiptLongIcon />,
     links: 'type',
   },
-  { id: 5, name: 'Đơn hàng', icons: <StoreIcon />, links: 'bill' },
+  {
+    id: 5,
+    name: 'Đơn vị sản phẩm',
+    icons: <PiUnite />,
+    links: 'don-vi',
+  },
+  { id: 6, name: 'Đơn hàng', icons: <StoreIcon />, links: 'bill' },
 ];
 
 const MenuAction: React.FC = () => {

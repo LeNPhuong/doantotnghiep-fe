@@ -12,58 +12,61 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
         <div className="flex justify-between items-center xl:rounded-t-[10px] xl:roundedt-[5px] xl:min-h-[58px] md:min-h-[40px] min-h-[40px] px-[29px] font-semibold border-b-[1px] border-b-[rgba(0,0,0,0.1)] mb-[17px]">
           <div className="flex flex-wrap md:gap-[11px] gap-[5px] py-[5px] md:py-[10px]">
             <div className="font-semibold border-r-[2px] border-r-[#ccc] pr-[5px]">
-              Đơn hàng {ChangeDate(data.created_at)}
+              Đơn hàng {ChangeDate(data?.created_at)}
             </div>
             <div className="text-[rgba(0,0,0,0.6)] border-r-[2px] border-r-[#ccc] pr-[5px]">
-              {' '}
               Nhận tại cửa hàng
             </div>
             <div className="text-[rgba(0,0,0,0.6)] border-r-[2px] border-r-[#ccc] pr-[5px]">
-              #{data.code}
+              #{data?.code}
             </div>
           </div>
           <div className="text-[#039855] whitespace-nowrap">
-            ● {data.status.text_status}
+            ● {data?.status?.text_status}
           </div>
         </div>
-
-        <div className="flex flex-row xl:px-[28px] md:px-[16px] px-[10px] mb-[12px]">
-          {/* col1 */}
-          <div className="flex flex-col xl:mr-[28px] md:mr-[14px] mr-[10px]">
-            <div className="xl:max-w-[97px] xl:min-h-[105px] md:max-w-[77px] md:min-h-[77px] max-w-[70px] min-h-[70px]">
-              <img
-                className="w-full rounded-lg"
-                src={data.order_details[0].product.img}
-                alt=""
-              />
+        {data?.order_details[0].product ? (
+          <div className="flex flex-row xl:px-[28px] md:px-[16px] px-[10px] mb-[12px]">
+            {/* col1 */}
+            <div className="flex flex-col xl:mr-[28px] md:mr-[14px] mr-[10px]">
+              <div className="xl:max-w-[97px] xl:min-h-[105px] md:max-w-[77px] md:min-h-[77px] max-w-[70px] min-h-[70px]">
+                <img
+                  className="w-full rounded-lg"
+                  src={data?.order_details[0]?.product?.img}
+                  alt=""
+                />
+              </div>
             </div>
-          </div>
-          {/* col2 */}
-          <div className="flex-[1_1_0] flex flex-col">
-            <p className="font-semibold mb-[8px]">
-              {data.order_details[0].product.name}
-            </p>
-            <p className="font-semibold text-[rgba(8,8,8,0.6)]">
-              + {data.order_details.length - 1} sản phẩm khác
-            </p>
-          </div>
-          {/* col3 */}
-          <div className="flex flex-row xl:gap-[41px] lg:gap-[15px] gap-[10px]">
-            <div className="font-semibold flex flex-col xl:gap-[8px] lg:gap-[4px]">
-              <p>{ChangeCurrentcy(data.order_details[0].price)}</p>
-              <p className="text-[rgba(0,0,0,0.6)] line-through">
-                {ChangeCurrentcy(
-                  Number.parseInt(data.order_details[0].product.price),
-                )}
+            {/* col2 */}
+            <div className="flex-[1_1_0] flex flex-col">
+              <p className="font-semibold mb-[8px]">
+                {data?.order_details[0]?.product?.name}
+              </p>
+              <p className="font-semibold text-[rgba(8,8,8,0.6)]">
+                + {data?.order_details?.length - 1} sản phẩm khác
               </p>
             </div>
-            <p className="font-semibold text-[#8a8484] ">
-              x {data.order_details[0].quantity}
-            </p>
+            {/* col3 */}
+            <div className="flex flex-row xl:gap-[41px] lg:gap-[15px] gap-[10px]">
+              <div className="font-semibold flex flex-col xl:gap-[8px] lg:gap-[4px]">
+                <p>{ChangeCurrentcy(data.order_details[0].price)}</p>
+                <p className="text-[rgba(0,0,0,0.6)] line-through">
+                  {ChangeCurrentcy(
+                    Number.parseInt(data?.order_details[0]?.product?.price),
+                  )}
+                </p>
+              </div>
+              <p className="font-semibold text-[#8a8484] ">
+                x {data?.order_details[0]?.quantity}
+              </p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <p className="text-red-500 font-semibold xl:px-[28px] md:px-[16px] mb-[12px]">sản phẩm không còn bán !</p>
+        )}
+
         <Link
-          to={`chi-tiet/${data.code.toLowerCase()}`}
+          to={`chi-tiet/${data?.code?.toLowerCase()}`}
           className="text-[#05E077] font-semibold flex items-center gap-[8px] xl:ml-[28px] md:px-[16px] px-[10px]"
         >
           Xem chi tiết <FaAngleRight />
@@ -72,7 +75,7 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
         <div className="flex flex-row justify-end xl:mr-[28px] md:mr-[16px] mr-[10px] font-semibold lg:gap-[17px] md:gap-[15px] gap-[10px]">
           <span className="text-[rgba(0,0,0,0.6)]">Thành tiền:</span>{' '}
           <span className="text-[#05E077] font-semibold">
-            {ChangeCurrentcy(data.total_price)}
+            {ChangeCurrentcy(data?.total_price)}
           </span>
         </div>
       </div>

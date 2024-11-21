@@ -1,27 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainLayout from '../../layout/MainLayout';
 import { Breadcrumb, Loading } from '../../components';
 import { useParams } from 'react-router-dom';
-import { useGetAllProductsByTypeQuery } from '../../service/product';
+import { useGetAllProductsByTypeMutation } from '../../service/product';
 import CardItem from '../../components/listproduct/CardItem';
+import { IFProduct } from '../../types/IFProducts';
 
 const Search: React.FC<{}> = () => {
+  const [data, setData] = useState<null | IFProduct[]>(null);
   const [filter, setFilter] = useState<string>('');
   const { type } = useParams<{ type: string }>();
-  const { data, error, isLoading, isFetching } = useGetAllProductsByTypeQuery(
-    type!,
-  );
-  if (isFetching) {
+  const [getType, { isLoading }] = useGetAllProductsByTypeMutation();
+
+  useEffect(() => {
+    getType(type!)
+      .unwrap()
+      .then((data) => {
+        setData(data.data);
+      })
+      .catch((data) => {
+        setData(null);
+      });
+  }, [type]);
+
+  if (isLoading) {
     return <Loading />;
   }
 
+  (data);
+
   return (
     <MainLayout>
-      <Breadcrumb name={type} />
-      <div className="border-[2px] border-[#004D40] font-medium text-[18px] py-[21px] px-[32px] rounded-[10px] mt-[41px] mb-[37px] ">
-        Tìm thấy {data?.data.length} sản phẩm với từ khóa "{type}"
-      </div>
-      <div className="flex flex-row md:justify-between justify-center items-center w-full md:px-0 px-[10px] mb-[23px]">
+      <Breadcrumb name={type?.toUpperCase()} />
+      {data === null ? (
+        ''
+      ) : (
+        <div className="border-[2px] border-[#004D40] font-medium text-[18px] py-[21px] px-[32px] rounded-[10px] mt-[41px] mb-[37px] ">
+          Tìm thấy {data?.length} sản phẩm với từ khóa "{type}"
+        </div>
+      )}
+
+      <div className="flex flex-row md:justify-between justify-center items-center w-full md:px-0 px-[10px] mb-[23px] mt-[20px]">
         <p className="text-[#004D40] font-medium lg:text-[32px] md:text-[24px] md:block hidden">
           Danh sách sản phẩm
         </p>
@@ -54,20 +73,28 @@ const Search: React.FC<{}> = () => {
           </button>
         </div>
       </div>
-      <div className="bg-[#fff] flex flex-row flex-wrap justify-center p-[20px] gap-[20px]">
-        {filter == 'high' &&
-          data?.data
+      <div className="bg-[#fff] flex flex-row flex-wrap p-[20px] gap-[20px]">
+        {data !== null &&
+          filter == 'high' &&
+          data
             .slice()
             .sort((a, b) => Number(b.price) - Number(a.price))
             .map((e) => <CardItem key={e.id} data={e} />)}
-        {filter == 'low'
-          ? data?.data
+
+        {data !== null && filter == 'low'
+          ? data
               .slice()
               .sort((a, b) => Number(a.price) - Number(b.price))
               .map((e) => <CardItem key={e.id} data={e} />)
-          : data?.data.map((e) => <CardItem key={e.id} data={e} />)}
+          : data?.map((e) => <CardItem key={e.id} data={e} />)}
+
+        {data === null && (
+          <p className="text-[18px] text-center w-full">
+            Không tìm thấy sản phẩm với từ khoá {type}
+          </p>
+        )}
       </div>
-      <div className="pb-[20px]"></div>
+      <div className="pb-[500px]"></div>
     </MainLayout>
   );
 };

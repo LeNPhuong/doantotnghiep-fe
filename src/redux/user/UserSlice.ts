@@ -6,12 +6,14 @@ interface IFUser {
   profile: IFProfile | null | undefined;
   token: string | null | undefined;
   voucher: IFVoucher | null;
+  name_user: string | null;
 }
 
 const initialState: IFUser = {
   profile: localStorage.getItem('profile')
     ? (JSON.parse(localStorage.getItem('profile')!) as IFProfile)
     : null,
+
   token: localStorage.getItem('token_access')
     ? (JSON.parse(localStorage.getItem('token_access')!) as string)
     : null,
@@ -19,6 +21,8 @@ const initialState: IFUser = {
   voucher: localStorage.getItem('voucher')
     ? (JSON.parse(localStorage.getItem('voucher')!) as IFVoucher)
     : null,
+
+  name_user: localStorage.getItem('name_user') || null,
 };
 
 const sliceUser = createSlice({
@@ -37,11 +41,14 @@ const sliceUser = createSlice({
       }
       localStorage.setItem('profile', JSON.stringify(data));
     },
+
     clearProfile: (state) => {
       state.profile = null;
       localStorage.removeItem('profile');
       localStorage.removeItem('token_access');
+      localStorage.removeItem('token_access');
     },
+
     setToken: (state, action: PayloadAction<string>) => {
       const token = action.payload;
       if (token) {
@@ -52,10 +59,18 @@ const sliceUser = createSlice({
         return;
       }
     },
+
+    setNameUser: (state, action: PayloadAction<string>) => {
+      const name = action.payload;
+      state.name_user = name;
+      localStorage.setItem('name_user', JSON.stringify(name));
+    },
+
     setVoucherData: (state, action: PayloadAction<IFVoucher | null>) => {
       state.voucher = action.payload;
       localStorage.setItem('voucher', JSON.stringify(action.payload));
     },
+
     ClearVoucher: (state, action: PayloadAction<void>) => {
       state.voucher = null;
     },

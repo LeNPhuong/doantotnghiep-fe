@@ -5,9 +5,10 @@ import { LuPackage2 } from 'react-icons/lu';
 import { PiMapPinAreaBold } from 'react-icons/pi';
 import { BiLogOut } from 'react-icons/bi';
 import { TbExchange } from 'react-icons/tb';
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { clearProfile } from '../../redux/user/UserSlice';
+import { clearCart } from '../../redux/cart/CartSlice';
 
 const slideItemData: {
   id: number;
@@ -38,14 +39,15 @@ const slideItemData: {
 ];
 
 const SlideUser: React.FC<{}> = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const params = useLocation().pathname;
   const user = useAppSelector((e) => e.user.profile?.data);
 
   function handleLogout() {
+    dispatch(clearCart());
     dispatch(clearProfile());
-    localStorage.removeItem('cart_store');
-    return <Navigate to="/home" />;
+    navigate('/home');
   }
 
   return (

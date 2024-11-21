@@ -1,30 +1,32 @@
-import React, { SetStateAction, useState } from 'react';
-import { useAppSelector } from '../../redux/store';
-import { Navigate } from 'react-router-dom';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { useUpdateProfileMutation } from '../../service/profile';
 import { LoadingModal } from '../../components';
-
-interface data {
-  name: string;
-  phone: string;
-  gender: string;
-  dob: string;
-}
+import { IFProfile } from '../../types/User';
+import { useAppDispatch } from '../../redux/store';
+import { setProfile } from '../../redux/user/UserSlice';
 
 const ModalChange: React.FC<{
+  data: IFProfile;
   setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
-}> = ({ setIsModalOpen }) => {
-  const user = useAppSelector((e) => e.user.profile?.data);
+}> = ({ setIsModalOpen, data }) => {
+  const dispatch = useAppDispatch();
   const [update, { isLoading }] = useUpdateProfileMutation();
+
   const [userChange, setUserChange] = useState<{
     name: string;
     phone: string;
     email: string;
-  }>({
-    name: user?.name!,
-    phone: user?.phone!,
-    email: user?.email!,
-  });
+  } | null>(null);
+
+  useEffect(() => {
+    if (data) {
+      setUserChange({
+        name: data.data.name,
+        phone: data.data.phone,
+        email: data.data.email,
+      });
+    }
+  }, [data]);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -37,11 +39,25 @@ const ModalChange: React.FC<{
   }
 
   function handleSave() {
-    update(userChange)
-      .unwrap()
-      .then((data) => {
-        alert('Cập nhật thành công');
-      });
+    if (userChange !== null) {
+      if (userChange.name.length === 0 || null) {
+        return alert('Không thể để trống trường tên');
+      }
+      if (userChange.phone.length === 0 || null) {
+        return alert('Không thể để trống trường số điện thoại');
+      }
+      if (userChange.email.length === 0 || null) {
+        return alert('Không thể để trống trường email');
+      }
+      update(userChange)
+        .unwrap()
+        .then((data) => {
+          dispatch(setProfile(data));
+          alert(data.message);
+          location.reload();
+        })
+        .catch(() => alert('Cập nhật thất bại'));
+    }
   }
 
   return (

@@ -61,25 +61,29 @@ const ProductEdit: React.FC<object> = () => {
       formData.img = fileImage;
     }
 
+    let checkEmpty = false;
+
+    Object.keys(formData).forEach((el) => {
+      if (formData[el as keyof IFFormData]?.toString().length === 0) {
+        checkEmpty = checkEmpty = true;
+      }
+    });
+
+    if (checkEmpty) {
+      return alert('Vui lòng không để trống bất kỳ một trường nào');
+    }
+
     if (Object.keys(formData).length === 0) {
       return alert('Không có gì để cập nhật');
     } else {
-      console.log(fileImage);
-
       updateProduct({ id: id!, data: formData })
         .unwrap()
         .then((data) => {
-          console.log(data);
-
           location.reload();
         })
-        .catch((data) => {
-          console.log(data);
-        });
+        .catch((data) => {});
     }
   }
-
-  console.log(data);
 
   return (
     <>
@@ -87,11 +91,14 @@ const ProductEdit: React.FC<object> = () => {
         <div className="w-full flex flex-col items-center">
           <div className="w-full flex flex-row items-start justify-between">
             <div className="w-full max-w-[370px] min-w-[370px] shadow-[0_0_16px_#00000058] rounded-[8px] overflow-hidden flex flex-col">
-              <img
-                className="w-full max-w-[370px] min-w-[370px]"
-                src={data?.data.img}
-                alt=""
-              />
+              {data?.data.img && (
+                <img
+                  className="w-full max-w-[370px] min-w-[370px]"
+                  src={data?.data.img}
+                  alt=""
+                />
+              )}
+
               <div className="p-[10px]">
                 <input
                   type="file"

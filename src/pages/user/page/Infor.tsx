@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
 import ModalChange from '../ModalChange';
 import TitleUser from '../TitleUser';
-import { useAppSelector } from '../../../redux/store';
+import { useGetProfileV2Query } from '../../../service/profile';
+import { LoadingModal } from '../../../components';
 
 const Infor: React.FC<{}> = () => {
-  const user = useAppSelector((e) => e.user.profile);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  // const [formData, setFormData] = useState<{
-  //   name: string;
-  //   phone: string;
-  //   gender: string;
-  //   dob: string;
-  // }>({
-  //   name: 'Anh Long',
-  //   phone: '0961921909',
-  //   gender: 'Nam',
-  //   dob: '2001-07-25',
-  // });
+  const { data, isFetching } = useGetProfileV2Query();
 
   function statusModal(status: boolean): void {
-    setIsModalOpen((e) => (e = status));
+    setIsModalOpen(status);
   }
+
+  if (isFetching) return <LoadingModal />;
 
   return (
     <div className="w-full shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px] pb-[50px] md:px-0">
@@ -46,20 +37,21 @@ const Infor: React.FC<{}> = () => {
         <div className="lg:w-[40%] md:w-[60%] w-[60%] mx-auto flex flex-col gap-[28px] lg:text-[16px] md:text-[14px] text-[12px]">
           <div className="flex justify-between border-b-2 pb-2">
             <p className="text-[#949191]">Họ và tên</p>
-            <p className="font-semibold">{user?.data?.name}</p>
+            <p className="font-semibold">{data?.data?.name}</p>
           </div>
           <div className="flex justify-between border-b-2 pb-2">
             <p className="text-[#949191]">Số điện thoại</p>
-            <p className="font-semibold">{user?.data?.phone}</p>
+            <p className="font-semibold">{data?.data?.phone}</p>
           </div>
           <div className="flex justify-between border-b-2 pb-2">
             <p className="text-[#949191]">Email</p>
-            <p className="font-semibold">{user?.data?.email}</p>
+            <p className="font-semibold">{data?.data?.email}</p>
           </div>
           <div className="flex justify-between border-b-2 pb-2">
             <p className="text-[#949191]">Địa chỉ mặc định</p>
             <p className="font-semibold text-[#004D40] cursor-pointer">
-              {user?.data?.addresses?.find((e) => e.active === 1)?.address!}
+              {data?.data?.addresses?.find((e) => e.active === 1) &&
+                data?.data?.addresses?.find((e) => e.active === 1)!.address}
             </p>
           </div>
 
@@ -70,7 +62,9 @@ const Infor: React.FC<{}> = () => {
             Chỉnh sửa thông tin
           </button>
 
-          {isModalOpen && <ModalChange setIsModalOpen={setIsModalOpen} />}
+          {isModalOpen && (
+            <ModalChange data={data!} setIsModalOpen={setIsModalOpen} />
+          )}
         </div>
       </div>
     </div>

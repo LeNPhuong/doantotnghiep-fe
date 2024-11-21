@@ -61,22 +61,22 @@ const DetailsOrder: React.FC<object> = () => {
         </h2>
         <div className="flex justify-between items-center flex-wrap text-white">
           <p className="xl:text-[24px] md:text-[18px] text-[20px] font-medium">
-            Mã đơn hàng: {details?.data.code}
+            Mã đơn hàng: {details?.data?.code}
           </p>
           <p className="xl:text-[18px] md:text-[14px] text-[16px] font-medium">
-            Hoàn thành ngày {ChangeDate(details?.data.created_at!)}
+            Hoàn thành ngày {ChangeDate(details?.data?.created_at)}
           </p>
         </div>
       </div>
 
       <div className="w-full shadow-[0_0_4px_rgba(0,0,0,0.25)] rounded-b-[8px] pb-[20px]">
-        {details?.data.order_details.map((e) => (
+        {details?.data?.order_details?.map((e) => (
           <ItemOrderDetails key={e.id} data={e} />
         ))}
 
         <InforOrderDetails details={details!} />
         <div className="flex flex-row justify-center">
-          {details.data.status.text_status === 'Đã hủy' ? null : (
+          {details?.data?.status?.text_status === 'Đã hủy' ? null : (
             <button
               onClick={handleCancel}
               className="bg-red-500 text-[#fff] text-[18px] rounded-[5px] px-[10px] py-[8px]"

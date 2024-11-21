@@ -1,13 +1,30 @@
 import axios from 'axios';
 
-const apiClient = axios.create({
-  baseURL: 'http://localhost:8000/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-export async function getProfile() {
+export async function getProfile(token: string): Promise<boolean> {
   try {
-  } catch (error) {}
+    const response = await axios.get(
+      import.meta.env.VITE_API + '/auth/profile',
+      {
+        headers: { Authorization: 'Bearer ' + token },
+      },
+    );
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export async function getFreshToken(token: string): Promise<boolean | string> {
+  try {
+    const response = await axios.post(
+      import.meta.env.VITE_API + '/auth/refresh',
+      null,
+      { headers: { Authorization: 'Bearer ' + token } },
+    );
+
+    return response.data.data.access_token;
+  } catch (error) {
+    return false;
+  }
 }

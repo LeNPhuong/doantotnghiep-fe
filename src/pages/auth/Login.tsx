@@ -60,6 +60,10 @@ const Login: React.FC<{}> = () => {
         } else if (data.success === false) {
           return alert('Vui lòng kiểm tra lại thông tin');
         }
+      })
+      .catch(() => {
+        alert('Tài khoản bị vô hiệu hoá hoặc thông tin bị sai');
+        return location.reload();
       });
   }
 
@@ -86,7 +90,10 @@ const Login: React.FC<{}> = () => {
         </div>
       </form>
       <p className="md:text-[18px] text-[14px] text-center text-[#000]">
-        <Link to="/nguoi-dung/quen-mat-khau" className="text-[#FF0000] inline-block">
+        <Link
+          to="/nguoi-dung/quen-mat-khau"
+          className="text-[#FF0000] inline-block"
+        >
           Quên mật khẩu ?
         </Link>
       </p>

@@ -1,40 +1,80 @@
-import React from "react";
+import React from 'react';
+import { ResultCategoryAdmin } from '../../../../types/AdminType';
+import { Link } from 'react-router-dom';
+import {
+  useAdminActiveCategoryByIdMutation,
+  useAdminDisableCategoryByIdMutation,
+} from '../../../../service/apiAdmin';
+import { LoadingModal } from '../../../../components';
 
 const TypeItems: React.FC<{
-  data: { _id: string; name: string; img: string; status: true; type: string; slug: string };
+  data: ResultCategoryAdmin;
 }> = ({ data }) => {
-  // async function updateData(id: string, status: boolean) {
-  //   const result = confirm(`Bạn có muốn ${status ? "vô hiệu" : "kích hoạt"} loại hiện tại`);
-  //   if (result) {
-  //     const request = await updateStatus(id, status === true ? false : true);
-  //     alert(request.message);
-  //     window.location.reload();
-  //   }
-  // }
+  const [disable, { isLoading: disLoading }] =
+    useAdminDisableCategoryByIdMutation();
+  const [active, { isLoading: actLoading }] =
+    useAdminActiveCategoryByIdMutation();
+
+  function handleDisable() {
+    const check = confirm('Bạn có chắc muốn vô hiệu loại hiện tại');
+    if (check) {
+      disable(data.id)
+        .unwrap()
+        .then(() => {
+          alert('Cập nhật thành công');
+          return location.reload();
+        });
+    }
+  }
+
+  function handleActive() {
+    const check = confirm('Bạn có chắc muốn kích hoạt loại hiện tại');
+    if (check) {
+      active(data.id)
+        .unwrap()
+        .then(() => {
+          alert('Cập nhật thành công');
+          return location.reload();
+        });
+    }
+  }
 
   return (
-    <div className="grid grid-cols-[1fr_1fr_1fr_1fr] content-center items-center w-full p-[10px]">
-      <div className="w-full flex justify-center">
-        <img className="w-[90px]" src={data.img} alt={data.name} />
-      </div>
-      <p className="capitalize text-[16px] text-center font-[500] w-full">{data.name}</p>
+    <div className="grid grid-cols-[1fr_1fr_1fr] content-center items-center w-full p-[10px]">
+      <p className="capitalize max-w-[99%] text-[16px] text-center font-[500] w-full bg-[#014C3E] p-[8px] text-[#00E875] rounded-[5px]">
+        {data.name}
+      </p>
       <p
         className={`capitalize text-[16px] ${
-          data.status ? "bg-orange-500" : "bg-red-500"
-        } py-[10px] rounded-[8px] text-[#fff] text-center font-[500] w-full`}
+          data.deleted_at ? 'bg-red-500' : 'bg-orange-500'
+        } py-[10px] rounded-[8px] text-[#fff] text-center font-[500] w-full max-w-[99%]`}
       >
-        {data.status ? "Hoạt động" : "Vô hiệu"}
+        {data.deleted_at ? 'Vô hiệu' : 'Hoạt động'}
       </p>
-      <div className="flex justify-center flex-row">
-        <button
-          // onClick={() => updateData(data._id, data.status)}
-          className={`${data.status ? "bg-blue-500" : "bg-red-500"} text-[15px] text-[#fff] p-[8px] rounded-[8px] ${
-            data.status ? "hover:bg-blue-700" : "hover:bg-red-700"
-          } duration-500`}
-        >
-          {data.status ? "Vô hiệu" : "Kích hoạt"}
-        </button>
+      <div className="flex flex-row justify-between">
+        <Link className="w-full max-w-[48%]" to={`chinh-sua/${data.id}`}>
+          <button className="text-[16px] w-full max-w-[99%] mx-[10px] font-[500] bg-[#38bdf8] py-[10px] text-[#fff] rounded-[5px] hover:bg-[#0369a1] duration-500">
+            Chỉnh sửa
+          </button>
+        </Link>
+        {data.deleted_at ? (
+          <button
+            onClick={handleActive}
+            className="w-full max-w-[48%] bg-[#f97316] text-[#fff] rounded-[5px]"
+          >
+            Kích hoạt
+          </button>
+        ) : (
+          <button
+            onClick={handleDisable}
+            className="w-full max-w-[48%] bg-[#ef4444] text-[#fff] rounded-[5px]"
+          >
+            Vô hiệu
+          </button>
+        )}
       </div>
+      {disLoading && <LoadingModal />}
+      {actLoading && <LoadingModal />}
     </div>
   );
 };

@@ -6,13 +6,11 @@ import { useAppSelector } from '../../redux/store';
 const UserClient: React.FC<{}> = () => {
   const token = JSON.parse(localStorage.getItem('token_access')!);
   const user = useAppSelector((e) => e.user.profile);
+  const path = useLocation().pathname;
 
   if (!token && !user) {
-    alert('Không đủ quyền hạn');
     return <Navigate to="/home" />;
   }
-
-  const path = useLocation().pathname;
 
   function checkPath(): boolean {
     const checkv1 = path.includes('chi-tiet');

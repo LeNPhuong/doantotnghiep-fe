@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 

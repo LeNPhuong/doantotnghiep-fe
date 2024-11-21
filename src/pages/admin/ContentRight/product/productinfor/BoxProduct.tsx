@@ -13,8 +13,6 @@ const BoxProduct: React.FC<{}> = () => {
 
   if (isFetching) return <Loading />;
 
-  console.log(data);
-
   return (
     <div className="p-[10px] w-full shadow-[0_0_15px_#ccc] rounded-[8px] h-full flex flex-col">
       {/*  */}
@@ -44,7 +42,9 @@ const BoxProduct: React.FC<{}> = () => {
           >
             <option value="">Tất cả</option>
             {DataMenuList.map((e) => (
-              <option value={e.id}>{e.name}</option>
+              <option key={e.id} value={e.id}>
+                {e.name}
+              </option>
             ))}
           </select>
         </div>

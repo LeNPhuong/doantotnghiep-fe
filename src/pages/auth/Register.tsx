@@ -88,7 +88,8 @@ const Register: React.FC<object> = () => {
         } else if (data.success === false) {
           return alert('Vui lòng kiểm tra lại thông tin');
         }
-      });
+      })
+      .catch((data) => {});
   }
 
   return (

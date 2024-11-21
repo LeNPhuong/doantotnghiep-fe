@@ -115,7 +115,15 @@ const IFCart: React.FC<{
 
         const Payment: PaymentData = {};
 
-        const mapUser = user?.addresses.find((e) => e.active === 1)?.address;
+        const mapUser =
+          user?.addresses && user?.addresses.length > 0
+            ? user?.addresses.find((e) => e.active === 1)?.address
+            : null;
+
+        if (!mapUser) {
+          return alert('Vui lòng nhập địa chỉ');
+        }
+
         Payment.address = mapUser;
         Payment.name = user?.name;
         Payment.email = user?.email;
