@@ -5,7 +5,7 @@ import { useChangePasswordMutation } from '../../service/profile';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../redux/store';
 
-const ChangePassword: React.FC<{}> = () => {
+const ChangePassword: React.FC<object> = () => {
   const token = JSON.parse(localStorage.getItem('token_access')!);
   const user = useAppSelector((e) => e.user.profile);
   const [change, { isLoading }] = useChangePasswordMutation();

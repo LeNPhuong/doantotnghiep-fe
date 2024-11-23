@@ -14,7 +14,7 @@ import { SwiperSlide } from 'swiper/react';
 import CardItem from '../../components/listproduct/CardItem';
 import BoxComment from './BoxComment';
 
-const Details: React.FC<{}> = () => {
+const Details: React.FC<object> = () => {
   const { id } = useParams<{ id: string }>();
   const { data: datamain, isFetching: isFetch1 } = useGetProductByIdQuery(id!);
 

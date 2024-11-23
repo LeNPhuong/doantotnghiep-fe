@@ -6,7 +6,7 @@ import Breadcrumb from '../../components/other/Breadcrumb';
 import { useAppSelector } from '../../redux/store';
 import BoxUseVoucher from '../../components/other/BoxUseVoucher';
 
-const Pay: React.FC<{}> = () => {
+const Pay: React.FC<object> = () => {
   const [voucher, setVoucher] = useState<boolean>(false);
   const cartStore = useAppSelector((e) => e.cart.dataCart);
   return (

@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../redux/store';
 import { setProfile, setToken } from '../../redux/user/UserSlice';
 import { useGetProfileMutation } from '../../service/profile';
 
-const Login: React.FC<{}> = () => {
+const Login: React.FC<object> = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState<string>('');

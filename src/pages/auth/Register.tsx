@@ -89,7 +89,7 @@ const Register: React.FC<object> = () => {
           return alert('Vui lòng kiểm tra lại thông tin');
         }
       })
-      .catch((data) => {});
+      .catch(() => {});
   }
 
   return (

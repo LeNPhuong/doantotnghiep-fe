@@ -23,13 +23,13 @@ import {
 } from './pages';
 
 import Client from './layout/Client';
+import BoxMain from './layout/BoxMain';
 import UserClient from './pages/user/UserClient';
 import Infor from './pages/user/page/Infor';
 import UserOrder from './pages/user/page/UserOrder';
 import MapData from './pages/user/page/MapData';
 import DetailsOrder from './pages/user/page/DetailsOrder';
 import ListOrder from './pages/user/page/ListOrder';
-import BoxMain from './layout/BoxMain';
 import Dashboard from './pages/admin/pages/Dashboard';
 import ProductManagement from './pages/admin/pages/ProductManagement';
 import ProductInfor from './pages/admin/ContentRight/product/productinfor/ProductInfor';
@@ -46,7 +46,6 @@ import AccountNewPage from './pages/admin/ContentRight/user/NewAccount/AccountNe
 import BoxTypeProduct from './pages/admin/ContentRight/typeproduct/BoxTypeProduct';
 import CategoryNewPage from './pages/admin/ContentRight/typeproduct/CategoryNewPage';
 import EditCategoryPage from './pages/admin/ContentRight/typeproduct/EditCategoryPage';
-import Pagetest from './pagetest';
 import UnitsManagement from './pages/admin/pages/UnitsManagement';
 import PageUnits from './pages/admin/ContentRight/unit/PageUnits';
 import PageNewUnit from './pages/admin/ContentRight/unit/PageNewUnit';
@@ -101,7 +100,7 @@ const App: React.FC<object> = () => {
         {/* -------------------------- */}
         <Route path="/admin-quan-ly" element={<Dashboard />}>
           <Route path="trang-chu" element={<DashBoardTotal />} />
-          <Route index element={<DashBoardTotal />} />
+          <Route index element={<Navigate to="trang-chu" />} />
 
           <Route path="product" element={<ProductManagement />}>
             <Route path="inforprd" element={<ProductInfor />} />
@@ -138,7 +137,6 @@ const App: React.FC<object> = () => {
           </Route>
         </Route>
         {/* -------------------------- */}
-        <Route path="/test" element={<Pagetest />} />
 
         {/* Admin dashboard */}
       </Routes>
