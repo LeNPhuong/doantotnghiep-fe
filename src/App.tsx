@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import {
   Cart,
@@ -53,6 +53,11 @@ import PageEditUnit from './pages/admin/ContentRight/unit/PageEditUnit';
 import DashBoardTotal from './pages/admin/pages/DashBoardTotal';
 
 const App: React.FC<object> = () => {
+  const path = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [path.pathname]);
+
   return (
     <BoxMain>
       <Routes>
