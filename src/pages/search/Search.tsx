@@ -18,7 +18,7 @@ const Search: React.FC<{}> = () => {
       .then((data) => {
         setData(data.data);
       })
-      .catch((data) => {
+      .catch(() => {
         setData(null);
       });
   }, [type]);
@@ -26,8 +26,6 @@ const Search: React.FC<{}> = () => {
   if (isLoading) {
     return <Loading />;
   }
-
-  (data);
 
   return (
     <MainLayout>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PayCartItemMethod from './PayCartItemMethod';
 
-const PayCartMethod: React.FC<{}> = () => {
+const PayCartMethod: React.FC<object> = () => {
   return (
     <div className="mt-[20px]">
       <p className="text-[18px] font-medium mb-[14px]">

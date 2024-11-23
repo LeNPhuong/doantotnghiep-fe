@@ -6,17 +6,17 @@ import { Breadcrumb, Loading, PaginationCpn } from '../../components';
 import { useGetAllProductByCategoriesQuery } from '../../service/product';
 import { useParams } from 'react-router-dom';
 
-const DetailsCategories: React.FC<{}> = () => {
+const DetailsCategories: React.FC<object> = () => {
   const [count, setCount] = useState<number>(1);
   const [probe, setProbe] = useState<boolean>(false);
   const { category } = useParams<{ category: string }>();
 
   useEffect(() => {
     setProbe((e) => !e);
+    console.log(probe);
   }, [category]);
 
-  const { data, error, isFetching, isLoading } =
-    useGetAllProductByCategoriesQuery(category!);
+  const { data, isFetching } = useGetAllProductByCategoriesQuery(category!);
 
   if (isFetching) {
     return <Loading />;

@@ -4,7 +4,7 @@ import { useGetProfileV2Query } from '../../service/profile';
 import { Loading } from '../../components';
 import { Navigate } from 'react-router-dom';
 
-const PayCartIF: React.FC<{}> = () => {
+const PayCartIF: React.FC<object> = () => {
   const { data, isFetching, isError } = useGetProfileV2Query();
 
   if (isFetching) return <Loading />;

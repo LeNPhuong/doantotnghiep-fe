@@ -4,7 +4,7 @@ import PayCartMethod from './PayCartMethod';
 import { useAppSelector } from '../../redux/store';
 import { Navigate } from 'react-router-dom';
 
-const PayCart: React.FC<{}> = () => {
+const PayCart: React.FC<object> = () => {
   const token = JSON.parse(localStorage.getItem('token_access')!);
   const user = useAppSelector((e) => e.user.profile);
 

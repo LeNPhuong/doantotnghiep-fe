@@ -4,7 +4,7 @@ import { FormAuth, LoadingModal } from '../../../components';
 import { useGetOtpMutation } from '../../../service/user';
 import { useNavigate } from 'react-router-dom';
 
-const ForgotPassword: React.FC<{}> = () => {
+const ForgotPassword: React.FC<object> = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [forgot, { isLoading }] = useGetOtpMutation();

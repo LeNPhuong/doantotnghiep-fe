@@ -154,7 +154,7 @@ const IFCart: React.FC<{
                 });
             }
           })
-          .catch((data) => {
+          .catch(() => {
             alert('Đặt hàng thất bại');
           });
       }

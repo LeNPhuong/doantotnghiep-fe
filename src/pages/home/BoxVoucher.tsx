@@ -2,7 +2,7 @@ import React from 'react';
 import { Voucher } from '../../components';
 import { useGetAllVouchersQuery } from '../../service/product';
 
-const BoxVoucher: React.FC<{}> = () => {
+const BoxVoucher: React.FC<object> = () => {
   const { data, isFetching } = useGetAllVouchersQuery();
 
   if (isFetching) {

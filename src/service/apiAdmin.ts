@@ -42,6 +42,11 @@ export const adminApi = createApi({
         ? JSON.parse(localStorage.getItem('token_access')!)
         : null;
 
+      if (!getToken) {
+        localStorage.removeItem('profile');
+        localStorage.removeItem('token_access');
+      }
+
       const token = await getProfile(getToken!);
 
       if (token) {

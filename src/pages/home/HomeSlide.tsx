@@ -71,7 +71,7 @@ const BoxSlide = styled.div`
   }
 `;
 
-const HomeSlide: React.FC<{}> = () => {
+const HomeSlide: React.FC<object> = () => {
   return (
     <BoxSlide>
       <Swiper

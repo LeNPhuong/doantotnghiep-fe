@@ -7,7 +7,7 @@ import {
 } from '../../../service/user';
 import { useNavigate } from 'react-router-dom';
 
-const ChangeSucces: React.FC<{}> = () => {
+const ChangeSucces: React.FC<object> = () => {
   const forgot_email = JSON.parse(localStorage.getItem('forgot_password')!);
   const navigate = useNavigate();
 

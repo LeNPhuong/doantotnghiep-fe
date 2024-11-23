@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartHeader: React.FC<{}> = () => {
+const CartHeader: React.FC<object> = () => {
   return (
     <div className="md:rounded-t-[10px] min-h-[57px] max-h-[57px] border-b-[#EACECE] border-b-[2px] flex flex-row px-[20px]">
       <div className="w-full xl:max-w-[543px] lg:max-w-[400px] md:max-w-[350px] max-w-[300px] flex items-center">
