@@ -26,8 +26,6 @@ const ActionControl: React.FC<{ data: AdminOrder | undefined; id: number }> = ({
           navigate(-1);
         })
         .catch((data) => {
-          console.log(data);
-
           alert(data.message);
         });
     }

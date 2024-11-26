@@ -28,7 +28,7 @@ const DetailsOrder: React.FC<object> = () => {
       .catch(() => {
         setDetails(null);
       });
-  }, [code]);
+  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -41,13 +41,13 @@ const DetailsOrder: React.FC<object> = () => {
   function handleCancel() {
     const check = confirm('Bạn có muốn huỷ đơn hàng');
     if (check) {
-      cancel({ id: details?.data.id! })
+      cancel({ id: details?.data.id as number })
         .unwrap()
-        .then((data) => {
+        .then(() => {
           alert('Huỷ đơn hàng thành công');
           return navigate('/thong-tin-nguoi-dung/don-hang');
         })
-        .catch((data) => {
+        .catch(() => {
           alert('Huỷ thất bại');
         });
     }

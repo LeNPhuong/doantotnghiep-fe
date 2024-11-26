@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { GrDown } from 'react-icons/gr';
-import IFCategories from '../../types/IFCategories';
 import { IMenuList } from '../../types';
 
 const HeaderItemLink: React.FC<{ data: IMenuList }> = ({ data }) => {

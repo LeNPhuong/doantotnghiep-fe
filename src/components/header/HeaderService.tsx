@@ -1,9 +1,9 @@
 import React from 'react';
 import HeaderItemService from './HeaderItemService';
 import { LuUserCircle2 } from 'react-icons/lu';
-import { BsCartPlus } from 'react-icons/bs';
 import { IoCallOutline } from 'react-icons/io5';
 import { useAppSelector } from '../../redux/store';
+import HeaderItemCart from './HeaderItemCart';
 
 const HeaderService: React.FC<{}> = () => {
   const user = useAppSelector((e) => e.user.profile);
@@ -29,12 +29,8 @@ const HeaderService: React.FC<{}> = () => {
 
       <div className="xl:mr-[43px] xl:block md:hidden"></div>
 
-      <HeaderItemService
-        link="/gio-hang"
-        name="Giỏ hàng"
-        icons={<BsCartPlus />}
-        cart={true}
-      />
+      <HeaderItemCart />
+
       <div className="xl:mr-[67px] xl:block md:hidden"></div>
       <div className="md:flex hidden flex-row items-center text-[#004D40] justify-end whitespace-nowrap">
         <div className="xl:text-[35px] md:text-[25px]">

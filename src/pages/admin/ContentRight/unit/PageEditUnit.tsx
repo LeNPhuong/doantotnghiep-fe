@@ -15,8 +15,6 @@ const PageEditUnit: React.FC<{}> = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.data.name);
-
       setName(data.data.name);
     }
   }, [data]);
@@ -29,7 +27,6 @@ const PageEditUnit: React.FC<{}> = () => {
     if (name && name.length === 0) {
       return alert('Vui lòng nhập tên đơn vị');
     }
-    console.log(name);
 
     update({ id: Number(id!), data: { name: name!, active: true } })
       .unwrap()

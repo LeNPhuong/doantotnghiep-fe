@@ -99,6 +99,10 @@ export interface ResultDefault {
   message: string;
 }
 
+export interface GetInforOrder extends ResultDefault {
+  data: { code: string; id: number };
+}
+
 export interface IFResultCategoryCreate {
   id: number;
   name: string;

@@ -14,7 +14,7 @@ import {
 } from '../types/User';
 
 import { CheckOutData, DataMainOrder, OrderByCode } from '../types/IFProducts';
-import { ResultDefault } from '../types/AdminType';
+import { GetInforOrder, ResultDefault } from '../types/AdminType';
 import { getFreshToken, getProfile } from './apiService';
 
 export const profileApi = createApi({
@@ -33,22 +33,24 @@ export const profileApi = createApi({
         localStorage.removeItem('token_access');
       }
 
-      const token = await getProfile(getToken!);
+      headers.set('Authorization', `Bearer ${getToken}`);
 
-      if (token) {
-        headers.set('Authorization', `Bearer ${getToken}`);
-      } else {
-        const tokenRefresh = await getFreshToken(getToken!);
-        if (tokenRefresh) {
-          localStorage.setItem('token_access', JSON.stringify(tokenRefresh));
-          headers.set('Authorization', `Bearer ${tokenRefresh}`);
-        } else {
-          localStorage.removeItem('profile');
-          localStorage.removeItem('token_access');
-          alert('Có lỗi xảy ra vui lòng đăng nhập lại');
-          location.reload();
-        }
-      }
+      // const token = await getProfile(getToken!);
+
+      // if (token) {
+      //   headers.set('Authorization', `Bearer ${getToken}`);
+      // } else {
+      //   const tokenRefresh = await getFreshToken(getToken!);
+      //   if (tokenRefresh) {
+      //     localStorage.setItem('token_access', JSON.stringify(tokenRefresh));
+      //     headers.set('Authorization', `Bearer ${tokenRefresh}`);
+      //   } else {
+      //     localStorage.removeItem('profile');
+      //     localStorage.removeItem('token_access');
+      //     alert('Có lỗi xảy ra vui lòng đăng nhập lại');
+      //     location.reload();
+      //   }
+      // }
 
       return headers;
     },
@@ -88,7 +90,7 @@ export const profileApi = createApi({
       },
     }),
 
-    addCheckout: builder.mutation<ResultDefault, any>({
+    addCheckout: builder.mutation<GetInforOrder, any>({
       query: (data) => {
         return {
           url: '/checkout',
@@ -166,6 +168,12 @@ export const profileApi = createApi({
       },
     }),
 
+    GetOrderCheck: builder.mutation<DataMainOrder, void>({
+      query: () => {
+        return '/auth/get-orders';
+      },
+    }),
+
     GetOrderById: builder.mutation<OrderByCode, { code: string }>({
       query: (code) => {
         return {
@@ -181,7 +189,7 @@ export const profileApi = createApi({
         return {
           url: `orders/${id.id}/cancel`,
           method: 'DELETE',
-          body: { cancellation_reason: 'DELETEDELETE' },
+          body: { cancellation_reason: 'DELETE' },
         };
       },
     }),
@@ -220,4 +228,5 @@ export const {
   useGetOrderByIdMutation,
   useCancleOrderByIdMutation,
   useAddCommentProductMutation,
+  useGetOrderCheckMutation,
 } = profileApi;

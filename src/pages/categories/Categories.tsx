@@ -13,7 +13,6 @@ const DetailsCategories: React.FC<object> = () => {
 
   useEffect(() => {
     setProbe((e) => !e);
-    console.log(probe);
   }, [category]);
 
   const { data, isFetching } = useGetAllProductByCategoriesQuery(category!);

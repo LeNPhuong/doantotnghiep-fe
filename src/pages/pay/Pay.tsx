@@ -9,6 +9,7 @@ import BoxUseVoucher from '../../components/other/BoxUseVoucher';
 const Pay: React.FC<object> = () => {
   const [voucher, setVoucher] = useState<boolean>(false);
   const cartStore = useAppSelector((e) => e.cart.dataCart);
+
   return (
     <MainLayout>
       <Breadcrumb name="GIỎ HÀNG" />

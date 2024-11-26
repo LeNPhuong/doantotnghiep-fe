@@ -21,3 +21,14 @@ export function checkTotalPrice(price: number, discount: number) {
     return ChangeCurrentcy(prices);
   }
 }
+
+export function checkTotalPriceRaw(price: number, discount: number) {
+  const prices = price;
+  const discounts = discount;
+
+  if (discount) {
+    return prices - (prices * discounts) / 100;
+  } else {
+    return prices;
+  }
+}

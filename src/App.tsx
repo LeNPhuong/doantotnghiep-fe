@@ -51,8 +51,12 @@ import PageUnits from './pages/admin/ContentRight/unit/PageUnits';
 import PageNewUnit from './pages/admin/ContentRight/unit/PageNewUnit';
 import PageEditUnit from './pages/admin/ContentRight/unit/PageEditUnit';
 import DashBoardTotal from './pages/admin/pages/DashBoardTotal';
+import { LoadingModal } from './components';
+import { useAppSelector } from './redux/store';
 
 const App: React.FC<object> = () => {
+  const loading = useAppSelector((e) => e.cart.handleCart);
+
   const path = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -145,6 +149,8 @@ const App: React.FC<object> = () => {
 
         {/* Admin dashboard */}
       </Routes>
+      {/* <LoadingModal /> */}
+      {loading && <LoadingModal />}
     </BoxMain>
   );
 };

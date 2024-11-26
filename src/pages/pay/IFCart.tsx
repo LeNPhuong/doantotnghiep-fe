@@ -18,11 +18,12 @@ const IFCart: React.FC<{
   data: IFCartStore[];
   setVoucher: React.Dispatch<SetStateAction<boolean>>;
 }> = ({ data, setVoucher }) => {
+  const dispatch = useAppDispatch();
   const path = useLocation().pathname;
   const user = useAppSelector((e) => e.user.profile?.data);
-  const dispatch = useAppDispatch();
   const token = JSON.parse(localStorage.getItem('token_access')!);
   const dataCart = useAppSelector((e) => e.cart.dataCart);
+  const dataCartV2 = useAppSelector((e) => e.cart.dataCart2);
   const methodPay = useAppSelector((e) => e.cart.methodPay);
   const [checkOutMutation, { isLoading: checkoutLoading }] =
     useCheckOutCartMutation();
@@ -30,8 +31,10 @@ const IFCart: React.FC<{
     usePaymentCartMutation();
   const voucher = useAppSelector((e) => e.user.voucher);
   const naviagte = useNavigate();
+  const noteData = useAppSelector((e) => e.cart.note);
+  const cartStorev2 = useAppSelector((e) => e.cart.dataCart2);
 
-  function handleDiscount(price: string, discount: number) {
+  function handleDiscount(price: number, discount: number) {
     return Number(price) - (Number(price) * Number(discount)) / 100;
   }
 
@@ -98,14 +101,14 @@ const IFCart: React.FC<{
         const cart: CartCheckout[] = [];
         const checkOut: CheckOutData = {};
 
-        dataCart?.map((e) =>
+        cartStorev2.forEach((e) => {
           cart.push({
             id: e.id,
             quantity: e.qtt,
-            unit: e.category.active_units[0].id.toString(),
+            unit: e.unit,
             price: handleDiscount(e.price, e.sale),
-          }),
-        );
+          });
+        });
 
         checkOut.cart = cart;
 
@@ -128,6 +131,9 @@ const IFCart: React.FC<{
         Payment.name = user?.name;
         Payment.email = user?.email;
         Payment.phone = user?.phone;
+        if (noteData.length > 0) {
+          Payment.note = noteData;
+        }
 
         if (methodPay === 0 || methodPay === null || methodPay === undefined) {
           return alert('Vui lòng chọn phương thức thanh toán');
@@ -135,28 +141,101 @@ const IFCart: React.FC<{
 
         Payment.payment_method = methodPay === 1 ? 'cod' : 'momo';
 
-        checkOutMutation(checkOut)
-          .unwrap()
-          .then((data) => {
-            if (data.success) {
-              paymentMutation(Payment)
-                .unwrap()
-                .then((data) => {
-                  if (data.success) {
-                    dispatch(clearCart());
-                    dispatch(ClearVoucher());
-                    alert('Đặt hàng thành công');
-                    return naviagte('/thong-tin-nguoi-dung/don-hang');
-                  }
-                })
-                .catch(() => {
-                  return alert('Đặt hàng thất bại');
-                });
-            }
-          })
-          .catch(() => {
-            alert('Đặt hàng thất bại');
-          });
+        console.log(Payment);
+        console.log(checkOut);
+
+        if (voucher) {
+          checkOutMutation(checkOut)
+            .unwrap()
+            .then((data) => {
+              if (data.success) {
+                paymentMutation(Payment)
+                  .unwrap()
+                  .then((data) => {
+                    if (data.success) {
+                      dispatch(clearCart());
+                      dispatch(ClearVoucher());
+                      alert('Đặt hàng thành công');
+                      return naviagte('/thong-tin-nguoi-dung/don-hang');
+                    }
+                  })
+                  .catch(() => {
+                    return alert('Đặt hàng thất bại');
+                  });
+              }
+            })
+            .catch(() => {
+              alert('Đặt hàng thất bại');
+            });
+        } else if (!voucher) {
+          paymentMutation(Payment)
+            .unwrap()
+            .then((data) => {
+              if (data.success) {
+                dispatch(clearCart());
+                dispatch(ClearVoucher());
+                alert('Đặt hàng thành công');
+                return naviagte('/thong-tin-nguoi-dung/don-hang');
+              }
+            })
+            .catch(() => {
+              return alert('Đặt hàng thất bại');
+            });
+        }
+      }
+    }
+  }
+
+  function handleTotalLogin() {
+    if (dataCartV2.length === 0) {
+      return 0;
+    } else {
+      const totalPrice = dataCartV2.reduce(
+        (acc, cur) =>
+          acc +
+          (Number(cur.price) - (Number(cur.price) * Number(cur.sale)) / 100) *
+            cur.qtt,
+        0,
+      );
+      return totalPrice;
+    }
+  }
+
+  function handleVoucherLogin() {
+    if (!voucher) {
+      return 0;
+    } else {
+      if (dataCartV2.length === 0) {
+        return 0;
+      } else {
+        const total = dataCartV2.reduce(
+          (acc, cur) =>
+            acc +
+            (Number(cur.price) - (Number(cur.price) * Number(cur.sale)) / 100) *
+              cur.qtt,
+          0,
+        );
+        return total * (Number(voucher.discount_value) / 100);
+      }
+    }
+  }
+
+  function handleTotalPriceLogin() {
+    if (dataCartV2.length === 0) {
+      return 0;
+    } else {
+      const total = dataCartV2.reduce(
+        (acc, cur) =>
+          acc +
+          (Number(cur.price) - (Number(cur.price) * Number(cur.sale)) / 100) *
+            cur.qtt,
+        0,
+      );
+
+      if (!voucher) {
+        return total;
+      } else {
+        return total - total * (Number(voucher.discount_value) / 100);
       }
     }
   }
@@ -186,7 +265,13 @@ const IFCart: React.FC<{
             weight="400"
             size="16px"
             label="Tổng sản phẩm:"
-            value={data ? data.reduce((acc, cur) => acc + cur.qtt, 0) : 0}
+            value={
+              token
+                ? dataCartV2.reduce((acc, cur) => acc + cur.qtt, 0)
+                : data
+                  ? data.reduce((acc, cur) => acc + cur.qtt, 0)
+                  : 0
+            }
           />
           {token && (
             <FieldInfor
@@ -194,7 +279,11 @@ const IFCart: React.FC<{
               size="16px"
               color="#004D40"
               label="Giảm giá từ voucher:"
-              value={ChangeCurrentcy(handleVoucher())}
+              value={
+                token
+                  ? ChangeCurrentcy(handleVoucherLogin())
+                  : ChangeCurrentcy(handleVoucher())
+              }
             />
           )}
 
@@ -202,7 +291,11 @@ const IFCart: React.FC<{
             weight="400"
             size="16px"
             label="Tổng tiền sản phẩm:"
-            value={ChangeCurrentcy(handleTotalNo())}
+            value={
+              token
+                ? ChangeCurrentcy(handleTotalLogin())
+                : ChangeCurrentcy(handleTotalNo())
+            }
           />
         </div>
         <div className="pt-[16px]"></div>
@@ -213,7 +306,11 @@ const IFCart: React.FC<{
           color1="#000"
           color2="#01E778"
           label="Tổng tiền:"
-          value={ChangeCurrentcy(handleTotal())}
+          value={
+            token
+              ? ChangeCurrentcy(handleTotalPriceLogin())
+              : ChangeCurrentcy(handleTotal())
+          }
           weight="500"
         />
         <div className="pt-[20px]"></div>

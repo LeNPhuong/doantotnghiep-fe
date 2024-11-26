@@ -9,6 +9,10 @@ export async function getProfile(token: string): Promise<boolean> {
       },
     );
 
+    if (response) {
+      return true;
+    }
+
     return true;
   } catch (error) {
     return false;

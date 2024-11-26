@@ -15,7 +15,7 @@ const BillItem: React.FC<{ data: AdminOrder }> = ({ data }) => {
         {data.user.phone}
       </p>
       <p className="uppercase text-center text-[14px] font-[500]">
-        {data.transaction[0].payment_method}
+        {data.transaction[0] && data.transaction[0].payment_method}
       </p>
       <p className="uppercase text-center text-[14px] font-[500]">
         {data.status.text_status}
