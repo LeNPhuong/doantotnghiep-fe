@@ -14,7 +14,6 @@ const BoxDetails: React.FC = () => {
   const { data, isFetching } = useAdminGetOrderByIdQuery(Number(id!));
 
   if (isFetching) return <Loading />;
-  console.log(data);
 
   return (
     <div className="flex flex-col">

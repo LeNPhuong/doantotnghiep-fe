@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PayCartForm from './PayCartForm';
 import { useGetProfileV2Query } from '../../service/profile';
 import { Loading } from '../../components';
 import { Navigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { setNote } from '../../redux/cart/CartSlice';
+import { setProfile } from '../../redux/user/UserSlice';
 
 const PayCartIF: React.FC<object> = () => {
-  const { data, isFetching, isError } = useGetProfileV2Query();
+  const note = useAppSelector((e) => e.cart.note);
+  const dispatch = useAppDispatch();
+  const { data, isFetching, isError, isSuccess } = useGetProfileV2Query();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setProfile(data));
+    }
+  }, []);
 
   if (isFetching) return <Loading />;
 
@@ -18,21 +29,28 @@ const PayCartIF: React.FC<object> = () => {
     <>
       <p className="text-[18px] font-medium">Thông tin người đặt</p>
       <div className="flex flex-row flex-wrap justify-between">
-        <PayCartForm
-          value={data?.data.name as string}
-          label="Tên người mua"
-          width="452px"
-        />
-        <PayCartForm
-          value={data?.data.phone as string}
-          label="Số điện thoại"
-          width="452px"
-        />
-        <PayCartForm
-          value={data?.data.email as string}
-          label="Email"
-          width="452px"
-        />
+        {data?.data.name && (
+          <PayCartForm
+            value={data?.data.name as string}
+            label="Tên người mua"
+            width="452px"
+          />
+        )}
+        {data?.data.phone && (
+          <PayCartForm
+            value={data?.data.phone as string}
+            label="Số điện thoại"
+            width="452px"
+          />
+        )}
+
+        {data?.data.email && (
+          <PayCartForm
+            value={data?.data.email as string}
+            label="Email"
+            width="452px"
+          />
+        )}
 
         {data?.data?.addresses?.find((e) => e.active === 1) ? (
           <PayCartForm
@@ -52,6 +70,8 @@ const PayCartIF: React.FC<object> = () => {
           name=""
           id=""
           placeholder="Ghi chú (Có thể bỏ qua)"
+          value={note}
+          onChange={(e) => dispatch(setNote(e.target.value))}
         ></textarea>
       </div>
     </>

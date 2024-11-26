@@ -20,11 +20,9 @@ const Details: React.FC<object> = () => {
 
   const { data, isFetching: isFetch2 } = useGetProductsQuery();
 
-  if (isFetch1) {
+  if (isFetch1 || isFetch2) {
     return <Loading />;
   }
-
-  console.log(datamain);
 
   return (
     <MainLayout>

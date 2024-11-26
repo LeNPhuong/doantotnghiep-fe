@@ -47,22 +47,24 @@ export const adminApi = createApi({
         localStorage.removeItem('token_access');
       }
 
-      const token = await getProfile(getToken!);
+      headers.set('Authorization', `Bearer ${getToken}`);
 
-      if (token) {
-        headers.set('Authorization', `Bearer ${getToken}`);
-      } else {
-        const tokenRefresh = await getFreshToken(getToken!);
-        if (tokenRefresh) {
-          localStorage.setItem('token_access', JSON.stringify(tokenRefresh));
-          headers.set('Authorization', `Bearer ${tokenRefresh}`);
-        } else {
-          localStorage.removeItem('profile');
-          localStorage.removeItem('token_access');
-          alert('Có lỗi xảy ra vui lòng đăng nhập lại');
-          location.reload();
-        }
-      }
+      // const token = await getProfile(getToken!);
+
+      // if (token) {
+      //   headers.set('Authorization', `Bearer ${getToken}`);
+      // } else {
+      //   const tokenRefresh = await getFreshToken(getToken!);
+      //   if (tokenRefresh) {
+      //     localStorage.setItem('token_access', JSON.stringify(tokenRefresh));
+      //     headers.set('Authorization', `Bearer ${tokenRefresh}`);
+      //   } else {
+      //     localStorage.removeItem('profile');
+      //     localStorage.removeItem('token_access');
+      //     alert('Có lỗi xảy ra vui lòng đăng nhập lại');
+      //     location.reload();
+      //   }
+      // }
 
       return headers;
     },

@@ -23,7 +23,7 @@ const Spiner = styled.div`
 
 const LoadingModal: React.FC<{}> = () => {
   return (
-    <div className="absolute bg-[#cccccc9e] top-0 right-0 bottom-0 left-0 z-[1000]">
+    <div className="fixed bg-[#cccccc9e] top-0 right-0 bottom-0 left-0 z-[99999]">
       <div className="w-full h-[100vh] flex flex-col justify-center items-center gap-[20px]">
         <Spiner></Spiner>
         <p className="capitalize">Đang tải...</p>

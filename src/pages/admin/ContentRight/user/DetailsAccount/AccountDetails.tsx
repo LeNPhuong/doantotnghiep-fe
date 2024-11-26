@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { Loading, LoadingModal } from '../../../../../components';
 import FIeldForm from '../../FIeldForm';
 import { IFDataUserChange } from '../../../../../types/User';
+import { useAppSelector } from '../../../../../redux/store';
 
 const AccountDetails: React.FC<{}> = () => {
   const [update, { isLoading }] = useAdminUserUpdateByIdMutation();
@@ -15,6 +16,8 @@ const AccountDetails: React.FC<{}> = () => {
   const [phone, setPhone] = useState<string>();
   const [role, setRole] = useState<string>();
   const [active, setActive] = useState<number>();
+
+  const user = useAppSelector((e) => e.user.profile?.data);
 
   const { id } = useParams();
   const { data, isFetching, isSuccess } = useAdminGetUserByIdQuery(Number(id));
@@ -64,6 +67,11 @@ const AccountDetails: React.FC<{}> = () => {
 
     if (Object.keys(dataMain).length === 0)
       return alert('không có gì để cập nhật');
+
+    if (user?.id === data?.data.id && dataMain.role !== data?.data.role) {
+      setRole('admin');
+      return alert('Bạn không thể tự thay đổi quyền của chính mình');
+    }
 
     update({ id: Number(id), data: dataMain })
       .unwrap()

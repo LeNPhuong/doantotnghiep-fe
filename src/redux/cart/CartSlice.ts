@@ -8,6 +8,18 @@ export interface IFCartStore extends IFProduct {
 interface IFCart {
   dataCart: IFCartStore[] | null;
   methodPay: number;
+  handleCart: boolean;
+  dataCart2: {
+    id: number;
+    name: string;
+    price: number;
+    sale: number;
+    qtt: number;
+    img: string;
+    des: string;
+    unit: string;
+  }[];
+  note: string;
 }
 
 const initialState: IFCart = {
@@ -15,6 +27,9 @@ const initialState: IFCart = {
     ? (JSON.parse(localStorage.getItem('cart_store')!) as IFCartStore[])
     : null,
   methodPay: 0,
+  handleCart: false,
+  dataCart2: [],
+  note: '',
 };
 
 const sliceCart = createSlice({
@@ -92,6 +107,34 @@ const sliceCart = createSlice({
       state.methodPay = 0;
       localStorage.removeItem('cart_store');
     },
+
+    setCart2: (
+      state,
+      action: PayloadAction<
+        {
+          id: number;
+          name: string;
+          price: number;
+          sale: number;
+          qtt: number;
+          img: string;
+          des: string;
+          unit: string;
+        }[]
+      >,
+    ) => {
+      const cartNew = action.payload;
+      state.dataCart2 = cartNew;
+    },
+
+    handleLoading: (state, action: PayloadAction<boolean>) => {
+      const result = action.payload;
+      state.handleCart = result;
+    },
+
+    setNote: (state, action: PayloadAction<string>) => {
+      state.note = action.payload;
+    },
   },
 });
 
@@ -102,5 +145,8 @@ export const {
   delete_cart,
   setMethodPay,
   clearCart,
+  handleLoading,
+  setCart2,
+  setNote,
 } = sliceCart.actions;
 export default sliceCart.reducer;
