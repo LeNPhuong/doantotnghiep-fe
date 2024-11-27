@@ -18,9 +18,8 @@ const CartItem: React.FC<{ data: IFCartStore }> = ({ data }) => {
           {data.description}
           <div className="lg:max-w-[120px] xl:max-w-[90px] max-w-[120px] w-full md:hidden flex-row items-center justify-center text-[16px] text-[#FF0000] font-medium block">
             {ChangeCurrentcy(
-              (Number(data.price) -
-                (Number(data.price) * Number(data.sale)) / 100) *
-                data.qtt,
+              Number(data.price) -
+                (Number(data.price) * Number(data.sale)) / 100,
             )}
           </div>
         </div>

@@ -165,9 +165,7 @@ const CartItemV2: React.FC<{
       {/*  */}
       <div className="lg:max-w-[120px] max-w-[120px] w-full md:flex flex-row items-center justify-center text-[16px] text-[#FF0000] font-medium hidden">
         {ChangeCurrentcy(
-          (Number(data.price) -
-            (Number(data.price) * Number(data.sale)) / 100) *
-            data.qtt,
+          Number(data.price) - (Number(data.price) * Number(data.sale)) / 100,
         )}
       </div>
       <div className="lg:max-w-[120px] md:max-w-[90px] max-w-[120px] w-full md:flex hidden flex-row items-center justify-center">

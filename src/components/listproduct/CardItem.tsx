@@ -4,7 +4,7 @@ import { IFProduct } from '../../types/IFProducts';
 import ChangeCurrentcy from '../../ultils/ChangeCurrentcy';
 import { Tooltip } from '@mui/material';
 import { useAppDispatch } from '../../redux/store';
-import { add_cart /* handleLoading*/ } from '../../redux/cart/CartSlice';
+import { add_cart, handleLoading } from '../../redux/cart/CartSlice';
 import {
   useAddCheckoutMutation,
   // useGetOrderByIdMutation,
@@ -35,16 +35,18 @@ const CardItem: React.FC<{
     if (!tokenCheck) {
       dispatch(add_cart(data));
     } else {
+      dispatch(handleLoading(true));
       const orderUser = await dataCheck()
         .unwrap()
         .then((data) => {
           return data;
+        })
+        .catch(() => {
+          return 'trống';
         });
 
-      const orderChecking = orderUser.data.find((e) => e.status.id === 1);
-
-      if (!orderChecking) {
-        add({
+      if (orderUser === 'trống') {
+        const resultAdd = await add({
           cart: [
             {
               id: dataProduct.id,
@@ -55,11 +57,154 @@ const CardItem: React.FC<{
           ],
         })
           .unwrap()
-          .then(() => alert('Thêm thành công'))
-          .catch(() => alert('Thêm thất bại'));
+          .then(() => {
+            return true;
+          })
+          .catch(() => {
+            return false;
+          });
+        if (resultAdd) {
+          dispatch(handleLoading(false));
+          alert('Thêm thành công');
+          location.reload();
+        } else {
+          dispatch(handleLoading(false));
+          alert('Thêm thất bại');
+          location.reload();
+        }
+        return;
+      }
+
+      const orderChecking =
+        typeof orderUser !== 'string' &&
+        orderUser.data.find((e) => e.status.id === 1);
+
+      if (!orderChecking) {
+        const resultAdd = await add({
+          cart: [
+            {
+              id: dataProduct.id,
+              quantity: dataProduct.quantity,
+              unit: dataProduct.unit,
+              price: checkTotalPriceRaw(dataProduct.price, dataProduct.sale),
+            },
+          ],
+        })
+          .unwrap()
+          .then(() => {
+            return true;
+          })
+          .catch(() => {
+            return false;
+          });
+
+        if (resultAdd) {
+          dispatch(handleLoading(false));
+          alert('Thêm thành công');
+          location.reload();
+        } else {
+          dispatch(handleLoading(false));
+          alert('Thêm thất bại');
+          location.reload();
+        }
+        return;
       } else if (orderChecking) {
+        const newCart: {
+          id: number;
+          quantity: number;
+          unit: string;
+          price: number;
+        }[] = [];
+
         const cartOldArr = orderChecking.order_details;
-        console.log(cartOldArr);
+
+        const checkExits = cartOldArr.find(
+          (e) => e.product_id.toString() === dataProduct.id.toString(),
+        );
+
+        if (checkExits) {
+          newCart.push({
+            id: checkExits.product_id,
+            quantity: checkExits.quantity + 1,
+            unit: checkExits.unit,
+            price: checkTotalPriceRaw(dataProduct.price, dataProduct.sale),
+          });
+
+          cartOldArr.forEach((el) => {
+            if (Number(el.product_id) !== Number(checkExits.product_id)) {
+              newCart.push({
+                id: el.product_id,
+                quantity: el.quantity,
+                unit: el.unit,
+                price: checkTotalPriceRaw(
+                  Number(el.product.price),
+                  el.product.sale,
+                ),
+              });
+            }
+          });
+
+          const resultAddExits: boolean = await add({ cart: newCart })
+            .unwrap()
+            .then(() => {
+              return true;
+            })
+            .catch(() => {
+              return false;
+            });
+          if (resultAddExits) {
+            dispatch(handleLoading(false));
+            alert('Thêm sản phẩm thành công');
+            location.reload();
+          } else {
+            dispatch(handleLoading(false));
+            alert('Thêm sản phẩm thất bại');
+          }
+          return;
+        } else {
+          const cartOldArr = orderChecking.order_details;
+
+          cartOldArr.forEach((el) => {
+            newCart.push({
+              id: el.product_id,
+              quantity: el.quantity,
+              unit: el.unit,
+              price: checkTotalPriceRaw(
+                Number(el.product.price),
+                dataProduct.sale,
+              ),
+            });
+          });
+
+          newCart.push({
+            id: dataProduct.id,
+            quantity: 1,
+            unit: dataProduct.unit,
+            price: checkTotalPriceRaw(
+              Number(dataProduct.price),
+              dataProduct.sale,
+            ),
+          });
+
+          dispatch(handleLoading(true));
+          const resultAddExits: boolean = await add({ cart: newCart })
+            .unwrap()
+            .then(() => {
+              return true;
+            })
+            .catch(() => {
+              return false;
+            });
+          if (resultAddExits) {
+            dispatch(handleLoading(false));
+            alert('Thêm sản phẩm thành công');
+            location.reload();
+          } else {
+            dispatch(handleLoading(false));
+            alert('Thêm sản phẩm thất bại');
+          }
+          return;
+        }
       }
       //
     }

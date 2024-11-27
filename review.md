@@ -1,107 +1,47 @@
-function addCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    e.preventDefault();
-    const dataProduct = {
-      id: Number(data.id),
-      quantity: 1,
-      unit: data.category.active_units[0].id.toString(),
-      price: Number(data.price),
-      sale: Number(data.sale),
-    };
-
-    if (!tokenCheck) {
-      dispatch(add_cart(data));
-    } else {
+ useEffect(() => {
+    if (tokenCheck) {
       dispatch(handleLoading(true));
-      const cart = { cart: [dataProduct] };
       dataCheck()
         .unwrap()
         .then((data) => {
-          data.data.forEach((el) => {
-            if (el.status.id === 1) {
-              const oldCart: {
-                id: number;
-                quantity: number;
-                unit: string;
-                price: number;
-              }[] = [];
-
-              const checkExits = el.order_details.find(
-                (e) => e.product_id.toString() === dataProduct.id.toString(),
-              );
-
-              if (checkExits) {
-                const handleDataExits = {
-                  id: checkExits.product_id,
-                  quantity: Number(checkExits.quantity) + 1,
-                  unit: checkExits.unit.toString(),
-                  price:
-                    checkTotalPriceRaw(dataProduct.price, dataProduct.sale) *
-                    (Number(checkExits.quantity) + 1),
-                };
-                oldCart.push(handleDataExits);
-              } else {
-                const handleDataExits = {
-                  id: dataProduct.id,
-                  quantity: 1,
-                  unit: dataProduct.unit,
-                  price: checkTotalPriceRaw(
-                    dataProduct.price,
-                    dataProduct.sale,
-                  ),
-                };
-                oldCart.push(handleDataExits);
-              }
-
-              el.order_details.forEach((dataCall) => {
-                if (dataCall.product_id !== dataProduct.id) {
-                  oldCart.push({
-                    id: dataCall.product_id,
-                    quantity: dataCall.quantity,
-                    unit: dataCall.unit,
-                    price: dataCall.price,
-                  });
-                }
-              });
-
-              const cartSuccess = oldCart;
-
-              const dataPost: {
-                cart?: {
-                  id: number;
-                  quantity: number;
-                  unit: string;
-                  price: number;
-                }[];
-              } = { cart: cartSuccess };
-
-              add(dataPost)
-                .unwrap()
-                .then((data) => {
-                  orderById({ code: data.data.code })
-                    .unwrap()
-                    .then(() => {
-                      dispatch(handleLoading(false));
-                      alert('Thêm sản phẩm thành công');
-                      location.reload();
-                    });
-                })
-                .catch(() => {});
-              //2
-            }
-            //1
+          const dataCheck = data.data.find((e) => e.status.id === 1);
+          let total = 0;
+          dataCheck?.order_details.forEach((dataEl) => {
+            total += dataEl.quantity;
           });
+
+          const cartArr: {
+            id: number;
+            name: string;
+            price: number;
+            sale: number;
+            des: string;
+            img: string;
+            qtt: number;
+            unit: string;
+          }[] = [];
+
+          dataCheck?.order_details.map((el) => {
+            cartArr.push({
+              id: el.product_id,
+              name: el.product.name,
+              price: Number(el.product.price),
+              sale: el.product.sale,
+              qtt: el.quantity,
+              img: el.product.img,
+              des: el.product.description,
+              unit: el.unit,
+            });
+          });
+
+          dispatch(setCart2(cartArr));
+          setTotal(total);
+          dispatch(handleLoading(false));
         })
-        .catch((data) => {
-          if (data.data.message == 'Không có đơn hàng nào!') {
-            add(cart)
-              .unwrap()
-              .then(() => {
-                dispatch(handleLoading(false));
-                alert('Thêm sản phẩm thành công');
-                location.reload();
-              })
-              .catch(() => {});
-          }
+        .catch(() => {
+          setTotal(0);
+          dispatch(setCart2([]));
+          dispatch(handleLoading(false));
         });
     }
-  }
+  }, []);
