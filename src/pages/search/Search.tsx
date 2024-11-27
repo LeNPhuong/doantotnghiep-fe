@@ -48,7 +48,7 @@ const Search: React.FC<{}> = () => {
           </p>
 
           <button
-            onClick={() => setFilter((e) => (e = 'low'))}
+            onClick={() => setFilter('low')}
             style={{
               background: filter === 'low' ? '#004D40' : '#fff',
               color: filter === 'low' ? '#fff' : '#004D40',
@@ -59,7 +59,7 @@ const Search: React.FC<{}> = () => {
             Giá thấp
           </button>
           <button
-            onClick={() => setFilter((e) => (e = 'high'))}
+            onClick={() => setFilter('high')}
             style={{
               background: filter === 'high' ? '#004D40' : '#fff',
               color: filter === 'high' ? '#fff' : '#004D40',

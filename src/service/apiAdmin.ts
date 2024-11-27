@@ -29,7 +29,7 @@ import {
   UnitData,
 } from '../types/AdminType';
 
-import { getFreshToken, getProfile } from './apiService';
+// import { getFreshToken, getProfile } from './apiService';
 
 export const adminApi = createApi({
   reducerPath: 'adminApi',
@@ -133,7 +133,7 @@ export const adminApi = createApi({
 
         Object.keys(dataForm).forEach((el) => {
           if (dataForm[el as keyof IFFormData]) {
-            form.append(el, dataForm[el as keyof IFFormData]);
+            form.append(el, dataForm[el as keyof IFFormData]!);
           }
         });
 
@@ -156,8 +156,10 @@ export const adminApi = createApi({
         const form = new FormData();
 
         Object.keys(data).forEach((el) => {
-          form.append(el, data[el as keyof IFCreateProduct]);
+          form.append(el, String(data[el as keyof IFCreateProduct]));
         });
+
+        form.append('img', data.img);
 
         return {
           url: `/admin/product/create`,

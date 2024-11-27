@@ -4,10 +4,10 @@ import { IFProduct } from '../../types/IFProducts';
 import ChangeCurrentcy from '../../ultils/ChangeCurrentcy';
 import { Tooltip } from '@mui/material';
 import { useAppDispatch } from '../../redux/store';
-import { add_cart, handleLoading } from '../../redux/cart/CartSlice';
+import { add_cart /* handleLoading*/ } from '../../redux/cart/CartSlice';
 import {
   useAddCheckoutMutation,
-  useGetOrderByIdMutation,
+  // useGetOrderByIdMutation,
   useGetOrderCheckMutation,
 } from '../../service/profile';
 import { checkTotalPriceRaw } from '../../ultils/CheckPrice';
@@ -19,7 +19,7 @@ const CardItem: React.FC<{
   const dispatch = useAppDispatch();
   const [add] = useAddCheckoutMutation();
   const [dataCheck] = useGetOrderCheckMutation();
-  const [orderById] = useGetOrderByIdMutation();
+  // const [orderById] = useGetOrderByIdMutation();
   //-------------------------------------------------
 
   async function addCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {

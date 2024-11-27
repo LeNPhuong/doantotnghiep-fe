@@ -72,6 +72,7 @@ const sliceUser = createSlice({
     },
 
     ClearVoucher: (state, action: PayloadAction<void>) => {
+      console.log(action);
       state.voucher = null;
     },
   },

@@ -16,8 +16,12 @@ const ItemsMap: React.FC<{
     if (status) {
       const dataAddress = {
         id: edit.id,
-        data: { address: edit.address, active: data.active },
+        data: {
+          address: edit.address,
+          active: true,
+        },
       };
+
       updateAddress(dataAddress)
         .unwrap()
         .then((data) => {
