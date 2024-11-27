@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { OrderByCode } from '../../../types/IFProducts';
 import ChangeCurrentcy from '../../../ultils/ChangeCurrentcy';
-import {
-  checkDiscountVoucher,
-  checkTotalPrice,
-  checkTotalPriceRaw,
-} from '../../../ultils/CheckPrice';
+import { checkTotalPriceRaw } from '../../../ultils/CheckPrice';
 
 const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
