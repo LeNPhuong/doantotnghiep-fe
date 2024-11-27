@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AdminOrder } from '../../../../../types/AdminType';
 import {
   checkDiscountVoucher,
@@ -9,6 +9,24 @@ import ChangeCurrentcy from '../../../../../ultils/ChangeCurrentcy';
 const AdminDetailsInfor: React.FC<{ data: AdminOrder | undefined }> = ({
   data,
 }) => {
+  const [total, setTotal] = useState<number>(0);
+
+  useEffect(() => {
+    if (data) {
+      let totalPrice = 0;
+      data.order_details.forEach((el) => {
+        totalPrice += el.price * el.quantity;
+      });
+
+      // if (data.voucher) {
+      //   totalPrice =
+      //     totalPrice - (totalPrice * Number(data.voucher.discount_value)) / 100;
+      // }
+
+      setTotal(totalPrice);
+    }
+  }, []);
+
   return (
     <div className="md:px-[35px] px-[10px] py-[14px]">
       <div className="w-full flex flex-row justify-between flex-wrap">
@@ -34,19 +52,21 @@ const AdminDetailsInfor: React.FC<{ data: AdminOrder | undefined }> = ({
             <p>Phương thức thanh toán</p>
           </div>
           <div className="flex flex-col md:gap-[28px] text-[#004D40] items-end">
-            <p>{ChangeCurrentcy(Number(data?.total_price!))}</p>
+            <p>{ChangeCurrentcy(total)}</p>
             <p>
               -
-              {checkDiscountVoucher(
-                Number(data?.total_price),
-                Number(data?.voucher?.discount_value),
-              )}
+              {data?.voucher
+                ? ChangeCurrentcy(
+                    (total * Number(data.voucher.discount_value)) / 100,
+                  )
+                : ChangeCurrentcy(0)}
             </p>
             <p>
-              {checkTotalPrice(
-                Number(data?.total_price),
-                Number(data?.voucher?.discount_value),
-              )}
+              {data?.voucher
+                ? ChangeCurrentcy(
+                    total - (total * Number(data.voucher.discount_value)) / 100,
+                  )
+                : ChangeCurrentcy(total)}
             </p>
             <p>Chuyển khoản tiền mặt</p>
           </div>

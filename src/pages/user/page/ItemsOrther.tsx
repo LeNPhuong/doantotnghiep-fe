@@ -23,6 +23,9 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
     setTotalPrice(priceTotal);
   }, []);
 
+  console.log(data);
+  
+
   return (
     <div className="w-full lg:mb-[30px] md:mb-[15px] mb-[10px] md:px-0 px-[10px]">
       <div className="shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px] md:pb-[30px] pb-[15px] xl:!text-[18px] md:!text-[13px] !text-[12px]">
@@ -66,7 +69,17 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
             {/* col3 */}
             <div className="flex flex-row xl:gap-[41px] lg:gap-[15px] gap-[10px]">
               <div className="font-semibold flex flex-col xl:gap-[8px] lg:gap-[4px]">
-                <p>{ChangeCurrentcy(data.order_details[0].price)}</p>
+                <p>
+                  {data.order_details[0].product &&
+                    ChangeCurrentcy(
+                      Number(
+                        checkTotalPriceRaw(
+                          Number(data.order_details[0].product.price),
+                          data.order_details[0].product.sale,
+                        ),
+                      ),
+                    )}
+                </p>
                 <p className="text-[rgba(0,0,0,0.6)] line-through">
                   {ChangeCurrentcy(
                     Number.parseInt(data?.order_details[0]?.product?.price),

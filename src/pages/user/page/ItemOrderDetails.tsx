@@ -1,6 +1,7 @@
 import React from 'react';
 import { HandledProduct } from '../../../types/IFProducts';
 import ChangeCurrentcy from '../../../ultils/ChangeCurrentcy';
+import { checkTotalPriceRaw } from '../../../ultils/CheckPrice';
 
 const ItemOrderDetails: React.FC<{ data: HandledProduct }> = ({ data }) => {
   return (
@@ -19,7 +20,12 @@ const ItemOrderDetails: React.FC<{ data: HandledProduct }> = ({ data }) => {
             </div>
           </div>
           <p className="md:text-[24px] text-[#004D40]">
-            {ChangeCurrentcy(data?.price * data?.quantity)}
+            {ChangeCurrentcy(
+              checkTotalPriceRaw(
+                Number(data?.product.price),
+                data?.product.sale,
+              ) * data.quantity,
+            )}
           </p>
         </>
       ) : (

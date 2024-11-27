@@ -73,6 +73,7 @@ const sliceUser = createSlice({
 
     ClearVoucher: (state, action: PayloadAction<void>) => {
       console.log(action);
+      localStorage.removeItem('voucher');
       state.voucher = null;
     },
   },

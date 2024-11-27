@@ -42,7 +42,7 @@ const IFCart: React.FC<{
     if (!data) {
       return 0;
     } else {
-      let total = data.reduce(
+      const total = data.reduce(
         (acc, cur) =>
           acc +
           (Number(cur.price) - (Number(cur.price) * Number(cur.sale)) / 100) *
@@ -57,7 +57,7 @@ const IFCart: React.FC<{
     if (!data) {
       return 0;
     } else {
-      let total = data.reduce(
+      const total = data.reduce(
         (acc, cur) =>
           acc +
           (Number(cur.price) - (Number(cur.price) * Number(cur.sale)) / 100) *
@@ -79,7 +79,7 @@ const IFCart: React.FC<{
       if (!data) {
         return 0;
       } else {
-        let total = data.reduce(
+        const total = data.reduce(
           (acc, cur) =>
             acc +
             (Number(cur.price) - (Number(cur.price) * Number(cur.sale)) / 100) *
@@ -91,7 +91,7 @@ const IFCart: React.FC<{
     }
   }
 
-  function handlePayNext() {
+  async function handlePayNext() {
     if (!token) {
       alert('Vui lòng đăng nhập để thanh toán');
     } else {
@@ -113,7 +113,7 @@ const IFCart: React.FC<{
         checkOut.cart = cart;
 
         if (voucher) {
-          checkOut.voucher_id = voucher.id;
+          checkOut.voucher_id = Number(voucher.id);
         }
 
         const Payment: PaymentData = {};
@@ -145,42 +145,61 @@ const IFCart: React.FC<{
         console.log(checkOut);
 
         if (voucher) {
-          checkOutMutation(checkOut)
+          const resultData = await checkOutMutation(checkOut)
             .unwrap()
             .then((data) => {
-              if (data.success) {
-                paymentMutation(Payment)
-                  .unwrap()
-                  .then((data) => {
-                    if (data.success) {
-                      dispatch(clearCart());
-                      dispatch(ClearVoucher());
-                      alert('Đặt hàng thành công');
-                      return naviagte('/thong-tin-nguoi-dung/don-hang');
-                    }
-                  })
-                  .catch(() => {
-                    return alert('Đặt hàng thất bại');
-                  });
-              }
+              return data;
             })
             .catch(() => {
-              alert('Đặt hàng thất bại');
+              return null;
             });
-        } else if (!voucher) {
-          paymentMutation(Payment)
-            .unwrap()
-            .then((data) => {
-              if (data.success) {
+
+          if (!resultData) {
+            return alert('Đặt hàng thất bại');
+          } else if (resultData) {
+            const resultPayment = await paymentMutation({
+              ...Payment,
+              voucher_id: voucher.id,
+            })
+              .unwrap()
+              .then((data) => {
+                return data;
+              })
+              .catch(() => {
+                return null;
+              });
+
+            if (!resultPayment) {
+              return alert('Đặt hàng thất bại');
+            } else {
+              if (resultPayment.success) {
                 dispatch(clearCart());
                 dispatch(ClearVoucher());
                 alert('Đặt hàng thành công');
-                return naviagte('/thong-tin-nguoi-dung/don-hang');
+                naviagte('/thong-tin-nguoi-dung/don-hang');
+                location.reload();
               }
+            }
+          }
+        } else if (!voucher) {
+          const resultPayment = await paymentMutation(Payment)
+            .unwrap()
+            .then((data) => {
+              return data;
             })
             .catch(() => {
-              return alert('Đặt hàng thất bại');
+              return null;
             });
+
+          if (!resultPayment) {
+            return alert('Đặt hàng thất bại');
+          } else {
+            dispatch(clearCart());
+            dispatch(ClearVoucher());
+            alert('Đặt hàng thành công');
+            naviagte('/thong-tin-nguoi-dung/don-hang');
+            location.reload();
+          }
         }
       }
     }

@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { OrderByCode } from '../../../types/IFProducts';
 import ChangeCurrentcy from '../../../ultils/ChangeCurrentcy';
 import {
   checkDiscountVoucher,
   checkTotalPrice,
+  checkTotalPriceRaw,
 } from '../../../ultils/CheckPrice';
 
 const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  console.log(details);
+
+  useEffect(() => {
+    let total = 0;
+    if (details) {
+      details.data.order_details.forEach((e) => {
+        if (e.product) {
+          total +=
+            checkTotalPriceRaw(Number(e.product.price), e.product.sale) *
+            e.quantity;
+        }
+      });
+    }
+    setTotalPrice(total);
+  }, [details]);
+
   return (
     <div className="md:px-[35px] px-[10px] py-[14px]">
       <div className="w-full flex flex-row justify-between flex-wrap">
@@ -37,19 +56,25 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
             <p>Phương thức thanh toán</p>
           </div>
           <div className="flex flex-col md:gap-[28px] text-[#004D40] items-end">
-            <p>{ChangeCurrentcy(details?.data?.total_price)}</p>
+            <p>{ChangeCurrentcy(totalPrice)}</p>
             <p>
               -
-              {checkDiscountVoucher(
-                details?.data?.total_price,
-                Number(details?.data?.voucher?.discount_value),
-              )}
+              {details.data.voucher
+                ? ChangeCurrentcy(
+                    (totalPrice * Number(details.data.voucher.discount_value)) /
+                      100,
+                  )
+                : 0}
             </p>
             <p>
-              {checkTotalPrice(
-                details?.data?.total_price,
-                Number(details?.data?.voucher?.discount_value),
-              )}
+              {details.data.voucher
+                ? ChangeCurrentcy(
+                    totalPrice -
+                      (totalPrice *
+                        Number(details.data.voucher.discount_value)) /
+                        100,
+                  )
+                : ChangeCurrentcy(totalPrice)}
             </p>
             <p>Chuyển khoản tiền mặt</p>
           </div>
@@ -57,25 +82,31 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
         <div className="md:hidden flex flex-col w-full text-[14px] font-medium gap-[10px] pt-[10px]">
           <div className="flex flex-row justify-between">
             <p>Tổng tiền hàng</p>
-            <p>{ChangeCurrentcy(details?.data?.total_price)}</p>
+            <p>{ChangeCurrentcy(totalPrice)}</p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Voucher</p>
             <p>
               -
-              {checkDiscountVoucher(
-                details?.data?.total_price,
-                Number(details?.data?.voucher?.discount_value),
-              )}
+              {details.data.voucher
+                ? ChangeCurrentcy(
+                    (totalPrice * Number(details.data.voucher.discount_value)) /
+                      100,
+                  )
+                : 0}
             </p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Thành tiền</p>
             <p>
-              {checkTotalPrice(
-                details?.data?.total_price,
-                Number(details?.data?.voucher?.discount_value),
-              )}
+              {details.data.voucher
+                ? ChangeCurrentcy(
+                    totalPrice -
+                      (totalPrice *
+                        Number(details.data.voucher.discount_value)) /
+                        100,
+                  )
+                : ChangeCurrentcy(totalPrice)}
             </p>
           </div>
           <div className="flex flex-row justify-between">

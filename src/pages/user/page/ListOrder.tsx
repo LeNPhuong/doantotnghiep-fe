@@ -4,9 +4,10 @@ import { useGetOrderQuery } from '../../../service/profile';
 import { LoadingModal } from '../../../components';
 
 const ListOrder: React.FC<{}> = () => {
-  const { data, isFetching } = useGetOrderQuery();
+  const { data, isFetching, isError } = useGetOrderQuery();
 
   if (isFetching) return <LoadingModal />;
+  if (isError) return <p className='text-center text-[16px]'>Có lỗi xảy ra hoặc chưa có đơn hàng nào</p>;
 
   return (
     <div>
