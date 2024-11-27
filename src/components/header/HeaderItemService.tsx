@@ -6,7 +6,7 @@ const HeaderItemService: React.FC<{
   icons: ReactNode;
   cart?: boolean;
   link: string;
-}> = ({ name, icons, cart = false, link }) => {
+}> = ({ name, icons, link }) => {
   return (
     <Link
       to={`${link}`}

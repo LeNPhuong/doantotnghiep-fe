@@ -26,7 +26,7 @@ const BoxDetails: React.FC = () => {
             Mã đơn hàng: {data?.data?.code}
           </p>
           <p className="xl:text-[18px] md:text-[14px] text-[16px] font-medium">
-            Đặt ngày {ChangeDate(data?.data?.created_at)}
+            Đặt ngày {data?.data ? ChangeDate(data?.data?.created_at) : ''}
           </p>
         </div>
       </div>

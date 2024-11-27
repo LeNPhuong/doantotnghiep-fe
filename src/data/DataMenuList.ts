@@ -1,6 +1,5 @@
 import {
   Belonging,
-  FruitImg,
   MilkImg,
   NoodlesImg,
   RiceImg,

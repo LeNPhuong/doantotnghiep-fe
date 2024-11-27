@@ -8,6 +8,7 @@ const PaginationCpn: React.FC<{
   setCount: React.Dispatch<React.SetStateAction<number>>;
 }> = ({ size, setCount }) => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    console.log(event);
     setCount(value);
   };
   return (

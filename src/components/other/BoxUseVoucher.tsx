@@ -10,7 +10,7 @@ const BoxUseVoucher: React.FC<{
 }> = ({ setVoucher }) => {
   const dispatch = useAppDispatch();
   const voucherData = useAppSelector((e) => e.user.voucher);
-  const { data, isFetching, isLoading } = useGetProfileV2Query();
+  const { data } = useGetProfileV2Query();
 
   return (
     <div className="absolute top-0 right-0 bottom-0 left-0 bg-[#00000061] flex justify-center items-center">
