@@ -54,7 +54,7 @@ const HeaderItemCart: React.FC<{}> = () => {
           setTotal(total);
           dispatch(handleLoading(false));
         })
-        .catch((data) => {
+        .catch(() => {
           setTotal(0);
           dispatch(setCart2([]));
           dispatch(handleLoading(false));
