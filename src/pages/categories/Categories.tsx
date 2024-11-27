@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import MainLayout from '../../layout/MainLayout';
 import CategoriesListMenu from './CategoriesListMenu';
 import CategoriesListProduct from './CategoriesListProduct';
@@ -8,12 +8,7 @@ import { useParams } from 'react-router-dom';
 
 const DetailsCategories: React.FC<object> = () => {
   const [count, setCount] = useState<number>(1);
-  const [probe, setProbe] = useState<boolean>(false);
   const { category } = useParams<{ category: string }>();
-
-  useEffect(() => {
-    setProbe((e) => !e);
-  }, [category]);
 
   const { data, isFetching } = useGetAllProductByCategoriesQuery(category!);
 

@@ -1,9 +1,4 @@
-import {
-  combineReducers,
-  configureStore,
-  isRejectedWithValue,
-  Middleware,
-} from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import cartSlice from './cart/CartSlice';
 import userSlice from './user/UserSlice';

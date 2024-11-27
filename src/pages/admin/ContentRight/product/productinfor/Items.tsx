@@ -24,7 +24,7 @@ const Items: React.FC<{ data: IFProduct }> = ({ data }) => {
           alert(data.message);
           return location.reload();
         })
-        .catch((data) => {});
+        .catch(() => {});
     }
   }
 
@@ -37,7 +37,7 @@ const Items: React.FC<{ data: IFProduct }> = ({ data }) => {
           alert(data.message);
           return location.reload();
         })
-        .catch((data) => {});
+        .catch(() => {});
     }
   }
 

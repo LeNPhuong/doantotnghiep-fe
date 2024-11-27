@@ -14,8 +14,8 @@ import {
 } from '../types/User';
 
 import { CheckOutData, DataMainOrder, OrderByCode } from '../types/IFProducts';
-import { GetInforOrder, ResultDefault } from '../types/AdminType';
-import { getFreshToken, getProfile } from './apiService';
+import { GetInforOrder /*, ResultDefault*/ } from '../types/AdminType';
+// import { getFreshToken, getProfile } from './apiService';
 
 export const profileApi = createApi({
   reducerPath: 'profileApi',

@@ -22,7 +22,7 @@ const IFCart: React.FC<{
   const path = useLocation().pathname;
   const user = useAppSelector((e) => e.user.profile?.data);
   const token = JSON.parse(localStorage.getItem('token_access')!);
-  const dataCart = useAppSelector((e) => e.cart.dataCart);
+  // const dataCart = useAppSelector((e) => e.cart.dataCart);
   const dataCartV2 = useAppSelector((e) => e.cart.dataCart2);
   const methodPay = useAppSelector((e) => e.cart.methodPay);
   const [checkOutMutation, { isLoading: checkoutLoading }] =

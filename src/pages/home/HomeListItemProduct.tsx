@@ -38,7 +38,7 @@ const HomeListItemProduct: React.FC<{
       <ListProduct name={label} moreLink={moreLink}>
         {data
           ? data.map(
-              (e, index) =>
+              (e) =>
                 e.category.key === filter && (
                   <SwiperSlide
                     key={e.id}

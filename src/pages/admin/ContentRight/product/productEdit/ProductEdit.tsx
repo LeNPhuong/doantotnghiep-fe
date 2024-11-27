@@ -78,10 +78,10 @@ const ProductEdit: React.FC<object> = () => {
     } else {
       updateProduct({ id: id!, data: formData })
         .unwrap()
-        .then((data) => {
+        .then(() => {
           location.reload();
         })
-        .catch((data) => {});
+        .catch(() => {});
     }
   }
 

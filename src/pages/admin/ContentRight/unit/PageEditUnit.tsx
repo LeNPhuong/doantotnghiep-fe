@@ -30,7 +30,7 @@ const PageEditUnit: React.FC<{}> = () => {
 
     update({ id: Number(id!), data: { name: name!, active: true } })
       .unwrap()
-      .then((data) => {
+      .then(() => {
         alert('Cập nhật thành công');
         location.reload();
       })

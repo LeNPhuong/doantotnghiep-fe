@@ -5,7 +5,7 @@ import { LuPackage2 } from 'react-icons/lu';
 import { PiMapPinAreaBold } from 'react-icons/pi';
 import { BiLogOut } from 'react-icons/bi';
 import { TbExchange } from 'react-icons/tb';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { clearProfile } from '../../redux/user/UserSlice';
 import { clearCart } from '../../redux/cart/CartSlice';

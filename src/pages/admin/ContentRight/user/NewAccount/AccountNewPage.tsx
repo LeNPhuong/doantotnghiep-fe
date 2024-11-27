@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FIeldForm from '../../FIeldForm';
 import { useAdminUserCreateMutation } from '../../../../../service/apiAdmin';
 import { LoadingModal } from '../../../../../components';
-import { IFDataUserChange, IFDataUserNew } from '../../../../../types/User';
+import { IFDataUserNew } from '../../../../../types/User';
 
 const AccountNewPage: React.FC<{}> = () => {
   const [create, { isLoading }] = useAdminUserCreateMutation();
