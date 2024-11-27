@@ -16,9 +16,6 @@ import {
   PayCart,
   Register,
   Search,
-  Tracking,
-  TrackingIF,
-  TrackSearch,
   User,
 } from './pages';
 
@@ -99,11 +96,6 @@ const App: React.FC<object> = () => {
               <Route path="chi-tiet/:code" element={<DetailsOrder />} />
             </Route>
             <Route path="dia-chi" element={<MapData />} />
-          </Route>
-
-          <Route path="/tra-cuu" element={<Tracking />}>
-            <Route index element={<TrackSearch />} />
-            <Route path=":key" element={<TrackingIF />} />
           </Route>
         </Route>
         {/* -------------------------- */}

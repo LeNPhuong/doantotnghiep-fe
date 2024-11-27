@@ -7,6 +7,7 @@ const Paginate: React.FC<{
   length: number;
 }> = ({ page, setPage, length }) => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    console.log(event);
     setPage(value);
   };
   return (

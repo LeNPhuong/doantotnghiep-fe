@@ -23,7 +23,7 @@ const ForgotPassword: React.FC<object> = () => {
             navigate('doi-mat-khau');
           }
         })
-        .catch((data) => {
+        .catch(() => {
           alert('Không tìm thấy email');
         });
     }

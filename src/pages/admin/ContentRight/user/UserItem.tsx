@@ -1,18 +1,7 @@
 import React from 'react';
-import Btn from './Btn';
 import { IFUserAdmin } from '../../../../types/User';
 import { Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
-
-interface datauser {
-  _id: string;
-  active: true;
-  email: string;
-  name: string;
-  phone: string;
-  role: string;
-  totaltoken: number;
-}
 
 const UserItem: React.FC<{ data: IFUserAdmin }> = ({ data }) => {
   return (

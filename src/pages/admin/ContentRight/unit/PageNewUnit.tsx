@@ -35,7 +35,7 @@ const PageNewUnit: React.FC<{}> = () => {
     if (name) {
       create(name)
         .unwrap()
-        .then((data) => {
+        .then(() => {
           alert('Tạo thành công');
           location.reload();
         })

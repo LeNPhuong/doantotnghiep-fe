@@ -35,8 +35,6 @@ const AddMap: React.FC<{
       create(map)
         .unwrap()
         .then((data) => {
-          (data);
-
           if (data.success) {
             alert('Thêm địa chỉ thành công');
             setActive(false);

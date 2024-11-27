@@ -57,6 +57,7 @@ export interface IFProfile {
     avatar: null;
     vouchers: IFVoucher[];
     addresses: IFMap[];
+    role: string;
   };
   message: 'Thông tin người dùng đã được lấy thành công';
 }

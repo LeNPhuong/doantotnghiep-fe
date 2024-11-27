@@ -75,7 +75,7 @@ const AccountDetails: React.FC<{}> = () => {
 
     update({ id: Number(id), data: dataMain })
       .unwrap()
-      .then((data) => {
+      .then(() => {
         alert('Cập nhật thành công');
         location.reload();
       });
