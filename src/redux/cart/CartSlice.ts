@@ -103,6 +103,7 @@ const sliceCart = createSlice({
     },
 
     clearCart: (state, action: PayloadAction<void>) => {
+      console.log(action);
       state.dataCart = null;
       state.methodPay = 0;
       localStorage.removeItem('cart_store');

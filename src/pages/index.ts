@@ -8,10 +8,6 @@ export { default as Pay } from './pay/Pay';
 export { default as Cart } from './pay/Cart';
 export { default as PayCart } from './pay/PayCart';
 
-export { default as Tracking } from './tracking/Tracking';
-export { default as TrackSearch } from './tracking/TrackSearch';
-export { default as TrackingIF } from './tracking/TrackingIF';
-
 export { default as ChangePassword } from './auth/ChangePassword';
 export { default as Forgot } from './auth/forgot/Forgot';
 export { default as ChangeSucces } from './auth/forgot/ChangeSucces';

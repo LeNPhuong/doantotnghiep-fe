@@ -16,7 +16,7 @@ const ModalChange: React.FC<{
     name: string;
     phone: string;
     email: string;
-  } | null>(null);
+  }>({ name: '', phone: '', email: '' });
 
   useEffect(() => {
     if (data) {

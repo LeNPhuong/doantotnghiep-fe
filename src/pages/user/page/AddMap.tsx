@@ -95,7 +95,7 @@ const AddMap: React.FC<{
           {mapData.length !== 0 && (
             <div className="flex flex-col text-[16px] gap-[10px] bg-white absolute left-0 right-0 p-[10px] rounded-[5px]">
               {arrMap !== null &&
-                arrMap.map((e, index: number) => (
+                arrMap.map((e: { description: string }, index: number) => (
                   <div
                     key={index}
                     onClick={() => setMapdata(e.description)}
