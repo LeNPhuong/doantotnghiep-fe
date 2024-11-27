@@ -24,7 +24,7 @@ const BoxUseVoucher: React.FC<{
             <IoClose />
           </button>
         </div>
-        <div className="w-full flex flex-col px-[42px] pt-[30px]">
+        <div className="w-full flex flex-col gap-[15px] px-[42px] pt-[30px]">
           {/*  */}
           {data && data.data.vouchers.length === 0 && (
             <p className="text-center py-[20px]">Bạn chưa có voucher nào</p>

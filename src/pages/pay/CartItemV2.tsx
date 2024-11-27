@@ -4,7 +4,7 @@ import { FiMinus, FiPlus } from 'react-icons/fi';
 import { extractValueAndUnit } from '../../ultils/ChangeUnit';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { useAddCheckoutMutation } from '../../service/profile';
-import { handleLoading } from '../../redux/cart/CartSlice';
+import { checkStatus, handleLoading } from '../../redux/cart/CartSlice';
 
 const CartItemV2: React.FC<{
   data: {
@@ -56,13 +56,14 @@ const CartItemV2: React.FC<{
         add({ cart: cartNew })
           .unwrap()
           .then(() => {
+            dispatch(checkStatus());
             dispatch(handleLoading(false));
             alert('Cập nhật thành công');
-            location.reload();
+            return;
           })
           .catch(() => {
             alert('Cập nhật thất bại');
-            location.reload();
+            return;
           });
       }
     }
@@ -97,13 +98,15 @@ const CartItemV2: React.FC<{
       add({ cart: cartNew })
         .unwrap()
         .then(() => {
+          dispatch(checkStatus());
           dispatch(handleLoading(false));
           alert('Cập nhật thành công');
-          location.reload();
+          return;
         })
         .catch(() => {
+          dispatch(checkStatus());
           alert('Cập nhật thất bại');
-          location.reload();
+          return;
         });
     }
   }
@@ -133,13 +136,15 @@ const CartItemV2: React.FC<{
     add({ cart: newCheckout })
       .unwrap()
       .then(() => {
+        dispatch(checkStatus());
         dispatch(handleLoading(false));
         alert('Cập nhật thành công');
-        location.reload();
+        return;
       })
       .catch(() => {
+        dispatch(checkStatus());
         alert('Cập nhật thất bại');
-        location.reload();
+        return;
       });
   }
 

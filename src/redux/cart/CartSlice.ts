@@ -20,6 +20,7 @@ interface IFCart {
     unit: string;
   }[];
   note: string;
+  statusPay: boolean;
 }
 
 const initialState: IFCart = {
@@ -30,6 +31,7 @@ const initialState: IFCart = {
   handleCart: false,
   dataCart2: [],
   note: '',
+  statusPay: true,
 };
 
 const sliceCart = createSlice({
@@ -136,6 +138,10 @@ const sliceCart = createSlice({
     setNote: (state, action: PayloadAction<string>) => {
       state.note = action.payload;
     },
+
+    checkStatus: (state) => {
+      state.statusPay = !state.statusPay;
+    },
   },
 });
 
@@ -149,5 +155,6 @@ export const {
   handleLoading,
   setCart2,
   setNote,
+  checkStatus,
 } = sliceCart.actions;
 export default sliceCart.reducer;

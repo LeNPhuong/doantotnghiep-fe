@@ -4,10 +4,13 @@ import { IFProduct } from '../../types/IFProducts';
 import ChangeCurrentcy from '../../ultils/ChangeCurrentcy';
 import { Tooltip } from '@mui/material';
 import { useAppDispatch } from '../../redux/store';
-import { add_cart, handleLoading } from '../../redux/cart/CartSlice';
+import {
+  add_cart,
+  checkStatus,
+  handleLoading,
+} from '../../redux/cart/CartSlice';
 import {
   useAddCheckoutMutation,
-  // useGetOrderByIdMutation,
   useGetOrderCheckMutation,
 } from '../../service/profile';
 import { checkTotalPriceRaw } from '../../ultils/CheckPrice';
@@ -19,7 +22,6 @@ const CardItem: React.FC<{
   const dispatch = useAppDispatch();
   const [add] = useAddCheckoutMutation();
   const [dataCheck] = useGetOrderCheckMutation();
-  // const [orderById] = useGetOrderByIdMutation();
   //-------------------------------------------------
 
   async function addCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -66,13 +68,13 @@ const CardItem: React.FC<{
         if (resultAdd) {
           dispatch(handleLoading(false));
           alert('Thêm thành công');
-          location.reload();
+          dispatch(checkStatus());
+          return;
         } else {
           dispatch(handleLoading(false));
           alert('Thêm thất bại');
-          location.reload();
+          return;
         }
-        return;
       }
 
       const orderChecking =
@@ -101,13 +103,13 @@ const CardItem: React.FC<{
         if (resultAdd) {
           dispatch(handleLoading(false));
           alert('Thêm thành công');
-          location.reload();
+          dispatch(checkStatus());
+          return;
         } else {
           dispatch(handleLoading(false));
           alert('Thêm thất bại');
-          location.reload();
+          return;
         }
-        return;
       } else if (orderChecking) {
         const newCart: {
           id: number;
@@ -155,12 +157,13 @@ const CardItem: React.FC<{
           if (resultAddExits) {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thành công');
-            location.reload();
+            dispatch(checkStatus());
+            return;
           } else {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thất bại');
+            return;
           }
-          return;
         } else {
           const cartOldArr = orderChecking.order_details;
 
@@ -198,12 +201,13 @@ const CardItem: React.FC<{
           if (resultAddExits) {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thành công');
-            location.reload();
+            dispatch(checkStatus());
+            return;
           } else {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thất bại');
+            return;
           }
-          return;
         }
       }
       //

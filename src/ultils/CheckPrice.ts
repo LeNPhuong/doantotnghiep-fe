@@ -11,12 +11,12 @@ export function checkDiscountVoucher(price: number, discount: number) {
   }
 }
 
-export function checkTotalPrice(price: number, discount: number) {
+export function checkTotalPrice(price: number, discount?: number) {
   const prices = price;
   const discounts = discount;
 
   if (discount) {
-    return ChangeCurrentcy(prices - (prices * discounts) / 100);
+    return ChangeCurrentcy(prices - (prices * discounts!) / 100);
   } else {
     return ChangeCurrentcy(prices);
   }

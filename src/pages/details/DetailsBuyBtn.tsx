@@ -1,7 +1,11 @@
 import React from 'react';
 import { useAppDispatch } from '../../redux/store';
 import { IFProduct } from '../../types/IFProducts';
-import { add_cart, handleLoading } from '../../redux/cart/CartSlice';
+import {
+  add_cart,
+  checkStatus,
+  handleLoading,
+} from '../../redux/cart/CartSlice';
 import {
   useAddCheckoutMutation,
   useGetOrderCheckMutation,
@@ -59,13 +63,13 @@ const DetailsBuyBtn: React.FC<{ data: IFProduct }> = ({ data }) => {
         if (resultAdd) {
           dispatch(handleLoading(false));
           alert('Thêm thành công');
-          location.reload();
+          dispatch(checkStatus());
+          return;
         } else {
           dispatch(handleLoading(false));
           alert('Thêm thất bại');
-          location.reload();
+          return;
         }
-        return;
       }
 
       const orderChecking =
@@ -94,13 +98,13 @@ const DetailsBuyBtn: React.FC<{ data: IFProduct }> = ({ data }) => {
         if (resultAdd) {
           dispatch(handleLoading(false));
           alert('Thêm thành công');
-          location.reload();
+          dispatch(checkStatus());
+          return;
         } else {
           dispatch(handleLoading(false));
           alert('Thêm thất bại');
-          location.reload();
+          return;
         }
-        return;
       } else if (orderChecking) {
         const newCart: {
           id: number;
@@ -148,12 +152,13 @@ const DetailsBuyBtn: React.FC<{ data: IFProduct }> = ({ data }) => {
           if (resultAddExits) {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thành công');
-            location.reload();
+            dispatch(checkStatus());
+            return;
           } else {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thất bại');
+            return;
           }
-          return;
         } else {
           const cartOldArr = orderChecking.order_details;
 
@@ -191,12 +196,13 @@ const DetailsBuyBtn: React.FC<{ data: IFProduct }> = ({ data }) => {
           if (resultAddExits) {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thành công');
-            location.reload();
+            dispatch(checkStatus());
+            return;
           } else {
             dispatch(handleLoading(false));
             alert('Thêm sản phẩm thất bại');
+            return;
           }
-          return;
         }
       }
       //
