@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { ListOrder } from '../../../types/IFProducts';
 import ChangeCurrentcy from '../../../ultils/ChangeCurrentcy';
 import { ChangeDate } from '../../../ultils/ChangeDate';
+import { checkTotalPriceRaw } from '../../../ultils/CheckPrice';
 
 const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  useEffect(() => {
+    let priceTotal = 0;
+    if (data.order_details !== null || data.order_details !== undefined) {
+      data.order_details.forEach((el) => {
+        if (el.product !== null) {
+          priceTotal +=
+            checkTotalPriceRaw(Number(el.product.price), el.product.sale) *
+            el.quantity;
+        }
+      });
+    }
+    setTotalPrice(priceTotal);
+  }, []);
+
   return (
     <div className="w-full lg:mb-[30px] md:mb-[15px] mb-[10px] md:px-0 px-[10px]">
       <div className="shadow-[0_0_3px_rgba(0,0,0,0.25)] rounded-[10px] md:pb-[30px] pb-[15px] xl:!text-[18px] md:!text-[13px] !text-[12px]">
@@ -62,7 +79,9 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
             </div>
           </div>
         ) : (
-          <p className="text-red-500 font-semibold xl:px-[28px] md:px-[16px] mb-[12px]">sản phẩm không còn bán !</p>
+          <p className="text-red-500 font-semibold xl:px-[28px] md:px-[16px] mb-[12px]">
+            sản phẩm không còn bán !
+          </p>
         )}
 
         <Link
@@ -75,7 +94,7 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
         <div className="flex flex-row justify-end xl:mr-[28px] md:mr-[16px] mr-[10px] font-semibold lg:gap-[17px] md:gap-[15px] gap-[10px]">
           <span className="text-[rgba(0,0,0,0.6)]">Thành tiền:</span>{' '}
           <span className="text-[#05E077] font-semibold">
-            {ChangeCurrentcy(data?.total_price)}
+            {ChangeCurrentcy(totalPrice)}
           </span>
         </div>
       </div>
