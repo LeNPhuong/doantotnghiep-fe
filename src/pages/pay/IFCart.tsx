@@ -96,6 +96,10 @@ const IFCart: React.FC<{
       alert('Vui lòng đăng nhập để thanh toán');
     } else {
       if (!path.includes('thanh-toan')) {
+        if (cartStorev2.length === 0) {
+          return alert('Vỏ hàng đang trống');
+        }
+
         naviagte('/gio-hang/thanh-toan');
       } else {
         const cart: CartCheckout[] = [];
@@ -122,6 +126,7 @@ const IFCart: React.FC<{
           user?.addresses && user?.addresses.length > 0
             ? user?.addresses.find((e) => e.active === 1)?.address
             : null;
+        console.log(mapUser);
 
         if (!mapUser) {
           return alert('Vui lòng nhập địa chỉ');

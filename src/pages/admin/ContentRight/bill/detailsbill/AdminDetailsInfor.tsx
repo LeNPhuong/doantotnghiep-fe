@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AdminOrder } from '../../../../../types/AdminType';
-import {
-  checkDiscountVoucher,
-  checkTotalPrice,
-} from '../../../../../ultils/CheckPrice';
+
 import ChangeCurrentcy from '../../../../../ultils/ChangeCurrentcy';
 
 const AdminDetailsInfor: React.FC<{ data: AdminOrder | undefined }> = ({
