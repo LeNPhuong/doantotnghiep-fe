@@ -14,9 +14,10 @@ const PayCartIF: React.FC<object> = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      console.log(1);
       dispatch(setProfile(data));
     }
-  }, []);
+  }, [isSuccess, dispatch, data]);
 
   if (isFetching) return <Loading />;
 

@@ -5,6 +5,7 @@ import { useAppSelector } from '../../redux/store';
 import { IFComment } from '../../types/IFProducts';
 import { useAddCommentProductMutation } from '../../service/profile';
 import { LoadingModal } from '../../components';
+import { Link } from 'react-router-dom';
 
 const BoxComment: React.FC<{ id: number; datacomment: IFComment[] }> = ({
   datacomment,
@@ -15,20 +16,28 @@ const BoxComment: React.FC<{ id: number; datacomment: IFComment[] }> = ({
   const token = JSON.parse(localStorage.getItem('token_access')!);
   const user = useAppSelector((e) => e.user.profile);
 
-  function handleComment() {
+  async function handleComment() {
     if (commentString.length === 0) {
       return alert('Vui lòng nhập bình luận');
     }
 
-    create({ id: id, data: { rating: 1, comment: commentString } })
+    const result = await create({
+      id: id,
+      data: { rating: 1, comment: commentString },
+    })
       .unwrap()
       .then(() => {
-        alert('Thêm bình luận thành công');
-        location.reload();
+        return true;
       })
       .catch(() => {
-        alert('Thêm bình luận thất bại');
+        return false;
       });
+
+    if (result) {
+      alert('Thêm bình luận thành công');
+    } else {
+      alert('Thêm bình luận thất bại');
+    }
   }
 
   return (
@@ -60,9 +69,12 @@ const BoxComment: React.FC<{ id: number; datacomment: IFComment[] }> = ({
           </button>
         </div>
       ) : (
-        <div className="text-[22px] text-center text-red-500 font-medium">
+        <Link
+          to=""
+          className="text-[22px] text-center text-red-500 font-medium"
+        >
           Vui lòng đăng nhập để bình luận!
-        </div>
+        </Link>
       )}
       {isLoading && <LoadingModal />}
     </div>
