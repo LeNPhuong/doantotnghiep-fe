@@ -35,6 +35,7 @@ const BoxComment: React.FC<{ id: number; datacomment: IFComment[] }> = ({
 
     if (result) {
       alert('Thêm bình luận thành công');
+      location.reload();
     } else {
       alert('Thêm bình luận thất bại');
     }

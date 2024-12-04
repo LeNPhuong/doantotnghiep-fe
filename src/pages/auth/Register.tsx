@@ -89,7 +89,17 @@ const Register: React.FC<object> = () => {
           return alert('Vui lòng kiểm tra lại thông tin');
         }
       })
-      .catch(() => {});
+      .catch((data) => {
+        if (data.data.data.email) {
+          return alert(data.data.data.email[0]);
+        }
+        if (data.data.data.phone) {
+          return alert(data.data.data.phone[0]);
+        }
+        if (data.data.data.password) {
+          return alert(data.data.data.password[0]);
+        }
+      });
   }
 
   return (
@@ -112,6 +122,7 @@ const Register: React.FC<object> = () => {
           setInit={setPassword}
           label="Mật khẩu"
         />
+        <p className='mb-[15px] text-red-500'>Mật khẩu phải có 6 ký tự gồm số, chữ, ký tự đặc biệt</p>
         <FormAuth
           type="password"
           init={agPass}
