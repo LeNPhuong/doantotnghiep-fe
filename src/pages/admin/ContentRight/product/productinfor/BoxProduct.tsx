@@ -4,6 +4,7 @@ import Paginate from './Paginate';
 import { useAdminGetProductQuery } from '../../../../../service/apiAdmin';
 import { Loading } from '../../../../../components';
 import { DataMenuList } from '../../../../../data';
+import slugify from 'react-slugify';
 
 const BoxProduct: React.FC<{}> = () => {
   const [page, setPage] = useState<number>(1);
@@ -12,6 +13,7 @@ const BoxProduct: React.FC<{}> = () => {
   const [fillSelect, setFillSelect] = useState<string>('');
 
   if (isFetching) return <Loading />;
+  console.log(fillter);
 
   return (
     <div className="p-[10px] w-full shadow-[0_0_15px_#ccc] rounded-[8px] h-full flex flex-col">
@@ -83,11 +85,13 @@ const BoxProduct: React.FC<{}> = () => {
         <div className="flex flex-col gap-[20px] mt-[10px]">
           {data?.data?.map(
             (data) =>
-              data.name
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .includes(fillter!) && <Items key={data.id} data={data} />,
+              slugify(data.name)
+                // .toLowerCase()
+                // .normalize('NFD')
+                // .replace(/[\u0300-\u036f]/g, '')
+                .includes(slugify(fillter!)) && (
+                <Items key={data.id} data={data} />
+              ),
           )}
         </div>
       )}
