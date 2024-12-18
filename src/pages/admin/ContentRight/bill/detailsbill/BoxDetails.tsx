@@ -37,7 +37,8 @@ const BoxDetails: React.FC = () => {
         ))}
 
         <AdminDetailsInfor data={data?.data} />
-        <ActionControl id={Number(id)} data={data?.data} />
+        {data?.data.transaction[0] && <ActionControl id={Number(id)} data={data?.data} />}
+        {/* <ActionControl id={Number(id)} data={data?.data} /> */}
       </div>
       <button
         onClick={() => navigate(-1)}

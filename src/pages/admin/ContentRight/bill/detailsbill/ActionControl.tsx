@@ -46,6 +46,8 @@ const ActionControl: React.FC<{ data: AdminOrder | undefined; id: number }> = ({
         });
     }
   }
+  
+  console.log(data);
 
   return (
     <div className="flex flex-row pl-[30px]">

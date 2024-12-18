@@ -15,11 +15,6 @@ const AdminDetailsInfor: React.FC<{ data: AdminOrder | undefined }> = ({
         totalPrice += el.price * el.quantity;
       });
 
-      // if (data.voucher) {
-      //   totalPrice =
-      //     totalPrice - (totalPrice * Number(data.voucher.discount_value)) / 100;
-      // }
-
       setTotal(totalPrice);
     }
   }, []);
@@ -34,10 +29,10 @@ const AdminDetailsInfor: React.FC<{ data: AdminOrder | undefined }> = ({
           <div className="flex flex-col gap-[8px] font-medium">
             <p className="text-[18px] text-[#000]">{data?.user?.name}</p>
             <p className="md:text-[18px] text-[14px] text-[rgba(0,0,0,0.6)]">
-              (+84) {data?.user.phone}
+              (+84) {data?.user?.phone}
             </p>
             <p className="md:text-[18px] text-[14px] text-[rgba(0,0,0,0.6)]">
-              {data?.transaction[0].address}
+              {data?.transaction[0]?.address}
             </p>
           </div>
         </div>
@@ -65,7 +60,11 @@ const AdminDetailsInfor: React.FC<{ data: AdminOrder | undefined }> = ({
                   )
                 : ChangeCurrentcy(total)}
             </p>
-            <p>Chuyển khoản tiền mặt</p>
+            <p>
+              {data?.transaction[0]
+                ? data?.transaction[0]?.payment_method
+                : 'Chưa thanh toán'}
+            </p>
           </div>
         </div>
       </div>
