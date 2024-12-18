@@ -72,7 +72,11 @@ const InforOrderDetails: React.FC<{ details: OrderByCode }> = ({ details }) => {
                   )
                 : ChangeCurrentcy(totalPrice)}
             </p>
-            <p>Chuyển khoản tiền mặt</p>
+            <p>
+              {details?.data?.transaction[0]
+                ? details?.data?.transaction[0]?.payment_method
+                : 'Chưa thanh toán'}
+            </p>
           </div>
         </div>
         <div className="md:hidden flex flex-col w-full text-[14px] font-medium gap-[10px] pt-[10px]">

@@ -1,6 +1,9 @@
 // logo
 export { default as TienLoiXanhImg } from './logo.png';
 
+export { default as Momo } from './momo.png';
+export { default as Money } from './money.png';
+
 // icons list
 export { default as FruitImg } from './fruit.png';
 export { default as MilkImg } from './milk.png';

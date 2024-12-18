@@ -14,6 +14,7 @@ import {
   useGetOrderCheckMutation,
 } from '../../service/profile';
 import { checkTotalPriceRaw } from '../../ultils/CheckPrice';
+import { extractValueAndUnit } from '../../ultils/ChangeUnit';
 
 const CardItem: React.FC<{
   data: IFProduct;
@@ -26,10 +27,17 @@ const CardItem: React.FC<{
 
   async function addCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
+    console.log(
+      extractValueAndUnit(data.name)?.value,
+      extractValueAndUnit(data.name)?.unit,
+    );
+
     const dataProduct = {
       id: Number(data.id),
       quantity: 1,
-      unit: data.category.active_units[0].id.toString(),
+      unit: extractValueAndUnit(data.name)?.unit
+        ? extractValueAndUnit(data.name)?.unit
+        : 'cái',
       price: Number(data.price),
       sale: Number(data.sale),
     };

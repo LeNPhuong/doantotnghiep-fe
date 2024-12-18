@@ -52,7 +52,8 @@ const DetailsOrder: React.FC<object> = () => {
         });
     }
   }
-
+  console.log(details);
+  
   return (
     <>
       <div className="flex-col bg-[#004D40] md:py-[30px] py-[15px] md:px-[27px] px-[10px] md:rounded-t-[8px]">
