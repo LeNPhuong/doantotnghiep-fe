@@ -162,88 +162,88 @@ const IFCart: React.FC<{
         console.log(Payment);
 
         // nếu có voucher
-        // if (voucher) {
-        //   // checkout trước khi thanh toán
-        //   const resultData = await checkOutMutation(checkOut)
-        //     .unwrap()
-        //     .then((data) => {
-        //       return data;
-        //     })
-        //     .catch(() => {
-        //       return null;
-        //     });
-        //   // nếu checkout thất bại
-        //   if (!resultData) {
-        //     return alert('Đặt hàng thất bại');
-        //   }
-        //   // nếu checkout thành công
-        //   else if (resultData) {
-        //     // check thanh toán
-        //     const resultPayment = await paymentMutation({
-        //       ...Payment,
-        //       voucher_id: voucher.id,
-        //     })
-        //       .unwrap()
-        //       .then((data) => {
-        //         return data;
-        //       })
-        //       .catch(() => {
-        //         return null;
-        //       });
-        //     // nếu đặt hàng thất bại
+        if (voucher) {
+          // checkout trước khi thanh toán
+          const resultData = await checkOutMutation(checkOut)
+            .unwrap()
+            .then((data) => {
+              return data;
+            })
+            .catch(() => {
+              return null;
+            });
+          // nếu checkout thất bại
+          if (!resultData) {
+            return alert('Đặt hàng thất bại');
+          }
+          // nếu checkout thành công
+          else if (resultData) {
+            // check thanh toán
+            const resultPayment = await paymentMutation({
+              ...Payment,
+              voucher_id: voucher.id,
+            })
+              .unwrap()
+              .then((data) => {
+                return data;
+              })
+              .catch(() => {
+                return null;
+              });
+            // nếu đặt hàng thất bại
 
-        //     if (!resultPayment) {
-        //       return alert('Đặt hàng thất bại');
-        //     }
-        //     // nếu đặt hàng thành công
-        //     else {
-        //       if (resultPayment.payUrl) {
-        //         console.log(resultPayment.payUrl);
-        //         return (location.href = resultPayment.payUrl);
+            if (!resultPayment) {
+              return alert('Đặt hàng thất bại');
+            }
+            // nếu đặt hàng thành công
+            else {
+              if (resultPayment.payUrl) {
+                console.log(resultPayment.payUrl);
+                return (location.href = resultPayment.payUrl);
 
-        //         // return naviagte(resultPayment.payUrl);
-        //       } else {
-        //         dispatch(clearCart());
-        //         dispatch(ClearVoucher());
-        //         alert('Đặt hàng thành công');
-        //         naviagte('/thong-tin-nguoi-dung/don-hang');
-        //         location.reload();
-        //       }
-        //     }
-        //   }
-        // }
+                // return naviagte(resultPayment.payUrl);
+              } else {
+                dispatch(clearCart());
+                dispatch(ClearVoucher());
+                alert('Đặt hàng thành công');
+                naviagte('/thong-tin-nguoi-dung/don-hang');
+                location.reload();
+              }
+            }
+          }
+        }
         // không có voucher
-        // else if (!voucher) {
-        //   // checkout trước khi thanh toán
-        //   const resultPayment = await paymentMutation(Payment)
-        //     .unwrap()
-        //     .then((data) => {
-        //       return data;
-        //     })
-        //     .catch(() => {
-        //       return null;
-        //     });
+        else if (!voucher) {
+          // checkout trước khi thanh toán
+          const resultPayment = await paymentMutation(Payment)
+            .unwrap()
+            .then((data) => {
+              return data;
+            })
+            .catch(() => {
+              return null;
+            });
 
-        //   // nếu checkout thất bại
-        //   if (!resultPayment) {
-        //     return alert('Đặt hàng thất bại');
-        //   }
+          // nếu checkout thất bại
+          if (!resultPayment) {
+            return alert('Đặt hàng thất bại');
+          }
 
-        //   // nếu đặt hàng thành công
-        //   else {
-        //     if (resultPayment.payUrl) {
-        //       console.log(resultPayment.payUrl);
-        //       return (location.href = resultPayment.payUrl);
-        //       // return naviagte(resultPayment.payUrl);
-        //     } else {
-        //       dispatch(clearCart());
-        //       dispatch(ClearVoucher());
-        //       alert('Đặt hàng thành công');
-        //       naviagte('/thong-tin-nguoi-dung/don-hang');
-        //       location.reload();
-        //     }
-        //   }
-        // }
+          // nếu đặt hàng thành công
+          else {
+            if (resultPayment.payUrl) {
+              console.log(resultPayment.payUrl);
+              return (location.href = resultPayment.payUrl);
+              // return naviagte(resultPayment.payUrl);
+            } else {
+              dispatch(clearCart());
+              dispatch(ClearVoucher());
+              alert('Đặt hàng thành công');
+              naviagte('/thong-tin-nguoi-dung/don-hang');
+              location.reload();
+            }
+          }
+        }
       }
     }
   }
