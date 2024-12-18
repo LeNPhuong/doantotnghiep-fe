@@ -127,6 +127,7 @@ export interface ResultPaymentCheckOut {
   success: boolean;
   message: string;
   data: any;
+  payUrl: string;
 }
 
 export enum MethodDataPay {
