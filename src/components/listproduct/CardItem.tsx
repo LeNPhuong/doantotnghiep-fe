@@ -122,7 +122,7 @@ const CardItem: React.FC<{
         const newCart: {
           id: number;
           quantity: number;
-          unit: string;
+          unit: string | undefined;
           price: number;
         }[] = [];
 
