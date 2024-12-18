@@ -24,7 +24,6 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
   }, []);
 
   console.log(data);
-  
 
   return (
     <div className="w-full lg:mb-[30px] md:mb-[15px] mb-[10px] md:px-0 px-[10px]">
@@ -45,7 +44,7 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
             ● {data?.status?.text_status}
           </div>
         </div>
-        {data?.order_details[0].product ? (
+        {data?.order_details[0]?.product ? (
           <div className="flex flex-row xl:px-[28px] md:px-[16px] px-[10px] mb-[12px]">
             {/* col1 */}
             <div className="flex flex-col xl:mr-[28px] md:mr-[14px] mr-[10px]">
@@ -70,7 +69,7 @@ const ItemsOrther: React.FC<{ data: ListOrder }> = ({ data }) => {
             <div className="flex flex-row xl:gap-[41px] lg:gap-[15px] gap-[10px]">
               <div className="font-semibold flex flex-col xl:gap-[8px] lg:gap-[4px]">
                 <p>
-                  {data.order_details[0].product &&
+                  {data.order_details[0]?.product &&
                     ChangeCurrentcy(
                       Number(
                         checkTotalPriceRaw(
