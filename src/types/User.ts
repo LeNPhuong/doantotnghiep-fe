@@ -115,12 +115,12 @@ export interface DataSendPassword {
 
 export interface PaymentData {
   payment_method?: string;
-  voucher_id?: number | null;
   note?: string;
   name?: string;
   phone?: string;
   email?: string;
   address?: string;
+  voucher_id?: number | null;
 }
 
 export interface ResultPaymentCheckOut {
