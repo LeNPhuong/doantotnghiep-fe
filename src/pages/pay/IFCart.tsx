@@ -137,6 +137,8 @@ const IFCart: React.FC<{
         Payment.phone = user?.phone;
         if (noteData.length > 0) {
           Payment.note = noteData;
+        } else {
+          Payment.note = '';
         }
 
         if (methodPay === 0 || methodPay === null || methodPay === undefined) {
