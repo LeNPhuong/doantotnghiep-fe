@@ -14,6 +14,12 @@ const PayCartMethod: React.FC<object> = () => {
           border={false}
           value={1}
         />
+        <PayCartItemMethod
+          name="Thanh toán bằng"
+          img="/src/assets/icons/momo.png"
+          border={false}
+          value={2}
+        />
       </div>
     </div>
   );
