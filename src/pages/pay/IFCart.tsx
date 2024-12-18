@@ -199,7 +199,8 @@ const IFCart: React.FC<{
             else {
               if (resultPayment.payUrl) {
                 console.log(resultPayment.payUrl);
-                return (location.href = resultPayment.payUrl);
+                return window.open(resultPayment.payUrl, '_blank');
+                // return (location.href = resultPayment.payUrl);
 
                 // return naviagte(resultPayment.payUrl);
               } else {
@@ -232,8 +233,10 @@ const IFCart: React.FC<{
           // nếu đặt hàng thành công
           else {
             if (resultPayment.payUrl) {
-              console.log(resultPayment.payUrl);
-              return (location.href = resultPayment.payUrl);
+              return window.open(resultPayment.payUrl, '_blank');
+
+              // console.log(resultPayment.payUrl);
+              // return (location.href = resultPayment.payUrl);
               // return naviagte(resultPayment.payUrl);
             } else {
               dispatch(clearCart());
