@@ -27,6 +27,9 @@ const Search: React.FC<{}> = () => {
     return <Loading />;
   }
 
+  console.log(data);
+  
+
   return (
     <MainLayout>
       <Breadcrumb name={type?.toUpperCase()} />

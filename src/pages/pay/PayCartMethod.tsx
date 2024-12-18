@@ -1,5 +1,6 @@
 import React from 'react';
 import PayCartItemMethod from './PayCartItemMethod';
+import { Momo, Money } from '../../assets/icons';
 
 const PayCartMethod: React.FC<object> = () => {
   return (
@@ -10,13 +11,13 @@ const PayCartMethod: React.FC<object> = () => {
       <div className="flex flex-col shadow-[0_0_3px_rgba(0,0,0,0.25)] md:rounded-[10px]">
         <PayCartItemMethod
           name="Thanh toán khi nhận hàng"
-          img="/src/assets/icons/money.png"
+          img={Money}
           border={false}
           value={1}
         />
         <PayCartItemMethod
-          name="Thanh toán bằng"
-          img="/src/assets/icons/momo.png"
+          name="Thanh toán bằng Momo"
+          img={Momo}
           border={false}
           value={2}
         />
