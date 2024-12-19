@@ -15,12 +15,12 @@ const PayCartMethod: React.FC<object> = () => {
           border={false}
           value={1}
         />
-        <PayCartItemMethod
+        {/* <PayCartItemMethod
           name="Thanh toán bằng Momo"
           img={Momo}
           border={false}
           value={2}
-        />
+        /> */}
       </div>
     </div>
   );
