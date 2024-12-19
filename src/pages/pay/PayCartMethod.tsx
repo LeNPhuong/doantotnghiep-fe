@@ -1,6 +1,6 @@
 import React from 'react';
 import PayCartItemMethod from './PayCartItemMethod';
-import { Momo, Money } from '../../assets/icons';
+import { Money } from '../../assets/icons';
 
 const PayCartMethod: React.FC<object> = () => {
   return (
